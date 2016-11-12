@@ -1,0 +1,59 @@
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+
+$(function(){
+	if ($(".msg-error").html()!='<b></b>')
+	{	
+		$(".msg-error").css('display','');
+		$(".msg-warn").css('display','none');
+	}	
+});
+</script>
+   <?php $user = $this->session->userdata('user');?>
+  <?php if (empty($user)) :?>
+  <?php echo form_open('user/signin/index');?>
+<div class="login_box">
+<div class="login Grey">
+<ul>
+	<li style="height: 40px;">
+	<h2>小康登录</h2>
+	<span>享受O2O带来的便捷</span><em class="title_line"></em></li>
+	<div class="msg-wrap">
+	<div class="msg-warn"><b></b>请谨慎小心，以防账号丢失</div>
+	<div class="msg-error" style="display: none;"><b></b><?php echo validation_errors(); ?></div>
+	<li><input id="user" name="user" type="text"
+		placeholder="输入手机号"></li>
+	<li style="height:40px;"><input id="pass" name="passwd" type="password"
+		placeholder="密码"></li>
+          <div class="memory mt_8 mb_8">
+            <a href="<?php echo site_url('user/forgotPassword');?>"><font class="c06c">忘记密码了？</font></a> </div>
+	<li style="height:60px;"><input
+		style='width: 256px; height: 42px; display: block; color: #ead4d4; text-align: center; font: 18px/2.0 "microsoft yahei", "宋体", simsun, sans-serif; background: #a50001;'
+		type='submit' value='登&nbsp;&nbsp; &nbsp; 录'></li>
+		<p   style='margin-left: 115px;'>还没有帐号，<a href="<?php echo site_url('user/register');?>">立即注册</a></p>
+</ul>
+</div>
+</div>
+</form>
+  	<?php else :?>
+	<div class="login_box">
+ <div class="login Grey">
+        <ul>
+          <li>
+            <h2>便民信息</h2>
+            <span>享受O2O带来的便捷</span><em class="title_line"></em></li>
+          <li class="login_layout">
+            <div class="login_info">
+              <div class="login_img"><i><img src="images/user_img.png"></i></div>
+              <div class="login_user"><?php echo $user['user'];?></div>
+            </div>
+          </li>
+          <li><a href="<?php echo site_url('user/logout');?>">用户退出</a></li>
+        </ul>
+        <div class="login_link">你可以<a href="<?php echo site_url('user/changePassword');?>">修改密码</a>或<a href="<?php echo site_url('UserCenter/index');?>">个人中心</a></div>
+      </div>
+    </div>
+    <!-- 登录状态end--> 
+	<?php endif;?> 
+      <!-- 未登录状态end-->   
+  

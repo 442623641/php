@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<title>个人信息</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+
+<!-----topbar 开始----->
+    <?php $this->load->view('header.html');?> 
+<!-----topbar 结束-----> 
+<!-----nav 开始----->
+<div class="box menu_bg">
+  <div class="menu">
+    <ul class="nav">
+      <li> <a href="About_us.html">关于我们</a> </li>
+      <li><a href="Join.html">招商加盟</a></li>
+      <li> <a href="Service.html" >便民服务<span class="triangle"></span></a>
+        <div class="subnav">
+          <div class="width_b"> <a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> </div>
+        </div>
+      </li>
+      <li><a class="current" href="Index.html">网站首页</a></li>
+    </ul>
+  </div>
+</div>
+<!-----nav 结束----->
+<div class="box container_bg">
+<div class="container loginptb">
+  <div class="logleft f_l">
+    <div class="login">
+      <h1>个人信息</h1>
+      <ul>
+        <li> <u>姓名:</u> <em>
+          <input  name="txt_account" type="text" id="txt_account1"  placeholder="无脸男" caseon="submit">
+          </em> <span class="error">请输入正确的姓名</span></li>
+        <li> <u>电话:</u> <em>
+          <input name="pwd_password" type="text" id="txt_account1" placeholder="123456789" caseon="submit">
+          </em> </li>
+          <li> <u>地址:</u> <em>
+          <input name="pwd_password" type="text" id="txt_account1"  placeholder="安徽省合肥市xxxx" caseon="submit">
+          </em> </li>
+          <li> <u>身份证:</u> <em>
+          <input name="pwd_password" type="text" id="txt_account1" placeholder="324522368863527412" caseon="submit">
+          </em> </li>
+          <li> <u>银行卡:</u> <em>
+          <input name="pwd_password" type="text" id="txt_account1"  placeholder="6225998755643695" caseon="submit">
+          </em> </li>
+          <li class="logintip"><span id="span_msg_tip"></span></li>
+        <ol class="a2">
+          <div>
+            <button name="btn_sub" class="button red" id="btn_sub" ><span class="primary submit">立即修改</span></button>
+          </div>
+        </ol>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </form>
+  </div>
+<?php $this->load->view('personMain.html');?>
+  <div class="clear"></div>
+</div>
+</div>
+<!-----layout_5开始--底部--->
+<div class="box layout_5_bg">
+  <div class="layout_5 Grey">
+    <ul>
+      <li class="foot_lef fn-left"><img src="images/wx.jpg" width="146" height="143"/>
+        <p>全国加盟热线：400-859-1020<br>
+          加盟官网：http://www.xkbm365.com</p>
+      </li>
+      <li class="foot_rig fn-left">
+        <h2>关于我们</h2>
+        <br>
+        <p><a href="#">成长历程</a><br>
+          <a href="#">联系我们</a><br>
+          <a href="#">加入我们</a></p>
+      </li>
+      <li class="foot_rig fn-left">
+        <h2>招商加盟</h2>
+        <br>
+        <p><a href="#">加盟流程 </a><br>
+          <a href="#">加盟要求</a></p>
+      </li>
+      <li class="foot_rig fn-left">
+        <h2>在线帮助</h2>
+        <br>
+        <p><a href="#">在线帮助 </a><br>
+          <a href="#">电话帮助 </a><br>
+          <a href="#">客户经理</a></p>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="copyright"> 安徽象网汇信息科技股份有限公司<br>
+      联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+      CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号 客服热线：4008-591-020 </div>
+  </div>
+</div>
+
+<!-----layout_5结束----->
+</body>
+</html>

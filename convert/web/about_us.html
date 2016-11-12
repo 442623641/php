@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-关于我们</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+</head>
+
+<body>
+<div class="wrapper"> 
+   <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+  <!-----nav 结束-----> 
+  <!-----banner开始----->
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(images/img8.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+  <!-----banner结束-----> 
+  
+  <!-----成长历程 开始----->
+  <div class="box layout_1_bg">
+    <div class="width_a Grey">
+      <p class="title_font center_font">成长历程</p>
+      <a href="<?php echo site_url('home/development');?>"><img src="images/gywm_01.jpg"/></a>
+      <p class="mar_t">合肥彩象信息科技有限公司成立于2013年9月。 注册资金2000万，安徽省第一家以科研、开发、服务于一体的互联网彩票网上彩票投注平台。公司旗下涉足产业包括：互联网彩票、互联网金融、小康便民服务站等。</p>
+    </div>
+  </div>
+  <!----成长历程 结束-----> 
+  
+  <!-----团队建设 开始----->
+  <div class="box layout_1_bg">
+    <div class="width_b Grey">
+      <div class=" bord_bot">
+        <p class="title_font left_font bord_lef">团队建设</p>
+      </div>
+      <div class="width_a gywm_main">
+        <div class="gywm_con fn-left"> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_02.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a> <a href="#"><img src="images/gywm_03.jpg"/></a></div>
+        <div class="gywm_con fn-right">
+          <p class="title_font_b">核心价值观：诚信、创新、协作、分享</p>
+          <p class="mar_t">合肥彩象信息科技有限公司成立于2013年9月。 注册资金2000万，安徽省第一家以科研、开发、服务于一体的互联网彩票网上彩票投注平台。公司旗下涉足产业包括：互联网彩票、互联网金融、小康便民服务站等。公司董事长薛士凯一直以"授人以鱼、不如授人以渔"的社会责任感带领他的团队，本着"科技改变生活,彩象造福于民"的核心价值，做中国最有责任的企业。在国家进一步放开互联网彩票的政策引领下，积极响应国家优惠政策。首次把O2O的最新商业模式、手机APP与自助终端连接融入到互联网彩票领域。公司现总部位于合肥高新区机电产业园，临近地铁口，三环线和国道，集招商和高新技术产业性质于一身，得到政府大力扶持。立志把公司打造成中国区未来最具影响力、最受尊敬的商业资讯及金融服务巨型航母！</p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----团队建设  结束-----> 
+  <!-----动态 开始----->
+  <div class="box  layout_5_bg">
+    <div class="width_a gywm_main Grey">
+      <div class="gywm_con fn-left" >
+        <p class="gywm_title gywm_bgA White">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('home/newsList/1/1');?>" class="White">小康动态</a></p>
+        <ul class="gywm_dt gywm_bgC">        
+        <?php foreach($news as $res) {
+     		echo '<li><a href="'.base_url().'xk.php/home/news/'.$res['news_id'].'">'.$res['title'].'</a></li>';
+			};?>
+        </ul>
+      </div>
+      <div class="gywm_con fn-right">
+        <p class="gywm_title gywm_bgB White">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('home/newsList/2/1');?>" class="White">行业动态</a></p>
+        <ul class="gywm_dt gywm_bgD">
+          <?php foreach($dyn as $res) {
+     		echo '<li><a href="'.base_url().'xk.php/home/news/'.$res['news_id'].'">'.$res['title'].'</a></li>';
+			};?>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----动态  结束-----> 
+  
+  <!----便民文化 开始----->
+  <div class="box layout_1_bg">
+    <div class="width_b Grey">
+      <div class=" bord_bot">
+        <p class="title_font left_font bord_lef">便民文化</p>
+      </div>
+      <div class="width_a gywm_main">
+        <ul class="gywm_bmwh">
+          <li>
+            <p class="title_font_a center_font">融合</p>
+            <br>
+            <img src="images/gywm_04.jpg"/>
+            <p class="mar_t">一滴水只有放进大海里才永远不会干涸，一个人只有当他把自己和集体带来融合在一起的时候才能最有</p>
+          </li>
+          <li>
+            <p class="title_font_a center_font">合法</p>
+            <br>
+            <img src="images/gywm_05.jpg"/>
+            <p class="mar_t">一滴水只有放进大海里才永远不会干涸，一个人只有当他把自己和集体带来融合在一起的时候才能最有</p>
+          </li>
+          <li>
+            <p class="title_font_a center_font">共赢</p>
+            <br>
+            <img src="images/gywm_06.jpg"/>
+            <p class="mar_t">一滴水只有放进大海里才永远不会干涸，一个人只有当他把自己和集体带来融合在一起的时候才能最有</p>
+          </li>
+          <li>
+            <p class="title_font_a center_font">诚信</p>
+            <br>
+            <img src="images/gywm_07.jpg"/>
+            <p class="mar_t">一滴水只有放进大海里才永远不会干涸，一个人只有当他把自己和集体带来融合在一起的时候才能最有</p>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----便民文化 结束-----> 
+  
+ <!-----layout_4开始--合作伙伴--->
+     <?php $this->load->view('partner.html');?>
+  <!-----layout_4结束-----> 
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+  
+</div>
+</body>
+</html>

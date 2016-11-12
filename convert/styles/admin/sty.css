@@ -1,0 +1,139 @@
+
+/**********公共样式***********/
+*{ margin:auto; padding:0;}
+body{ font: 14px/1.8  "microsoft yahei","宋体",simsun,sans-serif; color:#323232;background:#e8e8e8;}
+.fot_s{ font-size:12px; font-family:"microsoft yahei","宋体",simsun,sans-serif;}
+.box{ width:100%; height:100%;}
+.box_a{ padding:20px 20px 0 20px;}
+.box_b{ width:100%; padding-top:10px; padding-bottom:10px;}
+.box_c{ width:98%; height:100%; margin:auto; padding:20px; border:1px solid #c8c8c8; background:#fff;
+-ms-border-radius: 4px;
+-moz-border-radius: 4px; 
+-webkit-border-radius:4px; 
+border-radius:4px;}
+.white_bg{ background:#fff;}
+.white{ color:#fff;}
+.gray{ color:#959595;}
+.orange{ color:#f25609;}
+.mar_rgt{ margin-right:14px;}
+.mar_lef{ margin-left:14px;}
+.mar_bot{ margin-bottom:10px;}
+.mar_botA{ margin-bottom:20px;}
+.pad_lef{ padding-left:20px;}
+.pad_rgt{ padding-right:20px;}
+a:hover{ text-decoration:none;}
+
+/**********   title  **********/
+.title_a{ width:100%; height:36px; line-height:36px; letter-spacing:1px; border-bottom:2px solid #ccc; position:relative;}
+.title_line{ width:60px; position:absolute; left:0; top:35px; *margin-top:-35px !important; border-bottom:2px solid #f25609;}
+
+/***********     buttom      ***********/
+.btn_a{ width:90px; height:36px; display:inline-block; *zoom:1; *display:inline; line-height:36px; text-align:center; background:#27ae61 url(../../images/admin/rig_cont_icon.png) no-repeat 8px 0;
+-ms-border-radius: 4px;
+-moz-border-radius: 4px; 
+-webkit-border-radius: 4px; 
+border-radius: 4px;}
+.btn_a:hover{background:#229d57 url(../../images/admin/rig_cont_icon.png) no-repeat 8px 0;;}
+.btn_b{ width:90px; height:36px; display:inline-block; *zoom:1; *display:inline; line-height:36px; text-align:center; background:#f22e20 url(../../images/admin/rig_cont_icon.png) no-repeat 8px -36px;
+-ms-border-radius: 4px;
+-moz-border-radius: 4px; 
+-webkit-border-radius: 4px; 
+border-radius: 4px;}
+.btn_b:hover{background:#e12b1e url(../../images/admin/rig_cont_icon.png) no-repeat 8px -36px;}
+.btn_c{ width:90px; height:36px; display:inline-block; *zoom:1; *display:inline; line-height:36px; text-align:center; background:#275dae url(../../images/admin/rig_cont_icon.png) no-repeat 8px -72px;
+-ms-border-radius: 4px;
+-moz-border-radius: 4px; 
+-webkit-border-radius: 4px; 
+border-radius: 4px;}
+.btn_c:hover{background:#225299 url(../../images/admin/rig_cont_icon.png) no-repeat 8px -72px;}
+.btn_d{ width:90px; height:36px; display:inline-block; *zoom:1; *display:inline; line-height:36px; text-align:center; background:#ccc url(../../images/admin/rig_cont_icon.png) no-repeat 8px -108px;
+-ms-border-radius: 4px;
+-moz-border-radius: 4px; 
+-webkit-border-radius: 4px; 
+border-radius: 4px;}
+.btn_d:hover{background:#b8b8b8 url(../../images/admin/rig_cont_icon.png) no-repeat 8px -108px;}
+.btn_e{ width:90px; height:30px; display:inline-block; *zoom:1; *display:inline; line-height:30px; text-align:center; background:#27ae61;}
+.btn_e:hover{background:#229d57;}
+.btn_f{ width:90px; height:30px; display:inline-block; *zoom:1; *display:inline; line-height:30px; text-align:center; background:#275dae;}
+.btn_f:hover{background:#225299;}
+
+/***************************  table   **********************************/
+.th_bg1{ background:#f25609;}
+.th_bg2{ background:#2d3e52;}
+.gtable{ width:100%; border-collapse:collapse; border:1px solid #c8c8c8; background:#fff;}
+.gtable tr{ border:1px solid #c8c8c8;}
+.gtable th,.gtable td{ padding:10px 18px;}
+.td_rad_l{ -ms-border-radius: 6px 0 0 0;
+-moz-border-radius: 6px 0 0 0; 
+-webkit-border-radius: 6px 0 0 0; 
+border-radius:6px 0 0 0;}
+.td_rad_r{ -ms-border-radius: 0 6px 0 0;
+-moz-border-radius: 0 6px 0 0; 
+-webkit-border-radius: 0 6px 0 0; 
+border-radius: 0 6px 0 0;}
+.pag a{color:#323232;}
+.pag a:hover{ color:#f25609; text-decoration:none;}
+.wid_a{ width:10%;}
+.wid_b{ width:50%;}
+.wid_c{ width:20%;}
+.wid_d{ width:20%;}
+.tr_bg{ background:#f2f2f2;}
+
+.ftable{ width:100%;}
+.ftable td{ height:46px;}
+.wid_e{ width:50px;}
+
+/***********      split page   ***********/
+.split{ height:36px; padding-top:10px; border-left:1px solid #c8c8c8; border-right:1px solid #c8c8c8; border-bottom:1px solid #c8c8c8;}
+.split_lef{ width:220px;}
+.split_rgt{ width:436px; text-align:center;}
+.input_a{ width:26px; height:22px; text-align:center; margin-bottom:-3px; border:1px solid #c8c8c8;}
+.split_page{ padding:2px 8px; color:#323232; border:1px solid #c8c8c8; background:#fff;}
+.split_page:hover,.split_page.current{ color:#fff;padding:2px 8px;  border:1px solid #f25609; background:#f25609;}  
+.split_go{color:#fff; padding:2px 8px; background:#f25609; 
+-ms-border-radius:6px;
+-moz-border-radius:6px;
+-webkit-border-radius:6px;
+border-radius:6px;}
+
+/***********    form     ***********/
+.input_b{ width:214px; padding:6px 10px; border:1px solid #c8c8c8;}
+.input_c{ width:164px; padding:6px 10px; height:28px; border:1px solid #c8c8c8;}
+.input_d{ width:100px; padding:6px 10px; height:28px; background:#fff; border:1px solid #c8c8c8;}
+.input_tea{ width:88%; height:280px;  border:1px solid #c8c8c8; padding:6px 10px;}
+.fieldsetA{ width:98%; height:100%; margin:auto; padding:20px; border:1px solid #c8c8c8; background:#f2f2f2;}
+.fieldsetA p{ width:100%; padding:0 0 10px 30px;}
+.fieldsetA_line{ width:100%; border-bottom:1px solid #e8e8e8;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, td ,span,a{ margin: 0; padding: 0; }
+a{ text-decoration:none;color:#686868;}
+a:hover{color:#fc871a; text-decoration:none;}
+ul,li{ list-style:none;}
+img{border:0;}
+em{ font-style:normal;}
+h1, h2, h3, h4, h5, h6{font-weight:normal;}
+
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearfloat{zoom:1}
+.clear{clear:both;zoom:1;}/*以防clearfloat  在某些情况下失效*/
+
+body{ font-size:12px; text-align:center; line-height:22px; background:#fff;color:#686868; font-family:Microsoft YaHei; }
+.wid_1200{width:1200px; margin:0 auto;}
+.t_l{ text-align:left;}
+.t_c{ text-align:center;}
+.t_r{ text-align:right;}
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+
+.mr1{margin-right:1px;}
+.mb1{margin-bottom:1px;}
+.pb20{padding-bottom:20px;}
+
+.style-red {color: #C81623;}
+
+
+
+/*头部公用样式*/
+
+	
+
+
+
+/*头部公用样式 end*/
+
+
+
+
+

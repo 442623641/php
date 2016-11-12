@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>合作伙伴管理</title>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+$(function () {
+$(".gtable tr:even").addClass("tr_bg"); 	
+});
+function deletePartner($partner_id){
+    $.ajax({
+        	dataType:"json",
+            type:"POST",
+            url:$('#base_url').val()+"xk.php/admin/partner/delete",
+            data:{partner_id:$partner_id},
+            success:function(msg){
+                if(msg==1){
+					alert('删除成功！');
+					generateStaticPage();
+					window.location.reload();
+                }else{
+                	alert('删除失败！');
+                }
+            }
+    });
+}
+
+function generateStaticPage(){
+    $.ajax({
+    	dataType:"json",
+        type:"POST",
+        url:$('#base_url').val()+"xk.php/admin/partner/generateStaticPage"
+});
+}
+function loadEditPage($partner_id){
+	window.location.href=$('#base_url').val()+"xk.php/admin/partner/editPage?partner_id="+$partner_id;
+	window.location.load();
+}
+
+</script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="box_a white_bg">
+    	<p class="title_a"><em class="title_line"></em>合作伙伴管理</p>
+        <div class="box_b"><a class="btn_a white mar_rgt" href="<?php echo base_url().'xk.php/admin/partner/addPage';?>">新 &nbsp;增</a>
+        <a class="btn_a white mar_rgt" href="<?php echo base_url().'xk.php/admin/partner/generateStaticPage';?>">&nbsp;&nbsp;&nbsp;&nbsp;生成页面</a></div>
+    </div>
+    <div class="box_a">
+    	<table class="gtable">
+    	<input type="hidden" id="base_url" value="<?php echo base_url() ;?>">
+        	<tr class="white">
+                <th class="wid_b th_bg2" style="width:10%;">名称</th>
+                <th class="wid_c th_bg2" style="width:20%;">链接</th>
+                <th class="wid_c th_bg2" style="width:20%;">图片</th>
+                <th class="wid_b th_bg2" style="width:10%;">序号</th>
+                <th class="td_rad_r wid_d th_bg2">操作</th>
+            </tr>
+			<?php foreach($result as $res) {
+     		echo '<tr>
+            		<td><p class="gray"><a  >'.$res['partner_name'].'</a></p></td>
+                	<td class="pag"><a href="'.$res['url'].'" target="_blank">'.$res['url'].'</a></td>
+					<td class="pag"><a href="'.base_url().$res['pic'].'" target="_blank">'.$res['pic'].'</a></td>
+					<td class="gray">'.$res['order_num'].'</td>
+<td><img src="'.base_url().'images/admin/edit.png" align="middle" onclick="loadEditPage('.$res['partner_id'].');"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="'.base_url().'images/admin/delete.png" align="middle" onclick="deletePartner('.$res['partner_id'].');"/></td>
+            	  </tr>';
+			};?>
+        </table>
+        <div class="split white_bg">
+		  	<?php echo $this->pagination->create_links();?>
+		</div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.login-wrap {
+  position: relative;
+  height: 475px;
+  margin: 10px 0 20px;
+}
+.w {
+  width: 990px;
+  margin: 0 auto;
+}
+.ar {
+  text-align: right;
+}
+.login-wrap .login-form {
+  float: right;
+  top: 40px;
+}
+.login-form {
+  position: relative;
+  z-index: 4;
+  width: 306px;
+  background: #fff;
+  padding: 20px;
+  overflow: visible;
+}
+login-form .login-box .mt {
+  display: inline-block;
+  display: block;
+  width: 306px;
+  overflow: visible;
+  height: 27px;
+}
+.login-form .login-box .mt:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

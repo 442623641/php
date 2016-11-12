@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<title>提现</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow" onclick="history.back();"><i class="leftn"></i></a>
+ <h1 class="title">提现</h1>
+</div>
+<div class="account_ye">当前账户余额：<font color="red"><?php echo $result['money'];?>元</font></div>
+<div class="layout_box">
+	<div class="login_box_content" style="padding:0">
+	<ul>
+    	<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">提现金额：</div>
+                <div class="right_login_input"><input name="" type="text" placeholder="今日最高可提现5000元"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+      <li>
+        	<span class="magin_l">提现方式</span>
+        </li>
+        <li>
+        	<span class="magin_l"><input name="" type="checkbox" value="" class="check_box">提现到绑定银行卡</span>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t" id="bank_box"><img src="images/img/bank.png"></div>
+				<p class="fl"><span>招商银行</span><br>尾号3927</p>
+                <div class="clearfix"></div>
+				<div class="bank_n"></div>
+            </div>
+        </li>
+		<li>
+        	<span class="magin_l"><input name="" type="checkbox" value="" class="check_box">提取至第三方</span>
+        </li>
+		<li>
+        	<span class="magin_l"><input name="" type="checkbox" value="" class="check_box">提取至银行卡</span>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">支付密码：</div>
+               <div class="right_login_input"><input name="" type="text" placeholder="输入支付密码"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+        <li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">手机验证码：</div>
+                <div class="right_login_input send_ms_input"><input name="" type="text" placeholder="输入手机验证码"></div><a href="javascript:void(0);" class="send_ms">获取验证码</a>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="login_box_content" style="padding-top:0;padding-bottom:0"><a href="javascript:void(0);" class="login_btn">提取</a></div>
+</div>
+</body>
+</html>

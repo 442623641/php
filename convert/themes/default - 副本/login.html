@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>js/mobileForm.js"></script>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>styles/style2.css" />
+<title>登录</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow"><i class="leftn"></i></a>
+ <h1 class="title">登录</h1>
+</div>
+<div class="login_box">
+	<img src="<?php echo base_url();?>images/img/login_logo.png" />
+</div>
+<div class="login_box_content">
+	<ul>
+    	<li>
+        	<div class="input_div">
+            	<div class="left_login_z"><img src="<?php echo base_url();?>images/img/login_z.png" ></div>
+                <div class="right_login_input"><input id="user" name="user" type="text" placeholder="手机号/用户名"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+      <li>
+        	<div class="input_div">
+            	<div class="left_login_z"><img src="<?php echo base_url();?>images/img/login_m.png" ></div>
+                <div class="right_login_input"><input id="pass" name="passwd" type="password" placeholder="密码"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+    <button class="login_btn" disabled="disabled" data-loading-text="正在登录...">登录</button>
+    <a href="<?php echo site_url('user/register');?>" class="fl">注册</a><a href="<?php echo site_url('user/forget')?>" class="fr">忘记密码？</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel" style="color:#EC7E49">登录失败</h4>
+      </div>
+      <div class="modal-body">
+        账号或密码错误,请重新填写。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+<script>
+    $(function(){
+        hasCookie();
+        bindEvents();
+
+        $(".login_btn").on("click", function(){
+            var $btn = $(this).button('loading');
+            var url = "<?php echo site_url('user/login')?>";
+            var user = $('input[name="user"]');
+            var passwd = $('input[name="passwd"]');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: {
+                    user: $.trim(user.val()),
+                    passwd: $.trim(passwd.val()),
+                },
+                success: function(data){
+                    if (data.fail == 0) {
+                        location.href = data.redirect;
+                    }
+
+                    if (data.fail != 0) {
+
+                        $('#myModal').modal({
+                            keyboard: true,
+                        });
+                        $btn.button('reset');
+                    }
+               }
+            });
+        });
+    });
+</script>
+</html>

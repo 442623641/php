@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>角色管理</title>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+$(function () {
+$(".gtable tr:even").addClass("tr_bg"); 	
+});
+
+function deleteRole($role_id){
+    $.ajax({
+        	dataType:"json",
+            type:"POST",
+            url:"http://localhost/Web/xk.php/admin/role/delete",
+            data:{role_id:$role_id},
+            success:function(msg){
+                if(msg==1){
+					alert('删除成功！');
+					window.location.reload();
+                }else{
+                	alert('删除失败！');
+                }
+            }
+    });
+}
+
+function loadEditPage($role_id){
+	window.location.href="http://localhost/Web/xk.php/admin/role/editPage?role_id="+$role_id;
+	window.location.load();
+}
+
+function query(){
+	$('#myform').submit();
+}
+
+$(document).ready(function(){
+	$('#myform').submit();
+});
+</script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="box_a white_bg">
+    	<p class="title_a"><em class="title_line"></em>角色管理</p>
+        <div class="box_b">
+         <form id="myform" target="listframe" action="<?php echo base_url().'xk.php/admin/role/select';?>" method="post" >
+       <!--   	 角色名称：<input type="text" name="account" class="input_b" style="width:100px;">&nbsp;&nbsp;-->
+        <a class="btn_b white"  onclick="query();">查&nbsp;询</a>&nbsp;&nbsp;&nbsp;
+        <a class="btn_a white mar_rgt" href="<?php echo base_url().'xk.php/admin/role/addPage';?>">新 &nbsp;增</a>
+        </form>
+        </div>
+    </div>
+    <iframe id="listframe" name="listframe" width="100%;" height="500px;" frameborder="0" scroll="auto;">
+   </iframe>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

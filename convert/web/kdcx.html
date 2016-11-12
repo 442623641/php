@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+
+<script type="text/javascript">
+	function queryKd(){
+		var track_num = $('#track_num').val();
+		var track_company = $('#track_company').val();
+		if(track_num==''){
+			alert('请输入快递号！');
+			return;
+		}
+		if(track_company==''){
+			alert('请选择快递公司');
+			return;
+		}
+		setInfo();
+
+		//var url = $('#base_url').val()+'xk.php/xkApp/queryKd';
+		var url = '<?php echo site_url("xkApp/queryKd");?>';
+		$.ajax({
+	        type: "POST",
+	        url:url,
+	        data:{type:track_company,postid:track_num},
+	        dataType : "json",
+			error : function() {
+				alert("没有相关的快递信息");
+				return;
+			},
+	        success: function(responseText) {
+				var resultJson = eval("(" + responseText + ")");
+	            if (resultJson.status == 200) {
+	                var resultData = resultJson.data;
+	                var resultHtml = $("#cxjg_list");
+	                for (var i = resultData.length - 1; i >= 0; i--) {
+		                var ftime = resultData[i].ftime;
+	                    //json输出
+	                    if (i == 0) {
+	                    	resultHtml.append('<li class="li1"><div class="left"><p>'+ftime.substring(0,10)+'</p><i>'+ftime.substring(10)+'</i></div><div class="right">'+resultData[i].context+'</div></li>');
+	                    } else {
+	                    	resultHtml.append('<li><div class="left"><p>'+ftime.substring(0,10)+'</p><i>'+ftime.substring(10)+'</i></div><div class="right">'+resultData[i].context+'</div></li>');	                   
+		        		}
+
+		            }
+	                $("#cxjg").removeAttr('style');
+	                $("#cxframe").attr('style','display:none;');
+	            }else{
+		            var mess = resultJson.message;
+		            var index = mess.indexOf('：')+1;
+		            mess = mess.substring(index);
+					alert(mess);
+			    }
+
+	        }
+	        
+		});
+	}
+
+	function setInfo(){
+		var track_num = $('#track_num').val();
+		var track_company = $('#track_company').val();
+		$('#kdlogo').attr('src','http://cdn.kuaidi100.com/images/all/56/'+track_company+'.png');
+		$('#kdlogo').attr('alt',$('option[value="'+track_company+'"]').text());
+		 
+		$('#kddh').text('  单号: '+track_num);
+		//$('#kdgs').text($('option[value="'+track_company+'"]').text());
+	}
+
+	function back(){
+		//$('#cxjg_list').empty();
+		window.location.href='<?php echo site_url("xkApp/kdcx");?>';
+		window.location.load();	
+	}
+</script>
+</head>
+<body>
+<div id="cxframe">
+	<img src="images/logo-.png" class="img1">
+	<p class="p1">快递查询</p>
+	<ul class="cx">
+		<input type="hidden" id="base_url" value="<?php echo base_url() ;?>">
+		<li><input type="text" id="track_num" name="track_num" placeholder="快递单号" ></li>
+		<li><select id="track_company" name="track_company" placeholder="快递公司">
+				<option value="">请选择快递公司</option>
+				<option value="shentong">申通快递</option>
+				<option value="ems">EMS</option>
+				<option value="shunfeng">顺丰速运</option>
+				<option value="yunda">韵达快递</option>
+				<option value="yuantong">圆通速递</option>
+				<option value="zhongtong">中通快递</option>
+				<option value="huitongkuaidi">百世汇通</option>
+				<option value="tiantian">天天快递</option>
+				<option value="zhaijisong">宅急送</option>
+				<option value="zhongyouwuliu">中邮物流</option>
+				<option value="ztky">中铁物流</option>
+			</select>
+		</li>
+		<li><a  onclick="queryKd();">查询</a></li>
+	</ul>
+	</div>
+	<div id="cxjg" class="cxjg" style="display:none;">
+		<a onclick="back();">返回</a>
+		<div class="logo" >
+			<img id="kdlogo" src="" alt="">
+			<p ID="kddh">单号 1000515043215</p>
+		</div>
+		<ul id="cxjg_list">
+	
+		
+		</ul>
+	</div>
+	
+	
+</body>
+</html>

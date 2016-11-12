@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<script type="text/javascript"  src="js/jquery-1.8.0.min.js" ></script>
+<script type="text/javascript"  src="js/jquery.min.js" ></script>
+<title>交易记录</title>
+<script type="text/javascript">
+	function loadMore(url){
+		url += "/"+$('#start').val()+"/5";
+	    $.ajax({
+        	dataType:"json",
+            type:"POST",
+            url:url,
+            success:function(result){
+
+                    var datalist = result['list'];
+                    if(datalist.length==0){
+						alert('暂无更多数据！');
+                    }else{
+                        var html = "";
+                    	for(var i = 0;i < datalist.length; i++) {
+                        	if(datalist[i]['state_rcs']==1){
+                        		html+="<tr id='jiaoyi_tr'><td>订单号："+datalist[i]['orderID']+"<br>创建时间："+datalist[i]['create_date']+"</td><td><span>"+datalist[i]['app']+"<br>"+datalist[i]['cost']+"</span></td><td>已完成</td><td><i></i></td></tr>";
+                            }
+                        	if(datalist[i]['state_rcs']==0){
+                        		html+="<tr id='jiaoyi_tr'><td>订单号："+datalist[i]['orderID']+"<br>创建时间："+datalist[i]['create_date']+"</td><td><span>"+datalist[i]['app']+"<br>"+datalist[i]['cost']+"</span></td><td><font color='red'>未完成</font></td><td><i></i></td></tr>";
+                            }
+                    	}
+                    	$('#jiaoyi_tb').append(html);
+                    	var start = result['start'];
+                    	$('#start').val(start);
+                    }
+            },
+            error:function(data){
+                alert("请求异常！");
+            }
+    	});
+	}
+</script>
+</head>
+
+<body style="background:#fff">
+<div class="topmenu">
+ <a class="openFavBox left_narrow"  onclick="history.back();"><i class="leftn"></i></a>
+ <h1 class="title">交易记录</h1>
+</div>
+<div class="layout" style="padding-top:0.8rem">
+	<input type="hidden"" id="start" name="start" value="<?php echo $start;?>">
+	<div class="layout_table">
+		<table cellpadding="0" cellspacing="0" id="jiaoyi_tb">
+					<?php foreach($result as $res) {
+							if($res["state_rcs"]==1){
+								echo '<tr id="jiaoyi_tr"><td>订单号：'.$res['orderID'].'<br>创建时间：'.$res['create_date'].'</td><td><span>'.$res['app'].'<br>'.$res['cost'].'</span></td><td>已完成</td><td><i></i></td></tr>';
+							}else{
+								echo '<tr id="jiaoyi_tr"><td>订单号：'.$res['orderID'].'<br>创建时间：'.$res['create_date'].'</td><td><span>'.$res['app'].'<br>'.$res['cost'].'</span></td><td><font color="red">未完成</font></td><td><i></i></td></tr>';
+							};
+					};?>
+		</table>
+		<a  onclick="loadMore('<?php echo site_url("UserCenter/jiaoyi2/");?>');" class="jiaz">点击加载更多</a>
+</div>
+
+</body>
+</html>

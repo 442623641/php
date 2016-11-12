@@ -1,0 +1,35 @@
+function login() {
+	// action='<?php echo base_url();?>index.php/user/signin'
+	$('#loginsubmit').text('正在登录...');
+	var user = $('#user').val();
+	var pass = $('#pass').val();
+	var url = "http://localhost:81/ci/index.php/user/signin?"+'user='+user+'&pass='+pass;
+	//alert(url);
+	$.ajax( {
+		type : "POST",
+		dataType : "json",
+		url:url,
+		// data: { cls: "LotteryUserJointWeb", fun: "MyJointDetail", Token:
+		// token.Token, lotteryId: jointid },
+		success : function(json) {
+			alert(json);
+			if (json.fail != 0) {
+				showMesInfo(json.mess, error);
+			} else {
+				showMesInfo(json.mess, error);
+			}
+		}
+	});
+}
+
+function showMesInfo(msg, type) {
+	$('.form>.msg-wrap').empty();
+	if (type == 'warn') {
+		var info = '<div class="msg-warn"><b></b>' + msg + '</div>';
+		$('.form>.msg-wrap').append(info);
+	}
+	if (type == 'error') {
+		var info = '<div class="msg-error"><b></b>' + msg + '</div>';
+		$('.form>.msg-wrap').append(info);
+	}
+}

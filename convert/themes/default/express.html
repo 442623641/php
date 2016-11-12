@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url();?>styles/index.css" />
+	<title>快递查询</title>
+</head>
+<body>
+	<div class="topmenu">
+		 <span class="openFavBox left_narrow"><i class="leftn"></i></span>
+		 <h1 class="title">快递查询</h1>
+	</div>
+	<p>小康便民快递查询</p>
+	<form action="<?php echo site_url('Express/result');?>" method="post">
+		<div class="input1">
+			<input name="number" type="text" placeholder="输入单号" class="dh">
+		</div>
+		<div class="select"  style="width: 91%;margin:0 auto;outline:none;border:1px solid #BBBBBB;position:relative;">
+			<select name="company" class="kd" style="height:4rem;-webkit-appearance:none;appearance:none;border:none;font-size:1.2rem;padding-left:1.0rem;display:block;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;background-color: #FFFFFF;color:#A6A6A6;border-radius:4px;">
+				<option>--请选择快递公司--</option>
+				<?php foreach ($company as $k => $v): ?>
+				<option value="<?php echo $k;?>"><?php echo $v;?></option>
+				<?php endforeach ?>
+			</select>
+		</div>
+		<div class="cx">
+			<button class="button" type="submit">查询</button>
+		</div>
+	</form>
+	<script type="text/javascript">
+		$(function($){
+			$(".left_narrow").on('click', function() {
+				window.history.back();
+			});
+			$('.button').click(function(){
+				if ($.trim($('.dh').val()) == '') {
+					alert('请输入单号');
+					return false;
+				} 
+
+				if ($.trim($('.kd').val()) == '--请选择快递公司--') {
+					alert('请选择快递');
+					return false;
+				} 
+			});
+		});
+	</script>
+</body>
+</html>

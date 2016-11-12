@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="
+<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/datepicker_cn.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.myPagination6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="../web/js/msgbox/msgbox.css" />
+<script src="js/msgbox/msgbox.js"></script>
+<script type="text/javascript" src="js/trade.js"></script>
+<title>订单管理</title>
+</head>
+<body onload='pageInitial(<?php echo $pageIndex?>,<?php echo $totalPage!=null?$totalPage:1?>)'>
+<div class="title_bg"><a href="<?php echo site_url('user/index')?>" target="_parent">首页</a>>
+<a href="<?php echo site_url('shop/index')?>" target="cont_right">店员管理</a>>店员列表
+</div>
+<div class="search">
+
+<form id="queryForm" name ="queryForm"  action='<?php echo site_url("Shop/lists")?>'>
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="80">店员：</td>
+		<td width="210"><input name="shop" type="text" 
+			class="input_txt" value="<?php echo $params["shop"]; ?>"></td>
+		<td>
+		<a href="javascript:submit()" class="input_btn">查询</a>
+		<a href="javascript:submit()" class="input_btn" id="f_box_g">新增店员</a>
+		<a href="javascript:submit()" class="input_btn" id="f_box_o">删除</a></td>
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+<div class="content_b">
+<div class="content_b_t">店员列表</div>
+<div class="content_b_table">
+<table id="tab_list" cellspacing="0" cellpadding="0" width="100%">
+	<!--
+//	 'shopID' => string '10000' (length=5)
+//      'shop' => string 'shop-003' (length=8)
+//      'dealer' => string '13993001010' (length=11)
+//      'add_province' => string '安徽' (length=6)
+//      'add_city' => string '合肥' (length=6)
+//      'address' => string '金寨路96号' (length=14)
+//      'add_GPS_lng' => string '-45.0938476' (length=11)
+//      'add_GPS_lat' => string '32.09876485' (length=11)-->
+	<tr class="font14">
+		<td>店员编号</td>
+		<td>店员名称</td>
+		<td>省份</td>
+		<td>城市</td>
+		<td>地址</td>
+		<td>操作</td>
+	</tr>
+	<tbody> 
+		<?php foreach($data as $item) {		
+		echo '<tr>
+				<td>'.$item["shopID"].'</td>
+				<td>'.$item["shop"].'</td>
+				<td>'.$item["add_province"].'</td>
+				<td>'.$item["add_city"].'</td>
+				<td>'.$item["address"].'</td>
+				<td style="width:260px"><a style="color:blue;" href="'.site_url("Shop/update\/").$item["shopID"].'">修改信息</a>&nbsp;|&nbsp;
+<a style="color:blue;" href="'.site_url("Shop/performance\/").$item["shopID"].'">查看业绩</a>&nbsp;|&nbsp;
+<a style="color:blue;" href="'.site_url("Shop/employees\/").$item["shopID"].'">查看详情</a>&nbsp;|&nbsp;
+<a style="color:blue;" href="'.site_url("Shop/delete\/").$item["shopID"].'">删除</a></td>
+				</tr>';	
+		 }?>
+	</tbody>
+</table>
+
+</div>
+<div class="msdn" id="page"></div>
+</div>
+</body>
+</html>

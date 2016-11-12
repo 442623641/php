@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../web/js/msgbox/msgbox.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.myPagination6.0.js"></script>
+<script src="js/msgbox/msgbox.js"></script>
+<title>订单详情</title>
+</head>
+<body>
+<div class="title_bg"><a href="<?php echo site_url('user/index')?>" target="_parent">首页</a>>
+<a href="<?php echo site_url('Traded/index')?>" target="cont_right">订单管理</a>>
+<a href="<?php echo site_url('Traded/index')?>" target="cont_right">完成订单</a>>订单详情
+</div>
+<p class="dd">订单状态</p>
+<div class="content_b content_bt content_bb">
+    <div class="content_b_table " id="xt_table">
+    	<table cellpadding="0" cellspacing="0" width="100%">
+            <tr><td width="240">订单号：<?php echo $data["orderID"]?></td><td width="500">状态：<span>已完成</span></td></tr>          
+            <tr><td>交易金额：<span><?php echo $data["cost"]?></span></td><td>交易佣金：<span><?php echo $data["commission"]?> </span></td></tr>
+            <tr><td>交易方：<?php echo $data["consumer"]?></td><td>积分：<span>0.00</span></tr>    
+            <tr><td>创建时间：<?php echo  $data["create_date"]." ".$data["create_time"]?></td><td>完成时间：<?php echo $data["finish_date"]." ".$data["finish_time"]?></td></tr>   
+        </table>
+    </div>
+</div>
+<p class="dd">订单内容</p>
+<div class="content_b content_bt content_bb">
+    <div class="content_b_table " id="xt_table">
+    <table id="tab_list" cellspacing="0" cellpadding="0" width="100%">
+	<tr class="font14">
+   <td width="150">交易方</td><td width="150">产品</td><td width="150">产品价格</td><td>费用</td><td>交易金额</td></tr>
+        <tbody><!--  
+            	<?php foreach($data as $item) {
+				$money=$item["cost"]-$item["commission"];
+ 				echo '<tr>
+				<td>'.$item["consumer"].'</td>
+				<td>'.$item["comment"].'</td>
+				<td style="font-size:16px"><span>'.$item["cost"].'</span></td>
+				<td style="font-size:16px"><span>'.$item["commission"].'</span></td>
+				<td style="font-size:16px"><span>'.$money.'</span></td></tr>';	
+		 }?>-->
+	</tbody>
+</table>       
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

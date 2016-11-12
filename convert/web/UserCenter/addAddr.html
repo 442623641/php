@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-地址管理-添加地址</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+
+<div class="grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">添加地址</div>
+  <div class="grzx_cot_rgt_grzl mar_t"> 当前已绑定的地址&nbsp;&nbsp; <a href="#" class="blue">查看已绑定地址</a></div>
+  
+                      <table width="90%" height="340" class="mar_t30 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+                            <td class="grzx_gtable_wid1">帐&nbsp;&nbsp;号:</td>
+                            <td class="grzx_gtable_wid2"><font class="org"><?php echo $user;?></font></td>
+                          </tr>
+                          <tr>
+                            <td>姓名:</td>
+                            <td><input name="name" /></td>
+                          </tr>
+                          <tr>
+                            <td>电话:</td>
+                            <td><input name="phonenumber" /></td>
+                          </tr>
+                          <tr>
+                            <td>地&nbsp;&nbsp;址：</td>
+                            <td><select name="province" class="grzx_gtable_select1 marg_rgt10"><option>安徽省</option><option>安徽省</option></select>   <select name="city" class="grzx_gtable_select1 marg_rgt10"><option>合肥市</option><option>合肥市</option></select>  <select name="country" class="grzx_gtable_select2"><option>经济技术开发区</option><option>经济技术开发区</option></select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><input name="address" type="text" class="grzx_gtable_inptb"/></td>
+                          </tr>
+                          <tr>
+                            <td>邮&nbsp;&nbsp;编：</td>
+                            <td><input name="poster" type="text" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><input type="checkbox" name="type" id="checkbox" value="1" />
+设为默认地址 </td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="grzx_gtable_btnOk confirm">添 加</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(".cancel").click(function(){
+      $("input").val("");
+    });
+
+    $(".confirm").click(function(){
+      var name = $.trim($("input[name='name']").val());
+      var phonenumber = $.trim($("input[name='phonenumber']").val());
+      var province = $("select[name='province'] option:selected").text();
+      var city = $("select[name='city'] option:selected").text();
+      var district = $("select[name='country'] option:selected").text();
+      var address = $.trim($("input[name='address']").val());
+      var type = $("input[name='type']:checked").val() || "2";
+      var poster = $.trim($("input[name='poster']").val());
+
+      $.ajax({
+        url: '<?php echo site_url("UserApi/addAddr");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          name: name,
+          phonenumber: phonenumber,
+          province: province,
+          city: city,
+          district: district,
+          address: address,
+          type: type,
+          youbian: poster,
+        },
+
+        success: function(json){
+          if (json.fail == 0) {
+            alert('添加成功');
+            window.location.href="<?php echo site_url('UserCenter/address');?>"
+          } else {
+            alert('添加失败');
+          }
+        }
+      })
+    });
+  });
+</script>
+</body>
+</html>

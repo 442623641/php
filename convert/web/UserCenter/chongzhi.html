@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-提现</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 充值---->
+<div class="grzx_iframe_cot">
+<div class="grzx_cot_rgt_tit">个人帐户－<font class="org">充值</font></div>
+                                	<form name="formPay" id="formPay" method="post" target='_blank'>
+               		    <table width="90%" height="516" class="mar_t30 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td class="grzx_gtable_wid1"><span class="grzx_gtable_wid1">充值金额</span>：</td>
+                            <td class="grzx_gtable_wid2">
+                            <input type="hidden" name="userID" value="<?php echo $this->session->userdata("userID");?>"/>
+                             <input type="hidden" name="user" value="<?php echo $this->session->userdata("user");?>"/>
+                            <input type="text" name="money" id="money" class="grzx_gtable_inpta"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <font class="grzx_gtable_smFt">每充值1元得1积分，此次充值可得100积分</font>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>支付方式：</td>
+                            <td rowspan="6">
+                            <div class="grzx_gtable_divCot1" id="grzx_bank_cot">
+                            <!--
+                           	  <div class="on" style="display:none">
+                                	
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_a"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_b"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_c"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_d"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_e"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_f"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_g"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_h"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_i"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_j"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_k"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_l"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_m"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_n"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_o"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_p"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_q"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_x"></span>
+                                	      </label>
+                                     </a>
+
+                              </div>
+                              	 -->
+                              	 <!--快捷支付-->
+                              	  <!--
+                            	<div style="display:none">
+                                	<form name="form1" method="post" action="">
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_a"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_b"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_c"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_d"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_e"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_f"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_g"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_h"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_i"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_j"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_k"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_l"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_m"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_n"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_o"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_p"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_q"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_x"></span>
+                                	      </label>
+                                     </a>
+                              	  </form>
+                                </div>
+                                -->
+                                <!--第三方支付-->
+                                <div >
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="/pay/alipay/Alipayapi.php" > &nbsp;
+                                          <span class="bank_pay_logo_a"></span>
+                                	      </label>
+                                     </a>
+                                    
+                                     <!--
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="/pay/alipay/Alipayapi.php" > &nbsp;
+                                          <span class="bank_pay_logo_c"></span>
+                                	      </label>
+                                     </a>--->
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="/pay/unionpay/Unionpayapi.php" > &nbsp;
+                                          <span class="bank_pay_logo_d"></span>
+                                	      </label>
+                                     </a>
+                                     <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="/pay/unionpay/Unionpayapi_wap.php" > &nbsp;
+                                          <span class="bank_pay_logo_b"></span>
+                                	      </label>
+                                     </a>
+                                    
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="/pay/alipay/Alipayapi_wap.php" > &nbsp;
+                                          <span class="bank_pay_logo_e"></span>
+                                	      </label>
+                                     </a>
+                                      <!--
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="单选" > &nbsp;
+                                          <span class="bank_pay_logo_f"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="radio" value="单选"> &nbsp;
+                                          <span class="bank_pay_logo_g"></span>
+                                	      </label>
+                                     </a>
+                                     
+                                     
+                                     <!
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_h"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_i"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_j"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_k"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_l"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_m"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_n"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_o"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_p"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_q"></span>
+                                	      </label>
+                                     </a>
+                                    <a href="#">
+                                	    <label>
+                                	      <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0"> &nbsp;
+                                          <span class="bank_logo_x"></span>
+                                	      </label>
+                                     </a>
+                                     -->
+                                </div>
+                                
+                            </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href='javascript:paySubmit()' class="grzx_gtable_btnOk">去付款</a> <a href="#" class="grzx_gtable_btnNo">取消</a></td>
+                          </tr>
+                      </table>
+                      </form>
+</div>
+</body>
+</html>

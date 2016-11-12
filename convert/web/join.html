@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-招商加盟</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.flexslider').flexslider({
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+
+//nav导航
+$(function(){
+	var navLi = $(".menu .nav li");
+	navLi.hover(function(){
+		$(this).siblings().find("a[class*='current']").removeClass("current");
+		$(this).find("a").addClass("current");
+		$(this).find(".subnav").slideDown();
+	},function(){
+		$(this).find(".subnav").slideUp();
+		if($(this).index()!=$(this).parent().children().length-1){ 
+			$(this).find("a").removeClass("current");
+			$(this).parent().children(":last").find("a").addClass("current");
+		}
+		
+	})
+});
+
+
+</script>
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?> 
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+  <!-----nav 结束-----> 
+  <!-----banner开始----->
+  <div class="box nopadding banner_bg"> 
+    <!-- 焦点图代码begin -->
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(images/img5.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(images/img6.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(images/img7.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+    <!-- 焦点图代码end --> 
+    
+  </div>
+  
+  <!-----banner结束-----> 
+  <!-----便民平台优势 开始----->
+  <div class="box layout_5_bg">
+    <div class="width_a Grey mapbg">
+      <p class="title_font center_font">便民平台优势</p>
+      <div class="picture"><a href="#"><img src="images/zhjm_02.png"/>
+        <p>行业高速成长</p>
+        </a> <a href="#"><img src="images/zhjm_01.png" />
+        <p>创新的O2O平台</p>
+        </a> <a href="#"><img src="images/zhjm_03.png"/>
+        <p>无区域、时间限制</p>
+        </a> </div>
+    </div>
+  </div>
+  
+  <!-----便民平台优势 结束-----> 
+  <!----发展规划 开始----->
+  <div class="box box_b ">
+    <div class="width_a fzgh_bg ">
+      <div class=" fn-right fzgh_cotent White">
+        <p class="title_font">发展规划</p>
+        <p class="txtlightblue">随着互联网的普及，信息化社会的推进， 小康便民O2O服务站作为线上线下一站式提供彩票投注、水、电、气、通讯费、金融借贷、火车票、汽车票、飞机票、保险、旅游、健康产品等各类费用缴纳的服务平台，有着长远的规划。</p>
+        <ul>
+          <li>
+            <p class="title_font_a">近期<br>
+              2014-2016年</p>
+            <p>在安徽投资2亿，建设2000家小康便民服务站，解决4—5千人就业，服务2000家社区。</p>
+          </li>
+          <li>
+            <p class="title_font_a">中期<br>
+              2017-2019年</p>
+            <p>在整个长三角地区建设3000家小康便民服务站，解决2—3万人就业，服务3000家社区。</p>
+          </li>
+          <li>
+            <p class="title_font_a">长期<br>
+              2020年—2025年</p>
+            <p>在全国范围内建设20000家小康便民服务站，解决2—5万人就业，服务20000家社区。</p>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!----发展规划 结束-----> 
+  <!-----我要加盟 开始----->
+  <div class="box layout_3_bg">
+    <div class="width_a wyjm">
+      <p class="title_font center_font Grey">我要加盟</p>
+      <img src="images/zsjm_05.jpg" name="JoinMap" usemap="#JoinMap" width="916" height="248"  />
+      <map name="JoinMap" id="JoinMap">
+        <area shape="rect" coords="25,50,176,98" href="javascript:void(0)" />
+      </map>
+      <a class="Light_grey" href="<?php echo site_url('home/process');?>">了解加盟详细内容</a> </div>
+  </div>
+  
+  <!-----我要加盟 结束-----> 
+  
+  <!-----加盟优势 开始----->
+  <div class="box box_d">
+    <div class="width_a jmys">
+      <div class="jmys_cotent fn-right Grey">
+        <p class="title_font">加盟优势</p>
+        <ul>
+          <li>作为国家推进建成小康社会的民生项目，具有大政策、大环境的背景优势；</li>
+          <li>便民服务店作为一种方便快捷、服务优质的商业形态一直在世界零售业中占据着举足轻重的地位，消费者在很大程度上对便民店有着依赖性；</li>
+          <li>具有小型店铺规模小、投入成本低，租金少的优势，加上主营产品属于稀缺性、垄断性行业，具有先天的综合竞争优势；</li>
+          <li>采取特许加盟的方法，加盟商可在总部的指导下，选择不同加盟管理方式。可根据自身经济状况，轻松灵活的参与到创业开店中。</li>
+          <li>抗市场风险能力强。主营产品属于低成本无生产、无仓储、无售后服务的消费周期短、粘度强的日常消费品类，基本没有市场风险和竞争压力。</li>
+          <li>通过对信息平台资源的整合及自助化经营，可减少人力成本投入，从而实现信息化效益的最大化。</li>
+          <li>坐享品牌化运作成果。通过总部对单店的跟踪培训和经营指导，便于形成良好的社会口碑和品牌影响力。</li>
+          <li>具备社会服务、信息集散等综合特性，可利用区域代理的方式扩大经营、增加收益。 </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----加盟优势 结束-----> 
+  
+  <!-----店面标准 开始----->
+  <div class="box layout_5_bg">
+    <div class="width_a dmbz ">
+      <p class="title_font center_font Grey">店面标准</p>
+      <ul>
+        <li class="dmbz_lef"><a href="javascript:void(0)"><img src="images/NO_1.png"/></a> <a href="javascript:void(0)"><img src="images/NO_2.png"/></a><a href="javascript:void(0)"><img src="images/NO_3.png"/></a> <a href="javascript:void(0)"><img src="images/NO_4.png"/></a><a href="#"><img src="images/NO_5.png"/></a> <a href="javascript:void(0)"><img src="images/NO_6.png"/></a></li>
+        <li class="dmbz_rig"><a href="javascript:void(0)"><img src="images/NO_7.png"/></a> </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-----店面标准 结束-----> 
+  
+  <!-----layout_4开始--合作伙伴--->
+  <!-----layout_4开始--合作伙伴--->
+     <?php $this->load->view('partner.html');?>
+  <!-----layout_4结束-----> 
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</div>
+</body>
+</html>

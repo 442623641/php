@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta name="Copyright" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<title>便民彩票—支付</title>
+	<base href = "<?php echo base_url();?>web/"/> 
+	<link href="/web/css/sty.css" rel="stylesheet" type="text/css">
+	<link href="/web/css/wdcp.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript"  src="/web/js/jquery.min.js" ></script>
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a>支付</div>
+
+<!-- 金额 -->
+<div class="je">支付金额：<span>￥<?php echo $totalmoney;?></span></div>
+
+<!-- 中奖设置 -->
+<div class="zjsz zf">
+	<ul>
+		<li>支付方式&nbsp <select name="" id="" ><option value="">招商银行（2490）</option></select> </li>
+		<li class="nobo">支付密码&nbsp<input type="text" value="************"></li>
+	</ul>
+</div>
+
+<!-- 底部 -->
+<div class="fot_a">
+	<div class="fot_a_bot"> 共<?php echo $totalmoney;?>元 <a href="#" class="btn_a fr mt_05"> 付款</a></div>
+</div>
+
+</body>
+</html>

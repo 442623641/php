@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script type="text/javascript"  src="js/jquery-1.8.0.min.js" ></script>
+<script src="http://cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript"  src="js/datepicker_cn.js" ></script>
+<script type="text/javascript">
+function submit(){
+	var url = $('#url').val();
+	//var name = $('#name').val();
+	var sex = $('input[type="radio"]:checked').val();
+	//var newphone = $('#newphone').val();
+	var qq = $('#qq').val();
+	var email = $('#email').val();
+	var birthday = $('#birthday').val();
+	//if(newphone.length<11){
+		//alert('手机号码应为11位！');
+	//}
+    $.ajax({
+    	dataType:"json",
+        type:"POST",
+        data:{
+    		sex:sex,qq:qq,email:email,birthday:birthday
+        },
+        url:url,
+        success:function(result){
+			alert(result['mess']);
+        },
+        error:function(data){
+            alert("请求异常！");
+        }
+	});
+}
+
+$(document).ready(function(){
+	var oldsex = $('#oldsex').val();
+	$('input[value="'+oldsex+'"]').attr('checked',true);
+});
+
+$(function () {
+    initdatepicker_cn();
+    $('.datepicker').datepicker({
+        inline: true
+    });
+});
+</script>
+<title>个人资料</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow" onclick="history.back();"><i class="leftn"></i></a>
+ <h1 class="title">个人资料</h1>
+</div>
+<div class="layout_box">
+	<div class="login_box_content" style="padding:0">
+	<ul>
+		<input type="hidden" id="url" name="url" value="<?php echo site_url('UserCenter/ziliaoSave')?>">
+		<input type="hidden" id="oldsex" name="oldsex" value="<?php echo $result[0]['sex']?>">
+	    <li id="margin_b">
+        	<div class="input_div input_div_bo"  id="border_bn">
+            	<div class="left_login_z margin_t">姓名：</div>
+                <div class="right_login_input"><input id="name" name="name" type="text" placeholder="输入姓名" value="<?php echo $result[0]['name']?>" readonly></div>
+                <div class="clearfix"></div>
+            </div></a>
+        </li>
+        <li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">手机号码：</div>
+                <div class="right_login_input"><input id="newphone" name="newphone" type="text" placeholder="输入手机号码" value="<?php echo $result[0]['phoneNumber']?>" readonly></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">性别：</div>
+                <div class="right_login_input"><input  name="sex" type="radio" value="0" class="wid2">男<input name="sex" type="radio" value="1" class="wid2">女</div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+		<li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">生日：</div>
+                <div class="right_login_input"><input id="birthday" class="datepicker" name="birthday" type="text" placeholder="输入生日号码" value="<?php echo $result[0]['birthday']?>"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+		<li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">QQ号码：</div>
+                <div class="right_login_input"><input id="qq" name="qq" type="text" placeholder="输入QQ号码" value="<?php echo $result[0]['qq']?>"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+        <li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">E-mail：</div>
+                <div class="right_login_input"><input id="email" name="email" type="text" placeholder="输入邮箱" value="<?php echo $result[0]['Email']?>"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="login_box_content" style="padding-top:0;padding-bottom:2rem"><a onclick="submit();" class="login_btn">保存</a></div>
+
+</div>
+</body>
+</html>

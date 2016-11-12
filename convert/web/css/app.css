@@ -1,0 +1,19 @@
+.banner{background: url(../images/banner4_100.jpg) no-repeat; width: 100%; height: 400px;}
+
+.content{background: #f6f6f6;}
+.content .content_box{width: 960px; height: 550px; background: #f6f6f6; padding: 30px 20px 20px 20px; margin: 0 auto;}
+.content .content_box_left{width: 550px; float: left;}
+.content_box_left p{font-size: 24px; width: 550px; height: 60px; background: url(../images/line.jpg) no-repeat left bottom;}
+.content_box_left ul{padding: 38px 0px 0px 0px;}
+.content_box_left ul li{margin-bottom: 95px;}
+.content_box_left ul li a{width: 241px; height: 79px; display: block; float: left; }
+.content_box_left ul li img{display: block; float: left;  }
+.content_box_left ul li a.ios{background: url(../images/is.png); margin-left: 50px;}
+.content_box_left ul li a.android{background: url(../images/ad.png); margin-left: 44px;}
+.content_box_left ul li span{display: block; margin-left: 126px; clear: both; padding-top: 6px;}
+
+.content .content_box_right{width: 210px; float: right;}
+.content .content_box_right p{font-size: 18px; }
+.content .content_box_right ul li{width: 200px; height: 224px; border: 1px solid #d6d6d6; margin-top: 20px;}
+.content .content_box_right ul li img{margin-left: 18.5px; margin-top: 16px; display: block;}
+.content .content_box_right ul li span{width: 200px; height: 40px; display: block; text-align: center; line-height: 40px;}

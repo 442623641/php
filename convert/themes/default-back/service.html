@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-便民服务</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$('.flexslider').flexslider({
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+
+
+
+$(function(){
+	var navLi = $(".menu .nav li");
+	navLi.hover(function(){
+		$(this).siblings().find("a[class*='current']").removeClass("current");
+		$(this).find("a").addClass("current");
+		$(this).find(".subnav").slideDown();
+	},function(){
+		$(this).find(".subnav").slideUp();
+		if($(this).index()!=$(this).parent().children().length-1){ 
+			$(this).find("a").removeClass("current");
+			$(this).parent().children(":last").find("a").addClass("current");
+		}
+		
+	})
+});
+	
+
+
+</script>
+
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+  <div class="box topbar_bg">
+    <div class="topbar">
+      <p class="fn-left"><i></i>欢迎来到小康便民网，请 <a href="#">登录</a> 或 <a href="#">注册</a></p>
+      <p class="fn-right"><em></em>全国加盟热线：4008-591-020</p>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+  <div class="box menu_bg">
+    <div class="menu">
+      <ul class="nav">
+      		
+			<li>
+				<a href="#">关于我们</a>
+				
+			</li>
+			<li><a href="#">招商加盟</a></li>			
+			<li>
+				<a href="#" >便民服务<span class="triangle"></span></a>
+				<div class="subnav">
+                	<div class="width_b">
+					<a href="javascript:">保险直销</a>
+					<a href="javascript:">保险直销</a>
+					<a href="javascript:">保险直销</a>
+					<a href="javascript:">保险直销</a>
+					<a href="javascript:">保险直销</a>
+                    </div>
+				</div>
+			</li>
+			<li><a class="current" href="#">网站首页</a></li>
+			
+		</ul>
+    </div>
+  </div>
+  <!-----nav 结束-----> 
+  <!-----banner开始----->
+  <div class="box">
+  	<div class="login_box"><div class="login Grey">        
+      	<ul>
+        	<li><h2>便民注册</h2> <span>享受O2O带来的便捷</span><em class="title_line"></em></li>        	
+            <li><input type="text"   onblur="if(!value) {value=defaultValue; this.type='text';}" onfocus="if(this.value==defaultValue) {this.value='';this.type='text'}"  name="user" value="用户名："/></li>
+            <li><input type="text"  onblur="if(!value) {value=defaultValue; this.type='text';}" onfocus="if(this.value==defaultValue) {this.value='';this.type='text'}"  name="password" value="密&nbsp;码："/></li>
+            <li><a href="#">登&nbsp;&nbsp; &nbsp; 录</a></li>            
+        </ul>
+        <p>还没有帐号，<a href="#">立即注册</a></p>
+      </div></div>
+      
+    
+    	<!-- 焦点图代码begin -->
+      <div class="flexslider">
+		<ul class="slides">
+			<li style="background:url(images/img2.jpg) 50% 0 no-repeat;"></li>
+			<li style="background:url(images/img2.jpg) 50% 0 no-repeat;"></li>
+			<li style="background:url(images/img2.jpg) 50% 0 no-repeat;"></li>
+
+		</ul>
+	</div>
+    	<!-- 焦点图代码end -->
+ 
+  </div>  
+  <!-----banner结束----->
+  
+  <!-----实名认证 开始----->
+   <div class="box layout_5_bg">
+    <div class="width_a Grey">
+            <img src="images/bmfw_01.jpg"/>
+    </div>
+  </div>
+  <!----实名认证 结束----->
+  
+  <!-----便民服务 开始----->
+  <div class="box layout_1_bg">
+    <div class="width_a Grey">
+   		 <p class="title_font center_font">便民平台优势</p>
+         <ul class="bmfw_con">
+        	<li><img src="images/icon_08.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_07.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_01.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_11.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_10.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_09.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_14.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_13.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_12.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_17.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_16.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_15.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>      
+            <li><img src="images/icon_20.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_19.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+            <li><img src="images/icon_18.jpg" width="115" height="115"/><p class="title_font_b"><a href="#">水、电、煤费</a></p><span>5-10分钟到帐</span></li>
+              
+        </ul>
+
+    </div>
+  </div>
+  
+  
+  
+  
+  <!-----便民服务 结束-----> 
+   
+  <!-----layout_4开始--合作伙伴--->
+   <div class="box layout_4_bg">
+    <div class="layout_4">
+	<p>合作伙伴</p>
+    <ul>
+    	<li><img src="images/hz_01.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_02.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_03.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_02.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_01.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_01.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_02.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_03.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_02.jpg" width="175" height="55"/></li>
+        <li><img src="images/hz_01.jpg" width="175" height="55"/></li>  
+    </ul>
+    <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----layout_4结束----->  
+  
+  <!-----layout_5开始--底部--->
+   <div class="box layout_5_bg">
+    <div class="layout_5 Grey">
+		<ul>
+        	<li class="foot_lef fn-left"><img src="images/wx.jpg" width="146" height="143"/><p>全国加盟热线：400-859-1020<br>加盟官网：http://www.xkbm365.com</p></li>
+            <li class="foot_rig fn-left"><h2>关于我们</h2><br><p><a href="#">成长历程</a><br>
+<a href="#">联系我们</a><br>
+<a href="#">加入我们</a></p></li>
+            <li class="foot_rig fn-left"><h2>招商加盟</h2><br><p><a href="#">加盟流程
+</a><br>
+<a href="#">加盟要求</a></p></li>
+            <li class="foot_rig fn-left"><h2>在线帮助</h2><br><p><a href="#">在线帮助
+</a><br>
+<a href="#">电话帮助
+</a><br>
+<a href="#">客户经理</a></p></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                   <div class="copyright"> 安徽象网汇信息科技股份有限公司<br>
+联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号 客服热线：4008-591-020 </div>
+    </div>
+  </div>
+  
+  <!-----layout_5结束----->  
+  
+ 
+</div>
+</body>
+</html>

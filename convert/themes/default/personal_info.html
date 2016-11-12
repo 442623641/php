@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<title>个人资料</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow"><i class="leftn"></i></a>
+ <h1 class="title">个人资料</h1>
+</div>
+<div class="layout_box">
+  <div class="login_box_content" style="padding:0">
+  <ul>
+      <li>
+          <div class="input_div input_div_bo">
+              <div class="left_login_z margin_t">手机号码：</div>
+        <div class="right_login_input"><input name="" type="text" value="<?php echo $userinfo['phoneNumber']?>"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+      <li id="margin_b">
+          <div class="input_div input_div_bo" id="border_bn">
+              <div class="left_login_z margin_t">住址：</div>
+        <div class="right_login_input"><select name=""><option>安徽省</option></select><select name=""><option>合肥市</option></select><select name=""><option>经济技术开发区</option></select></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    <li>
+          <div class="input_div input_div_bo">
+              <div class="left_login_z margin_t">地址：</div>
+        <div class="right_login_input"><input name="" type="text" placeholder="安徽省合肥市xxxxxxxxxxxxxxxxxxxxxxxxxxxx"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    <li>
+          <div class="input_div input_div_bo">
+              <div class="left_login_z margin_t">邮编：</div>
+        <div class="right_login_input"><input name="" type="text" placeholder="2313130"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="login_box_content" style="padding-top:0;padding-bottom:2rem"><a href="#" class="login_btn">确认</a></div>
+</div>
+</body>
+</html>

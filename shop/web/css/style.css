@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+/**********公共样式***********/
+*{ margin:auto; padding:0;}
+body{ font: 12px/1.8  "microsoft yahei","宋体",simsun,sans-serif; color:#323232;}
+a,a:hover{ text-decoration:none;}
+.fl{ float:left}
+.fr{ float:right}
+#boder_b{ border:0}
+#width210{ width:210px; float:left}
+.clear{ clear:both}
+#width450{ width:450px}
+#width400{ width:400px}
+#width650{ width:650px}
+#width300{ width:300px}
+#width100{ width:100px}
+
+/**title**/
+.title_bg{ height:42px; line-height:42px; background:#DEE6BF; padding-left:5px; font-size:14px;color:#4D4D4D;}
+.title_bg a{ color:#4D4D4D; margin:0 5px}
+
+/**search**/
+.search{ padding-top:20px;padding-left:10px}
+.input_txt,.input_sel{ width:180px; height:32px; border:1px solid #ddd; line-height:32px; padding:0 5px}
+.input_sel{ width:140px;}
+.input_btn{ width:110px; height:32px; border:0; background:#39a1f8; line-height:32px; color:#fff; display:block; float:left; margin-left:10px; text-align:center;}
+
+
+/****/
+.content_b{ border:1px solid #ffb848;margin-top:20px;  margin-left: 10px;}
+.content_b_t{ height:36px; line-height:36px; padding-left:10px; background:#ffb848; color:#fff; font-size:14px}
+.content_b_table{ padding:20px 20px 0 20px;}
+.content_b_table tr td{ border:1px solid #ddd; border-top:0; border-left:0; text-align:center; padding:7px 0}
+.content_b_table tr.tbg td{ background:#f4f4f4}
+.content_b_table tr td a:hover{ color:#f25609}
+.content_b_table table tr.font14 td{ font-size:14px}
+.content_b_table table{ border-top:1px solid #ddd;border-left:1px solid #ddd}
+.content_b_table tr td span{ color:#f25609}
+.content_b_table tr td a{ color:#4D4D4D;}
+.content_b_table tr td.aleft{ text-align:left}
+
+.page{ padding:20px 0; margin-bottom:20px}
+.split_rgt{ text-align:center;}
+.split_page{ padding:2px 8px; color:#323232; border:1px solid #c8c8c8; background:#fff;}
+.split_page:hover,.split_page.current{ color:#fff;padding:2px 8px;  border:1px solid #f25609; background:#f25609;} 
+
+.f_box{ padding:15px 0 15px 20px; background:#eee}
+#f_box_g{ background:#35aa47; color:#fff}
+#f_box_o{ background:#f25609; color:#fff}
+#input_btn{color:#fff}
+
+/**系统设置**/
+#xt_table table{ border:0; margin-bottom:20px}
+#xt_table tr td{ border:0; text-align:left}
+/**店员**/
+.content_b_table tr th{ background:#ffb848; color:#fff; padding:7px 0; font-size:14px; text-align:center}
+.dianyuan_yj{ background:#ffb848; height:36px; text-align:center; line-height:36px; color:#fff; margin-top:15px; font-size:16px}
+.dianyuan_tb tr th{ font-size:14px}
+.dianyuan_tb tr th,.dianyuan_tb tr td{ padding:5px 0; border-bottom:1px solid #ddd; text-align:center; height:45px}
+.dianyuan_tb tr td img{ width:45px; height:45px; float:left; margin-left:50px}
+.dianyuan_tb tr td span{ color:#f25609}
+.dianyuan_yj_tb{ padding:0; margin-top:20px}
+.dianyuan_tb tr.tbg td{background:#f4f4f4}
+
+/**弹出层**/
+.tc_div{ width:450px; height:125px; background:#fcf6ed; border:1px solid #ffb848; margin:0 auto; text-align:center; font-size:20px; padding-top:45px}
+.tc_div a{ font-size:14px}
+
+/*用户管理*/
+
+/**资金管理**/
+.zijin_t{ border-left:5px solid #eee; padding-left:10px; height:40px; line-height:40px; margin-top:20px}
+.zijin_t span{ color:#f25609}
+.zijin_t a{ color:#39a1f8; margin:0 10px}
+.zijin_tb{ padding:0; margin-top:20px}
+
+/**首页**/
+.index_xx,.index_dd{ width:324px; height:84px; float:left; margin-right:30px; overflow:hidden}
+.index_xx a,.index_dd a{ display:block;width:314px; height:76px; text-align:right; color:#fff; padding-right:10px; padding-top:14px}
+.index_xx{ background:url(../images/xx.png)}
+.index_dd{ background:url(../images/dd.png)}
+.index_lb{ width:100%; height:50px; line-height:50px; background:#eeeeee; float:left; margin-top:15px}
+.index_lb_t{ width:120px; float:left; height:50px; background:#ffb848; color:#fff; text-align:center}
+.index_lb_z{ float:left; font-size:20px; color:#f25609; padding-left:50px}
+.index_lb_c{ float:right; padding-right:20px}
+.index_lb_c a{ color:#39a1f8; margin:0 8px}
+
+/*信息中心*/
+.content_b_t_table table{border-left: none; border-top: none;}
+.content_b_t_table tr td{border-style: none none solid none;}
+.bs{background: #f9f9f9;}
+
+/*用户详情*/
+.content_bt{border: none; background: #f7f7f7;}
+.content_bt_table{margin-top: 15px;}
+/**资金提现**/
+.bank li{ width:215px; height:54px; border:1px solid #ddd; list-style:none; float:left; padding-right:5px}
+.bank li a{ display:block; height:54px; background:url(../images/narrow_x.png) no-repeat center right;}
+.bank li.nongye{ background:url(../images/bank.png) no-repeat;}
+.bank li b{ display:block; padding:32px 0 0 13px}
+/*订单详情*/
+.content_bb{margin-top: 5px;}
+.dd{font-size: 14px; color: #4D4D4D; margin-top: 15px;padding: 5px 5px 5px 10px;  background-color: #E2E2E2;}
+.content_b_table tr td a.qr{font-size: 14px; color: #39a1f8;}
+/**绑定银行卡**/
+#bd_tb{ border:0; background:#f8f8f8; margin-top:8px; padding-bottom:20px}
+.bd_ul li.fr{ float:right;}
+.bd_ul{ padding-top:8px; }
+.bd_ul li{width:289px; max-width:289px; overflow:hidden; height:79px; border:1px solid #ddd; float:left; background:url(../images/add.png) no-repeat; list-style:none;}
+.bd_ul li b{ display:block; padding:50px 0 0 17px; font-size:14px; color:#4D4D4D}
+.bd_ul li.xingye{background:url(../images/bank01.png) no-repeat;}
+.bd_ul li.kk{ width:16px; height:79px; border:0; background:none}
+.bd_ul li a{ float:right; color:#39a1f8; margin:5px 8px 0 0}
+#bd_tb table tr td,#bd_tb table { border:0}
+#bd_tb table tr td select{ float:left; margin-right:8px; height: 32px; width:140px; border:1px solid #ddd; background:#fff; padding:0 3px}
+.se_bank{ width:120px; height:35px; border:1px solid #dedede; float:left}
+
+/*返点设置*/
+
+.input_se{height: 32px; width: 138px;}
+
+/*店员业绩*/
+.dianyuan_tb .tbg{background: #f9f9f9;}
+
+.login{ background:url(../images/login_bg.jpg) #90cefd no-repeat; width:100%; height:100%;}
+.pad200{ padding-top:200px}
+.login_box{ width:858px; height:449px; background:url(../images/login_box.png); margin:0 auto;}
+.login_box h2{ font-size:30px; color:#0f4389; text-align:center; font-weight:normal; padding:60px 0 30px 0}
+.login_box table tr td{ font-size:18px; color:#0f4389; padding:8px 5px}
+.login_box table tr td input{ width:286px; height:42px; background:url(../images/login_input.png); border:0; line-height:42px; padding:0 5px}
+.login_box table tr td input.btn{ width:170px; height:46px; border:0; cursor:pointer; background:url(../images/login_btn.png); color:#fff; font-size:18px; margin-top:20px}
+.login p{ text-align:center}

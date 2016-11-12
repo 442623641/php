@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-个人资料</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/web/css/attach.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="/web/css/headPortrait.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+<script type="text/javascript" src="/web/js/datepicker_cn.js"></script>
+</head>
+
+<body>
+<!-----个人中心 提现---->
+<div class="grzx_iframe_cot">
+<div class="grzx_cot_rgt_tit">个人资料</div>
+
+<div class="mt">
+<ul class="extra-l">
+  <li class="fore-1"><a class="curr" href="<?php echo
+  site_url('UserCenter/personInfo')?>" target="Iframe_grzx">基本信息</a></li>
+  <li class="fore-2"><a href="<?php echo
+  site_url('UserCenter/avatar')?>" target="Iframe_grzx">头像照片</a></li>
+</ul>
+</div>
+<table width="90%" height="460" class="mar_t grzx_gtable person"
+  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="grzx_gtable_wid1">
+    <div class="grzx_zhzx_user_icon"><?php  
+$avatar=$this->session->userdata("avatar");
+if($avatar!=null)
+{
+echo '<img src="'.base_url("jcrop/avatars/".$avatar).'"/>';
+}
+?></div>
+    </td>
+    <td class="grzx_gtable_wid2">亲爱的， <font class="org fot_16"><b><?php echo $userInfo['phoneNumber'];?></b></font>
+    填写真实的资料，有助于我们更好管理账号。</br>
+    <a href="javascript:void(0);" class="mod" style="color: #2a6fb8">修改资料</a>
+    </td>
+  </tr>
+                          <tr>
+                            <td>姓&nbsp;&nbsp;名：</td>
+                            <td><?php echo $userInfo['name'];?></td>
+                          </tr>
+                          <tr>
+                            <td>手机号码：</td>
+                            <td><?php echo $userInfo['phoneNumber'];?></td>
+                          </tr>
+                          <tr>
+                            <td>性&nbsp;&nbsp;别：</td>
+                            <td><input name="sex" type="radio" checked="checked" value="0"/>男 <input name="sex" type="radio" value="1"/>女
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>生&nbsp;&nbsp;日：</td>
+                            <td><input name="birthday" class="datepicker" type="text" value="<?php echo $userInfo['birthday'];?>"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Q&nbsp;&nbsp;Q：</td>
+                            <td><input name="qq" type="text" class="grzx_gtable_inpta" value="<?php echo $userInfo['qq'];?>"/></td>
+                          </tr>
+                          <tr>
+                            <td>Email ：</td>
+                            <td><input name="email" type="text" class="grzx_gtable_inpta" value="<?php echo $userInfo['Email'];?>"/></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="confirm grzx_gtable_btnOk">确认修改</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+     initdatepicker_cn();
+        $('.datepicker').datepicker({
+            inline: true
+        });
+
+    var sex = "<?php echo $userInfo['sex'];?>";
+    if (sex == "0") {
+      $("input[value='0']").attr('checked', true);
+    } else {
+      $("input[value='1']").attr('checked', true);
+    }
+
+    $(".mod").click(function(){
+      $("input[name!='sex']").attr("disabled", false);
+      $("input[name!='sex']").css("border", "1px solid #C8C8C8");
+      $(".confirm, .cancel").css({
+        visibility: "visible",
+      });
+    });
+
+    $(".confirm").on("click", function(){
+      var sex = $("input:radio:checked").val();
+      var birthday = $("input[name='birthday']").val();
+      var qq = $.trim($("input[name='qq']").val());
+      var email = $.trim($("input[name='email']").val());
+
+      $.ajax({
+        url: '<?php echo site_url("UserApi/modPerson")?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          sex: sex,
+          birthday:birthday,
+          qq: qq,
+          email: email,
+        },
+        success: function(json){
+          if (json.fail == 0 ) {
+            alert('修改成功');
+          } else if (json.fail == 1021) {
+            alert('用户信息没有修改');
+          } else {
+            alert('修改失败');
+          }
+
+          window.location.reload();
+        }
+      })
+    });
+  })
+
+</script>
+</body>
+</html>

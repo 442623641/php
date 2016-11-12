@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+$(function () {
+$(".gtable tr:even").addClass("tr_bg"); 	
+})
+
+
+function deleteNews($news_id){
+    $.ajax({
+        	dataType:"json",
+            type:"POST",
+            url:$('#base_url').val()+"xk.php/admin/news/delete",
+            data:{news_id:$news_id},
+            success:function(msg){
+                if(msg==1){
+					alert('删除成功！');
+					window.location.reload();
+                }else{
+                	alert('删除失败！');
+                }
+            }
+    });
+}
+
+function loadEditPage($news_id){
+	window.parent.location.href=$('#base_url').val()+"xk.php/admin/news/editPage?news_id="+$news_id;
+	window.parent.location.load();
+}
+</script>
+<body>
+    <div class="box_a">
+    	<input type="hidden" id="base_url" value="<?php echo base_url() ;?>">
+    	<table class="gtable">
+        	<tr class="white">
+            	<th class="wid_c th_bg1" style="width:8%;">类型</th>
+                <th class="wid_b th_bg1" style="width:25%;">标题</th>
+                <th class="wid_c th_bg1" style="width:15%;">上传时间</th>
+                <th class="wid_c th_bg1" style="width:10%;">浏览次数</th>
+                <th class="wid_c th_bg1" style="width:10%;">发布人</th>
+                <th class="td_rad_r th_bg1 wid_d">操作</th>
+            </tr>
+            <?php foreach($result as $res) {
+			if($res['news_type']==1) $news_type_name='小康动态';
+			if($res['news_type']==2) $news_type_name='行业动态';
+     		echo '<tr>
+					<td class="gray">'.$news_type_name.'</td>
+            		<td><p class="pag"><a  >'.$res['title'].'</a></p></td>
+                	<td class="gray">'.$res['publish_time'].'</td>
+					<td class="gray">'.$res['search_count'].'</td>
+					<td class="gray">'.$res['user_name'].'</td>
+<td><img src="'.base_url().'images/admin/edit.png" align="middle" onclick="loadEditPage('.$res['news_id'].');"/>&nbsp;&nbsp;&nbsp;&nbsp;<img src="'.base_url().'images/admin/delete.png" align="middle" onclick="deleteNews('.$res['news_id'].');"/></td>
+            	  </tr>';
+			};?>
+
+        </table>
+        <div class="split white_bg">
+		  	<?php echo $this->pagination->create_links();?>
+		</div>
+    </div>
+</body>
+</html>

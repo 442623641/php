@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民后台登陆</title>
+<link href="<?php echo base_url().'styles/admin/login.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<style>
+html{padding:0;width:100%;height:100%;overflow:hidden;}
+body{width: 100%;height: 100%;overflow:hidden;}
+.msg-wrap {
+min-height: 31px;
+height: auto!important;
+height: 31px;
+width:200px;
+margin: 2px 0 5px;
+}
+.msg-error {
+position: relative;
+background: #ffebeb;
+color: #e4393c;
+border: 1px solid #e4393c;
+padding: 3px 10px 3px 40px;
+line-height: 18px;
+min-height: 18px;
+_height: 18px;
+}
+.msg-error b {
+position: absolute;
+top: 50%;
+left: 10px;
+display: block;
+margin-top: -8px;
+width: 16px;
+height: 16px;
+overflow: hidden;
+background: url(https://miscssl.360buyimg.com/user/passport-2015/widget/login-form/i/pwd-icons-new.png) -104px -49px no-repeat;
+}
+</style>
+<script type="text/javascript">
+
+
+$(function(){
+	var flag = $('#flag').val();
+	if (flag==1)
+	{	
+		$("#content").attr('style','display:block;');
+	}
+});
+
+</script>
+</head>
+
+<body>
+
+<div class="login_top">
+	<div class="top_rgt_bg">
+    	<div class="top_title"></div>
+    </div>
+</div>
+
+<div class="login_cont">
+    <div class="msg-wrap">
+            <div class="msg-error hide" id="content" style="display:none;"><b></b><?php echo validation_errors(); ?></div>
+    </div>
+    <form id="myform" action="<?php echo base_url().'xk.php/admin/login/signin';?>" method="post">
+	<div class="login_center">
+
+	    	<input type="hidden" id="flag" value="<?php echo $flag; ?>">
+	    	<input name="username" class="input_user mar_lef" type="text"  placeholder="输入手机号"/>
+	        <input name="password" class="input_password mar_lef" type="password"  placeholder="密码"/>
+	        <input name="admin_valid_code" class="input_verification mar_lef" type="text" placeholder="验证码"/>
+	        <img class="mar_lef" src="<?php echo site_url('admin/login/code');?>" width="130" height="39"
+	        onclick="this.src='<?php echo site_url('admin/login/code').'/'?>'+ Math.random()" style='cursor:pointer' title='看不清？点击换另一张'/> 
+	        <input type="submit" class="btn_f white mar_lef" value="登&nbsp;&nbsp;录">
+    </div>
+    </form>
+
+    <div class="copyright"> 安徽象网汇信息科技股份有限公司<br>
+联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号 客服热线：4008-591-020 </div>
+    </div>
+</div>
+</body>
+</html>

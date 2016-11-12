@@ -1,0 +1,59 @@
+<?php echo $header;?>
+<div class="topmenu" style="padding:0.6rem 0"> 
+</div>
+<div class="personal_bg">
+	<div class="heaad_box"><img src="images/img/head.png" ></div>
+    <h2><?php echo $username;?></h2>
+	<p>余额：<?php echo $result['money'];?>&nbsp&nbsp&nbsp&nbsp积分：<?php echo $result['credit'];?></p>
+	<a class="personal_qd">签到获取积分</a>
+</div>
+<div class="layout">
+     <div class="login_box_content" style="padding:0;padding-top:0.8rem">
+	<ul>
+	    <li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">充值</div>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+            </div>
+        </li>
+		<li id="margin_b">
+        	<div class="input_div input_div_bo" id="border_bn">
+            	<div class="left_login_z margin_t">提现</div>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+            </div>
+        </li>
+    	<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">转账</div>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+            </div>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">交易记录</div>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+            </div>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">消息中心</div><em class="emm">5</em>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+				
+            </div>
+        </li>
+		<li>
+        	<div class="input_div input_div_bo">
+            	<div class="left_login_z margin_t">个人设置</div>
+                <div class="clearfix"></div>
+				<i class="ii"></i>
+            </div>
+        </li>
+    </ul>
+</div>
+</div>
+<?php echo $footer;?>

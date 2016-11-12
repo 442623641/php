@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link href="/web/css/headPortrait.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<link href="/web/css/headPortrait.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://wl.jd.com/wl.js"></script>
+
+
+<script type="text/javascript" src="/web/js/swfupload.js"></script>
+<script type="text/javascript" src="/web/js/handlers.js"></script>
+<script type="text/javascript" src="/web/js/userinfo.upload.js"></script>
+<script type="text/javascript">
+    //document.domain=pageConfig.FN_getDomain();
+    $(document).ready(function() {
+        $("#bigImage").attr("src","http://storage.jd.com/i.imageUpload/3434323632333634315f6d31343336343135383631383438_big.jpg");
+        var settings = {
+            flash_url : "http://www.xkbm.com:82//web/js/swfupload.swf",
+            upload_url: "http://i.jd.com/user/upload/image.action",
+            post_params: {"flashuploadimg":"7B1124166DCDBDCE0D4A78DE2D43C2F8080378F9CDD88379DB42A88388C476F77CB8DD892B0F689DA99257AAF621464350C0432850228463A88EDECA306D531F45576D09700B431E6C71C9AF1B773E39479D71F03F9FBED1CDDA364084207F36DFE3E3C6AC788C934BC7EAC8C4E0F69DB4D4AC677E18547C95005DB3D9D5F4454DD97273C2ABFEAC5D9DBD72F5DB8F75"},
+            file_post_name : "file",
+            file_size_limit : "4 MB",
+            file_types : "*.jpg;*.gif;*.png;*.jpeg;*.bmp",
+            file_types_description : "img",
+            custom_settings : {
+                cancelButtonId : "btnCancel"
+            },
+            debug: false,
+            // Button settings
+            button_image_url: "http://i.jd.com/images/perfect_bg.jpg",
+            button_width: "202",
+            button_height: "34",
+            button_placeholder_id: "spanButtonPlaceHolder",
+            button_action:SWFUpload.BUTTON_ACTION.SELECT_FILE,
+
+            file_queued_handler : fileQueued,
+            file_queue_error_handler : fileQueueError,
+            file_dialog_complete_handler : fileDialogComplete,
+            upload_error_handler : uploadError,
+            upload_success_handler : uploadSuccess
+
+        };
+        swfu = new SWFUpload(settings);
+    });
+	
+	function froward(){
+	   alert("头像上传成功");
+       window.location.href='http://i.jd.com/user/userinfo/show.action?t=' + new Date().getTime();
+    }
+	function showMessages(str){
+		document.getElementById("messages").style.display = "block";
+		$("#messages").html(str);
+	}
+	
+	$(".imgUl").children().click(
+      function () {
+	     if($(this).attr("class")=="" ||$(this).attr("class")==undefined){
+			$(".imgUl").children().each(function(){
+               $(this).removeClass("selected");
+            });
+			$(this).addClass("selected");
+		 }else{
+		    $(this).removeClass("selected");
+		 }
+      }
+   )
+</script>
+
+
+<title>Insert title here</title>
+</head>
+<body>
+				 <div class="grzx_cot_rgt_tit">个人资料</div>
+				 <div class="mt">
+						<ul class="extra-l">
+							<li class="fore-1"><a href="<?php echo site_url('UserCenter/personInfo')?>" target="Iframe_grzx">基本信息</a></li>
+                            <li class="fore-2"><a class="curr" ref="<?php echo site_url('UserCenter/showImg')?>" target="Iframe_grzx">头像照片</a></li>							
+						</ul>
+					</div>
+				<div class="mod-main">
+
+					
+					<div class="mc update-face-cont">
+						<div class="update-lcol">
+							<div class="mb10">
+								<object id="SWFUpload_0" type="application/x-shockwave-flash" data="../web/js/swfupload.swf?preventswfcaching=1436418332133" width="202" height="34" class="swfupload"><param name="wmode" value="window"><param name="movie" value="http://i.jd.com/commons/swfupload.swf?preventswfcaching=1436418332133"><param name="quality" value="high"><param name="menu" value="false"><param name="allowScriptAccess" value="always"><param name="flashvars" value="movieName=SWFUpload_0&amp;uploadURL=http%3A%2F%2Fi.jd.com%2Fuser%2Fupload%2Fimage.action&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=0&amp;params=flashuploadimg%3DEF8F7CADCF6637E9ABD394DE16B1A8BFD0B975D215D9708820651BE25713507C8CE95B11C4888682E01D0656677A9CB4B3D26FBC602F46CAD1EF02AED2F39352D4B388F39C30FC0087009CF3FB74694196E4694AB7694456344A16315A060A46BF75A8902DE18274FCCFDEEC7581B450DEE9CF61B7AEC0AC319C395741CC61DC55679B0EDDA0F7705EEBC14623FED5B7&amp;filePostName=file&amp;fileTypes=*.jpg%3B*.gif%3B*.png%3B*.jpeg%3B*.bmp&amp;fileTypesDescription=img&amp;fileSizeLimit=4%20MB&amp;fileUploadLimit=0&amp;fileQueueLimit=0&amp;debugEnabled=false&amp;buttonImageURL=http%3A%2F%2Fi.jd.com%2Fimages%2Fperfect_bg.jpg&amp;buttonWidth=202&amp;buttonHeight=34&amp;buttonText=&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=0&amp;buttonTextStyle=color%3A%20%23000000%3B%20font-size%3A%2016pt%3B&amp;buttonAction=-100&amp;buttonDisabled=false&amp;buttonCursor=-1"></object>
+								<img id="loading" class="float:left" src="http://i.jd.com/images/loading.gif" style="display:none">
+								<div id="messages" style="border:1px solid #DB9A9A;background-color:#FFE8E8;color:#CC0000;text-align: left;display:none"></div>
+								<input id="btnCancel" type="hidden">
+								<div class="ftx03">仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
+							</div>
+							<div class="img-b-cont img-cont ">
+								<!--<div class="tip">编辑预览区</div>-->
+								<div class="img-b">
+									<img id="bigImage" name="bigImage" alt="" width="150" height="150" src="http://storage.jd.com/i.imageUpload/3434323632333634315f6d31343336343135383631383438_big.jpg">
+								</div>
+							</div>
+							<div class="smt"><h3>推荐头像</h3></div>
+							<div class="smc face-list">
+								<ul class="imgUl" clstag="homepage|keycount|home2013|infoshowtx2">
+									<li value="1"><img src="http://i.jd.com/defaultImgs/1.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="2"><img src="http://i.jd.com/defaultImgs/2.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="3"><img src="http://i.jd.com/defaultImgs/3.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="4"><img src="http://i.jd.com/defaultImgs/4.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="5"><img src="http://i.jd.com/defaultImgs/5.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="6"><img src="http://i.jd.com/defaultImgs/6.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="7"><img src="http://i.jd.com/defaultImgs/7.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="8"><img src="http://i.jd.com/defaultImgs/8.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="9"><img src="http://i.jd.com/defaultImgs/9.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="10"><img src="http://i.jd.com/defaultImgs/10.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="11"><img src="http://i.jd.com/defaultImgs/11.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="12"><img src="http://i.jd.com/defaultImgs/12.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="13"><img src="http://i.jd.com/defaultImgs/13.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="14"><img src="http://i.jd.com/defaultImgs/14.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="15"><img src="http://i.jd.com/defaultImgs/15.jpg" alt="" width="50" height="50"><b></b></li>
+									<li value="16"><img src="http://i.jd.com/defaultImgs/16.jpg" alt="" width="50" height="50"><b></b></li>
+								</ul>
+								<div class="btns mt20">
+								<a href=""javascript:void(0)" class="grzx_gtable_btnOk" onclick="uploadDefaultImg()">保存</a>								  
+								</div>
+							</div>
+						</div>
+						<div class="update-rcol">
+							<div class="smt"><h3>效果预览</h3></div>
+							<div class="smc">
+								你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰
+								<div class="img-m-cont img-cont">
+									<div class="img-s">
+								    <img id="midImage" name="midImage" src="http://storage.jd.com/i.imageUpload/3434323632333634315f6d31343336343135383631383438_mid.jpg">
+                                    </div>
+								</div>
+								100*100像素
+								<div class="img-s-cont img-cont">
+									<div class="img-s">
+									<img id="smaImage" name="smaImage" src="http://storage.jd.com/i.imageUpload/3434323632333634315f6d31343336343135383631383438_sma.jpg">
+                                    </div>
+								</div>
+								50*50像素
+							</div>
+						</div>
+						<div class="clr"></div>
+					</div>
+				</div>					
+</body>
+</html>

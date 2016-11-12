@@ -1,0 +1,39 @@
+  <!-----nav 开始----->
+
+  <script type="text/javascript">
+  $(function(){
+	  var url=window.location.href;
+	  if (url.indexOf('/home/service')>0)
+	  {
+		  $('#service').addClass('current');
+		  }
+	  else if (url.indexOf('/home/join')>0)
+	  {
+		  $('#join').addClass('current');
+		  }
+	  else if (url.indexOf('/home/us')>0)
+	  {
+		  $('#us').addClass('current');
+		  }
+	  else
+		  {
+		  $('#index').addClass('current');
+		  }
+  });
+  </script>
+   <script type="text/javascript" src="js/js.js"></script>
+  <div class="box nopadding menu_bg">
+    <div class="menu">
+      <ul class="nav">
+        <li> <a id='us' href="<?php echo site_url('home/us');?>">关于我们</a> </li>
+        <li><a id='join' href="<?php echo site_url('home/join');?>">招商加盟</a></li>
+        <li> <a id='service'  class="tri" href="<?php echo site_url('home/service');?>">便民服务<span class="triangle"></span></a>
+          <div class="subnav">
+            <div class="width_b"> <a href="<?php echo site_url('xkApp/umspay/phoneRecharge');?>">话费充值</a><a href="<?php echo site_url('xkApp/umspay/water');?>">水费</a> <a href="<?php echo site_url('xkApp/umspay/power');?>">电费</a> <a href="<?php echo site_url('xkApp/umspay/gas');?>">燃气费</a> <a href="<?php echo site_url('xkApp/umspay/creditCard');?>">信用卡缴费</a> </div>
+          </div>
+        </li>
+        <li><a id='index' href="<?php echo site_url('home/index');?>">网站首页</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-----nav 结束----->

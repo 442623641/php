@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="
+<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/datepicker_cn.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.myPagination6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="../web/js/msgbox/msgbox.css" />
+<script src="js/msgbox/msgbox.js"></script>
+<script type="text/javascript" src="js/trade.js"></script>
+<link  href="css/plug.css"  rel="stylesheet" type="text/css">
+<script src="js/alert.js"></script>
+<title>订单管理</title>
+</head>
+
+<body onload='pageInitial(<?php echo $pageIndex?>,<?php echo $totalPage!=null?$totalPage:1?>)'>
+<div class="title_bg"><a href="<?php echo site_url('user/index')?>" target="_parent">首页</a>>
+<a href="<?php echo site_url('Traded/index')?>" target="cont_right">订单管理</a>>交易中订单
+</div>
+
+<div class="search">
+
+<form id="queryForm" name ="queryForm"  action='<?php echo site_url("Trading/index")?>'>
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="80">开始时间：</td>
+		<td width="210"><input name="start" type="text" 
+			class="input_txt datepicker" value="<?php echo $params["start"]; ?>"></td>
+		<td width="80">结束时间：</td>
+		<td width="210"><input name="end" type="text"
+			class="input_txt datepicker" value="<?php echo $params["end"] ?>"></td>
+		<td width="80">交易状态：</td>
+		<td width="160"><select name="status" change="submit()" class="input_sel" >
+		<option value="<?php echo site_url('Traded/index')?>">已完成</option>
+		<option value="<?php echo site_url('Trading/index')?>" selected="true">交易中</option>		
+				
+		</select></td>
+		<td><a href="javascript:submit()" class="input_btn">查询</a></td>
+	</tr>
+</table>
+</form>
+</div>
+
+<div class="content_b">
+<div class="content_b_t">交易中订单</div>
+<div class="content_b_table"><!-- 
+    	<table cellspacing="0" cellpadding="0" width="100%">
+        	<tr class="font14"><td width="100"><input name="" type="checkbox" value="">选择</td><td width="180">创建时间</td><td width="100">交易名称</td><td width="100">交易方</td><td width="100">金额</td><td width="100">交易状态</td><td>操作</td></tr>
+            <tr class="tbg"><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td><span>正在交易</span></td><td><a href="#">确认</a> &nbsp; <a href="#">取消</a>  <a href="ddxq.html">查看</a></td></tr>
+            <tr><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td>已完成</td><td><a href="ddxq.html">查看</a></td></tr>
+            <tr class="tbg"><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td>已完成</td><td><a href="ddxq.html">查看</a></td></tr>       
+        </table>
+         -->
+<table id="tab_list" cellspacing="0" cellpadding="0" width="100%">
+	<tr class="font14">
+		<td><input name="" type="checkbox" value=""  id="checkall">选择</td>
+		<td>订单号</td>
+		<td>创建时间</td>
+		<td>金额</td>
+		<td>备注</td>
+		<td>交易状态</td>
+		<td>操作</td>
+	</tr>
+	<tbody> 
+		<?php foreach($data as $item) {
+			$createTime=$item["create_date"]." ".$item["create_time"];	
+		echo '<tr><td hidden>'.$item["id"].'</td>
+				<td><input name="" type="checkbox" class="checkbox"></td>
+				<td>'.$item["orderID"].'</td>
+				<td>'.$createTime.'</td>
+				<td><span>'.$item["cost"].'</span></td>
+				<td>'.$item["comment"].'</td>
+				<td><span>正在交易</span></td>
+				<td style="padding:0 8px 0 8px"><a style="color:blue;" href="'.site_url("Trading/deal\/").$item["id"].'">确认</a>&nbsp;<a style="color:blue;" href="'.site_url("Trading/undeal\/").$item["id"].'">取消</a>&nbsp;<a style="color:blue;" href="'.site_url("Trading/detail\/").$item["id"].'">查看</a></td>
+				</tr>';	
+		 }?>
+	</tbody>
+</table>
+
+</div>
+<div class="msdn" id="page"></div>
+</div>
+</body>
+</html>

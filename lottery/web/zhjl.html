@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta name="Copyright" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<title>便民彩票—我的彩票</title>
+	<base href = "<?php echo base_url();?>"/> 	
+	<link rel="stylesheet" href="web/css/wdcp.css">
+	<link rel="stylesheet" href="web/css/sty.css">
+		<script type="text/javascript"  src="web/js/jquery.min.js" ></script>
+	<script type="text/javascript"  src="web/js/jquery-1.8.0.min.js" ></script>
+	<script type="text/javascript">
+		$(function() {
+			getTzjl(-1);
+		});
+
+		function getTzjl(state){
+			var data;
+			var old_state = $('#state').val();
+			var index;
+			if(state==-2){
+				index = $('#index').val();
+				state = old_state;
+			}
+			else{
+				$('#data_area').children().remove();
+				index = 1;
+			}
+			if(state==-1){   //查看全部状态的订单
+				data = {userID:'10017',index:index,pageSize:'5'};
+			}else{
+				data = {userID:'10017',index:index,pageSize:'5',state:state}
+			}
+		    $.ajax({
+		        type: "post",
+		        url: "<?php echo site_url('api/LotteryChase/listsChase');?>",
+		        data: data,
+		        dataType:"json",
+		        error:function () {'请求异常！';},
+		        success: function (json) {
+			        if(json.fail!=0){
+						alert('暂无更多数据！');
+				    }else{
+						var res = json.data;
+						var html = '';
+						for(var i=0;i<res.length;i++){ 
+							var states = {0:'未出票',1:'等待开奖',2:'等待出奖',3:'已中奖',4:'未中奖',5:'已撤销',6:'追号停止',7:'追号继续',8:'合买认筹',9:'合买失败'};
+							if(res[i].state=='3'){
+								states[res[i].state] = '中奖'+res[i].winMoney+'元';
+							}
+							html += '<li><a href=""><div class="cz"></div><div class="xq"><div class="rq"><span>第'+res[i].issue+'期</span><span>'+res[i].updateDate+'</span></div><div class="rqx"><span class="rqxx">'+res[i].index+'/'+res[i].totalPhases+'</span><span>'+states[res[i].state]+'</span></div></div></a></li>';
+						} 
+						$('#data_area').append(html);
+						$('#index').val(parseInt(index)+1);
+						$('#state').val(state);
+					}
+		        }
+		    });
+		}
+
+		function changeType(state,src){
+			$('#'+src).attr('class','qb');
+			if(src=='all'){
+				$('#yzj').removeAttr('class');
+				$('#wzj').removeAttr('class');
+			}
+			if(src=='yzj'){
+				$('#all').removeAttr('class');
+				$('#wzj').removeAttr('class');
+			}
+			if(src=='wzj'){
+				$('#all').removeAttr('class');
+				$('#yzj').removeAttr('class');
+			}
+			getTzjl(state);
+		}
+	</script>
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a>便民彩票</div>
+<input type="hidden" id="index" name="index" value="0">
+<input type="hidden" id="state" name="state">
+<!-- 选择 -->
+<div class="xz">
+	<ul>
+		<li><a  id="all" onclick="changeType(-1,'all');" class="qb">全部</a></li>
+		<li><a  id="yzj" onclick="changeType(3,'yzj');">已中奖</a></li>
+		<li><a  id="wzj" onclick="changeType(4,'wzj');">未中奖</a></li>
+	</ul>
+</div>
+<!-- 纪录内容 -->
+<div class="tzjl">
+	<ul id="data_area">
+	
+	</ul>
+	<a  onclick="getTzjl(-2);" class="jiaz">点击加载更多</a>
+</div>
+
+</body>
+</html>

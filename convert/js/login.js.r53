@@ -1,0 +1,27 @@
+function login(url) {
+	
+	var user = $('#user').val();
+	var pass = $('#pass').val();
+
+	$.ajax({
+		type : "POST",
+		dataType: "json",
+		url:url,
+		data:{user:user, 
+			pass:pass,},
+		success : function(json) {
+		}
+	});
+}
+
+function showMesInfo(msg, type) {
+	$('.form>.msg-wrap').empty();
+	if (type == 'warn') {
+		var info = '<div class="msg-warn"><b></b>' + msg + '</div>';
+		$('.form>.msg-wrap').append(info);
+	}
+	if (type == 'error') {
+		var info = '<div class="msg-error"><b></b>' + msg + '</div>';
+		$('.form>.msg-wrap').append(info);
+	}
+}

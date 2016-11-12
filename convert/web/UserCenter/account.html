@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>账户中心-个人中心</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/add.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/widgt.css" />
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/grzx.js"></script>
+<link  href="css/plug.css"  rel="stylesheet" type="text/css">
+<script src="js/alert.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper layout_5_bg">
+       <?php echo $header;?>
+        <!---个人中心 content -->
+		<div class="box ">
+    		<div class="grzx_content">
+       		    <!---个人中心 content left -->
+        		<div class="grzx_content_left fn-left">
+                	<p class="grzx_cot_lf_tit">帐户中心</p>
+                    <ul class="grzx_cot_lf_ul">
+                    	<li ><a href="<?php echo site_url('UserCenter/userInfo')?>" target="Iframe_grzx" class="grzx_li_n1 grzx_lf_ul_li_current">个人帐户</a>
+                        	<ul>
+                            	<li><a href="<?php echo site_url('UserCenter/chongzhi')?>" target="Iframe_grzx" id="grzx_cz" >充值</a></li>
+                            	<li><a href="<?php echo site_url('UserCenter/tixian')?>" target="Iframe_grzx" id="grzx_tx">提现</a></li>
+                            	<li><a href="<?php echo site_url('UserCenter/chongzhi')?>" target="Iframe_grzx" id="grzx_jf">积分</a></li>
+                            	<li><a href="<?php echo site_url('UserCenter/payset')?>" target="Iframe_grzx" id="grzx_zfsz">支付设置</a></li>
+                            </ul>
+                        </li>
+                    	<li ><a href="<?php echo site_url('UserCenter/renzheng')?>" target="Iframe_grzx" class="grzx_li_n2" id="grzx_smrz">实名认证</a></li>
+                    	<li ><a href="<?php echo site_url('UserCenter/bankBind')?>" target="Iframe_grzx" class="grzx_li_n3" id="grzx_yhk">银行卡</a></li>
+                    	<li ><a href="<?php echo site_url('UserCenter/passMod')?>" target="Iframe_grzx" class="grzx_li_n4" id="grzx_grxx">个人信息</a>
+                        	<ul>
+                            	<li><a href="<?php echo site_url('UserCenter/passMod')?>" target="Iframe_grzx" id="grzx_mmxg">密码修改</a></li>
+                            	<li><a href="<?php echo site_url('UserCenter/personInfo')?>" target="Iframe_grzx" id="grzx_grzl">个人资料</a></li>
+                                <li><a href="<?php echo site_url('UserCenter/address')?>" target="Iframe_grzx" id="grzx_dzgl">地址管理</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="<?php echo site_url('UserApi/logout');?>" class="grzx_cot_lf_pl blue">退出登录</a>
+                </div>
+       		    <!-----个人中心 content right ---->
+       		  <div class="grzx_content_right fn-right">
+              <iframe frameborder="0" id="Iframe_grzx" name="Iframe_grzx" src="<?php echo site_url('UserCenter/userInfo');?>" scrolling="no"></iframe>
+                </div>
+             	 <!-----个人中心 content right over ---->
+        	</div>
+            <div class="clearfix"></div>
+  	  </div>
+        <!---个人中心 content over-->
+        <?php echo $footer;?>
+</div>
+
+<script type="text/javascript" src="js/pop.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var url = window.location.href;
+        var mods = ["chongzhi", "tixian","jfen", "passMod", "bankBind"];
+        var arrUrl = url.split("#");
+        var mod = arrUrl[arrUrl.length-1];
+        var nav = {
+            chongzhi: 'cz',
+            tixian: 'tx',
+            passMod: 'mmxg',
+            bankBind: 'yhk',
+        };
+
+        for (var i = 0; i < mods.length; i++) {
+            if (mod.indexOf(mods[i])> -1) {
+                $("#grzx_"+nav[mods[i]]).addClass("grzx_lf_ul_li_current");
+                $("#Iframe_grzx").attr("src", "<?php echo site_url('UserCenter/"+mods[i]+"');?>");
+            }
+        }
+
+        $("#mod_phone .confirm").click
+    });
+</script>
+</body>
+</html>

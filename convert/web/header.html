@@ -1,0 +1,13 @@
+
+<div class="box topbar_bg">
+  <div class="topbar">
+      <?php $user = $this->session->userdata('user');?>
+	<?php if (empty($user)) :?>
+	<p class="fn-left txtindent50"><i></i>欢迎来到小康便民网，请 <a href="<?php echo site_url('user/login');?>">登录</a> 或 <a href="<?php echo site_url('user/register');?>">注册</a></p> 
+	<?php else :?>
+	<p class="fn-left txtindent50"><i></i><?php echo $user['user'];?>,您好，欢迎来到<b><a href="<?php echo site_url('user/index');?>">小康便民网</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo site_url('user/logout');?>">注销</a></p>
+	<?php endif;?>   
+    <p class="fn-right"><em></em>全国加盟热线：4008-591-020</p>
+    <div class="clearfix"></div>
+  </div>
+</div>

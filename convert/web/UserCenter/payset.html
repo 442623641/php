@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-支付设置</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----账户中心 支付设置---->
+<div class="grzx_iframe_cot">
+  <?php if (isset($pay['pay_pass']) && $pay['pay_pass'] != ""): ?>
+    <div class="grzx_cot_rgt_tit">支付设置</div>
+    <div class="grzx_cot_rgt_grzl mar_t setted">你已为本帐户设置支付密码，平台上所有的余额交易支付都要输入支付密码，若忘记支付密码   <a href="javascript:void(0);">重置密码&nbsp;&nbsp;</div>
+   <?php else:?>
+  <div class="grzx_cot_rgt_tit">支付设置</div>
+  <div class="grzx_cot_rgt_grzl mar_t">你正在为本帐户设置支付密码，平台上所有的余额交易支付都要输入支付密码&nbsp;&nbsp;</div>
+<?php endif?>
+  
+               		    <table width="90%" height="200" class="mar_t30 grzx_gtable setter" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td class="grzx_gtable_wid3">支付密码：</td>
+                            <td class="grzx_gtable_wid4"><input name="paypass" type="password" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>确认密码：</td>
+                            <td><input name="repass" type="password" class="grzx_gtable_inpta"/><span style="color:red;"></spam></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="grzx_gtable_btnOk set">设置</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    if ($(".setted").length > 0) {
+      $(".setter").css('visibility', 'hidden');
+    }
+
+    $(".cancel").click(function(){
+      $("input").val("");
+    });
+
+    $(".set").click(function(){
+      var paypass = $.trim($("input[name='paypass']").val());
+      var repass = $.trim($("input[name='repass']").val())
+
+      if (paypass != repass) {
+        $("input[name='repass']").siblings("span").text('两次密码不一致');
+        return false;
+      }
+
+      $.ajax({
+        url: '<?php echo site_url("UserApi/setPayPass");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          paypass: paypass,
+          repass: repass,
+        },
+        success: function(json){
+          if (json.fail == 0) {
+            alert('设置成功');
+            $(".grzx_iframe_cot").remove();
+            $("#newpay").css('visibility', 'visible');
+            $("input[name='newpay']").val(paypass);
+            window.location.reload();
+          } else {
+            alert(json.mess);
+          }
+        }
+      })
+    });
+
+    $(".setted").find("a").click(function(){
+      $(".setter").css('visibility', 'visible');
+    });
+
+    $("input").focus(function(){
+       $("input[name='repass']").siblings("span").empty();
+    })
+  })
+</script>
+</body>
+</html>

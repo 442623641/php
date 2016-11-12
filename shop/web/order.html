@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="
+<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/datepicker_cn.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.myPagination6.0.js"></script>
+<link href="css/plug.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../web/js/msgbox/msgbox.css" />
+<script src="js/alert.js"></script>
+<script src="js/msgbox/msgbox.js"></script>
+<script type="text/javascript" src="js/order.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(".input_sel").change(
+			function(){
+				var url=$(this).children('option:selected').val();
+				$('#queryForm').attr("action",url);
+				document.queryForm.submit();
+			});
+    $("#page").myPagination({
+      currPage: <?php echo $pageIndex?>,
+      pageCount: <?php echo $totalPage!=null?$totalPage:1?>,
+    	cssStyle: 'Blue',
+      ajax:{
+         //自动传入当前点击页数
+        onClick:function(page){
+          var url="<?php echo site_url('Order/index')?>";
+
+         //开启提示代码,需导入msgbox.js文件与样式.
+         ZENG.msgbox.show(" 正在加载"+page+"页，请稍后...", 8, 1000); 
+         var varParams ="\/"+page+"?";
+         //window.location.href = url+varParams;
+         //如果是多条件查询，则需序列化表单，或自己组装参数，以下提供一示例。
+         var formData = $("#queryForm").serialize(); //序列化表单
+         formData = decodeURIComponent(formData, true); //解码
+         varParams += formData ;
+         location.href = url+varParams;
+ }
+  }
+    });
+    $("#checkall").click(
+    	    function(){
+    	    	$(".checkbox").prop("checked", this.checked);
+        	    });
+	
+});
+</script>
+<title>订单管理</title>
+</head>
+
+<body>
+<div class="title_bg"><a onclick="test('index_gl.html')"
+	href="index_gl.html" target="cont_right">首页</a>>订单管理</div>
+
+<div class="search">
+
+<form id="queryForm" name ="queryForm"  action='<?php echo site_url("Traded/index")?>'>
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="80">开始时间：</td>
+		<td width="210"><input name="start" type="text" 
+			class="input_txt datepicker" value="<?php echo $params["start"]; ?>"></td>
+		<td width="80">结束时间：</td>
+		<td width="210"><input name="end" type="text"
+			class="input_txt datepicker" value="<?php echo $params["end"] ?>"></td>
+		<td width="80">交易状态：</td>
+		<td width="160"><select name="status" class="input_sel" >
+		<option value="<?php echo site_url('Traded/index')?>" selected="true">已完成</option>
+		<option value="<?php echo site_url('Traded/index')?>">未完成</option>		
+		</select></td>
+		<td><a href="javascript:document.queryForm.submit()" class="input_btn">查询</a></td>
+	</tr>
+</table>
+</form>
+</div>
+
+<div class="content_b">
+<div class="content_b_t">订单列表</div>
+<div class="content_b_table"><!-- 
+    	<table cellspacing="0" cellpadding="0" width="100%">
+        	<tr class="font14"><td width="100"><input name="" type="checkbox" value="">选择</td><td width="180">创建时间</td><td width="100">交易名称</td><td width="100">交易方</td><td width="100">金额</td><td width="100">交易状态</td><td>操作</td></tr>
+            <tr class="tbg"><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td><span>正在交易</span></td><td><a href="#">确认</a> &nbsp; <a href="#">取消</a>  <a href="ddxq.html">查看</a></td></tr>
+            <tr><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td>已完成</td><td><a href="ddxq.html">查看</a></td></tr>
+            <tr class="tbg"><td><input name="" type="checkbox" value=""></td><td>2015-06-29 14:00</td><td>燃气费</td><td>合肥刘清兰</td><td>58.36</td><td>已完成</td><td><a href="ddxq.html">查看</a></td></tr>       
+        </table>
+         -->
+<table id="tab_list" cellspacing="0" cellpadding="0" width="100%">
+	</tr class="font14">
+		<td><input name="" type="checkbox" value=""  disabled=<?php echo $params["status"]==1?"disabled":"" ?> id="checkall">选择</td>
+		<td>订单号</td>
+		<td>创建时间</td>
+		<td>操作类型</td>
+		<td>金额</td>
+		<td>备注</td>
+		<td>完成时间</td>
+		<td>交易状态</td>
+		<td>操作</td>
+	</tr>
+	<tbody> 
+   <!--未完成
+//    "id": "81",
+//    "operateType": "3",
+//    "orderID": "930291839928193",
+//    "serialNumber": "1506305302780067",
+//    "phoneNumber": "13993001010",
+//    "app": "cai-lan-zi",
+//    "shop": "shop-003",
+//    "cost": "12000",
+//    "money": "0",
+//    "create_date": "2015-06-30",
+//    "create_time": "16:06:27",
+//    "subapp": "0",
+//    "flag": "0",
+//    "shop_flag": "0",
+//    "sms_code": "",
+//    "callback": null,
+//    "comment": "2个苹果，1个梨\r\n",
+//    "user": "13993001010"
+//已完成
+//{
+//    "id": "311",
+//    "operateType": "3",
+//    "phoneNumber": "10011",
+//    "app": "cai-lan-zi",
+//    "shop": "shop-003",
+//    "orderID": "930291839928193",
+//    "cost": "-12000",
+//    "balance": "0",
+//    "create_date": "2015-07-11",
+//    "create_time": "10:07:31",
+//    "finish_date": "2015-07-11",
+//    "finish_time": "11:44:43",
+//    "subapp": "0",
+//    "state_rcs": "0",
+//    "comment": "2个苹果，1个梨\r\n",
+//    "user": "10011"
+//}
+	-->
+		<?php foreach($data as $item) {
+			$opr='<a style="color:blue;" href="'.site_url("Order/confirm\/").$item["id"].'">确认</a>&nbsp;<a style="color:blue;" href="'.site_url("Order/cancle\/").$item["id"].'">取消</a>&nbsp;<a style="color:blue;" href="'.site_url("Order/detail\/").$item["id"].'">查看</a>';
+			$disabled="";
+			$status="<span>正在交易</span>";
+			$finishTime="-";
+			$createTime=$item["create_date"]." ".$item["create_time"];
+		if( $params["status"]==1){
+			$status="已完成";
+			$opr='<a style="color:blue;" href="'.site_url("Order/detail\/").$item["id"].'">查看</a>';
+			$disabled="disabled";
+			$finishTime=$item["finish_date"]."  ".$item["finish_time"];}
+		
+		echo '<tr><td hidden>'.$item["id"].'</td>
+				<td><input name="" type="checkbox" disabled="'.$disabled.'" class="checkbox"></td>
+				<td>'.$item["orderID"].'</td>
+				<td>'.$createTime.'</td>
+				<td>'.$item["operateType"].'</td>
+				<td><span>'.$item["cost"].'</span></td>
+				<td>'.$item["comment"].'</td>
+				<td>'.$finishTime.'</td>
+				<td>'.$status.'</td>
+				<td style="padding:0 8px 0 8px">'.$opr.'</td>
+				</tr>';	
+		 }?>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>
+<div class="msdn" id="page"></div>
+
+
+
+<!--  
+<div class="page">
+<div class="fl">共50条订单信息 每页10条 共5页 当前1/5</div>
+<div class="fr"><a href="#" class="split_page">首页</a> <a href="#"
+	class="split_page"><span class="gray">上一页</span></a> <a
+	class="split_page current" href="#">1</a> <a class="split_page"
+	href="#"> 2</a> <a class="split_page" href="#">3</a> <a href="#"
+	class="split_page">下一页</a> <a href="#" class="split_page">尾页</a></div>
+<div class=" clear"></div>
+</div>
+
+<div class="f_box"><a href="#" class="input_btn" id="f_box_g">确定</a><a
+	href="#" class="input_btn" id="f_box_o">取消</a>
+<div class="clear"></div>
+</div>
+-->
+</div>
+</div>
+</body>
+</html>

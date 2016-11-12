@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="<?php echo base_url();?>styles/style2.css" />
+<title>修改密码</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow"><i class="leftn"></i></a>
+ <h1 class="title">修改密码</h1>
+</div>
+<div class="personal_bg">
+	<div class="heaad_box"><img src="<?php echo base_url();?>images/img/head.png" ></div>
+    <h2>无脸男</h2>
+</div>
+<div class="login_box_content">
+	<ul>
+      <li>
+        	<div class="input_div">
+            	<div class="left_login_z"><img src="<?php echo base_url();?>images/img/login_m.png" ></div>
+                <div class="right_login_input"><input name="old_passwd" type="password" placeholder="输入旧密码"><span></span></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+        <li>
+        	<div class="input_div">
+            	<div class="left_login_z"><img src="<?php echo base_url();?>images/img/login_m.png" ></div>
+                <div class="right_login_input"><input name="passwd" type="password" placeholder="输入新密码"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+         <li>
+        	<div class="input_div">
+            	<div class="left_login_z"><img src="<?php echo base_url();?>images/img/login_m.png" ></div>
+                <div class="right_login_input"><input name="passwdCf" type="password" placeholder="再次输入新密码"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+    <a class="login_btn">确认修改</a>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.login_btn').click(function(){
+            var url = '<?php echo site_url("home/modifyPwd");?>';
+            var passwd = $.trim($('input[name="passwd"]').val());
+            var old_passwd = $.trim($('input[name="old_passwd"]').val());
+            var passwdCf = $.trim($('input[name="passwdCf"]').val());
+             $.ajax({
+                    url: url,
+                    type:"post",
+                    dataType: "json",
+                    data:{
+                        old_passwd:old_passwd,
+                        passwd:passwd,
+                        passwdCf:passwdCf,
+                    },
+                    success:function(json){
+                        if (json.fail == 0 || json.fail == 4) {
+                            alert(json.msg);
+                            location.href = json.redirect;
+                        } else if (json.fail == 3) {
+                            $('input[name="old_passwd"]').val('').focus().css({
+                                "border": '1px solid red',
+                            }).keydown(function(){
+                                $(this).css({
+                                "border": 'none',
+                            })
+                            });
+                        } else if (json.fail == 5) {
+                            $('input[name="passwdCf"],input[name="passwd"]').val('').focus().css({
+                                "border": '1px solid red',
+                            }).keydown(function(){
+                                $(this).css({
+                                "border": 'none',
+                            })
+                            });
+                        } else {
+                            alert(json.msg);
+                        }
+                    }
+                    });
+        });
+
+        $(".left_narrow").on("click", function(){
+            window.history.go(-1);
+        });
+    });
+
+</script>
+</body>
+</html>

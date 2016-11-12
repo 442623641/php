@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<title>联系我们</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+
+$(function(){
+	var navLi = $(".menu .nav li");
+	navLi.hover(function(){
+		$(this).siblings().find("a[class*='current']").removeClass("current");
+		$(this).find("a").addClass("current");
+		$(this).find(".subnav").slideDown();
+	},function(){
+		$(this).find(".subnav").slideUp();
+		if($(this).index()!=$(this).parent().children().length-1){ 
+			$(this).find("a").removeClass("current");
+			$(this).parent().children(":last").find("a").addClass("current");
+		}
+		
+	})
+});
+	
+
+
+</script>
+</head>
+
+<body>
+
+<!-----topbar 开始----->
+     <?php $this->load->view('header.html');?> 
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+  <!-----nav 结束-----> 
+  <!-----banner开始----->
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(images/img8.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+  <!-----banner结束-----> 
+
+<div class="box container_bg">
+<div class="develop">
+  <p class="txt_title">联系我们： <p><p class="dev_content">
+    联系地址：安徽省合肥市高新区黄山路与科学大道海棠湾商铺11#102室<br>
+
+联系电话：4008-591-020<br>
+
+</p>
+<div class="txt_title map_layout"><p class="map"><img src="images/map.jpg"></p></div>
+
+</div>
+</div>
+<!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</body>
+</html>

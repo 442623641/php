@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<title>小康便民O2O服务站-网站首页</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+
+ 	<div>
+    <iframe src='<?php echo site_url('xkApp/submit/'.$model);?>' id="view_page" name="view_page" style="background: #fff;" width="1100px" height="700px" scrolling="auto" frameborder="0"></iframe>
+    </div>
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  <!-----layout_5结束-----> 
+  
+</div>
+</body>
+</html>

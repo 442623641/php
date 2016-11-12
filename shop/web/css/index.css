@@ -1,0 +1,76 @@
+
+
+
+/************公用样式***********/
+*{ margin:auto; padding:0;}
+body{ font: 14px/1.8  "microsoft yahei","宋体",simsun,sans-serif; color:#323232; background:#f2f2f2}
+.wrapper{ width:100%; height:100%;}
+.white{ color:#fff;}
+.gray{ color:#959595;}
+a{color:rgb(0, 32, 255);}
+a:hover{ color:rgb(0, 32, 255);}
+
+
+
+/*********head**********/
+.header{ width:100%; min-width:1100px; border-bottom:1px solid #c6c6c6; position:relative; top:0;}
+.top_bar{ height:40px;background:#171615; line-height:40px; overflow:hidden}
+.top_bar_box{ width:1100px; margin:0 auto; height:40px;background:#171615; line-height:40px; overflow:hidden}
+.top_bar_box img{ margin-top:7px}
+
+
+/**/
+.head_box{width:1098px; border:1px solid #dddddd; margin:0 auto; background:url(../images/top_bg.png); height:88px; margin-top:15px; position:relative; z-index:9999}
+.head_box_headimg{ width:88px; height:88px; border:1px solid #eee; position:absolute; top:15px; left:25px; padding:2px; background:#ffffff}
+.head_box_info{ float:left; padding-left:140px; padding-top:10px}
+.head_box_info h2{ font-size:20px}
+.tianqi{ float:right; border-left:1px solid #a9a99d; height:55px; padding:0 10px; margin-top:15px}
+
+/*********left**********/
+.maincontent{ width:1100px; margin:0 auto; padding-top:50px; height:100%}
+.cont_left{ width:150px;  float:left; overflow:hidden; background:#3d3d3d; padding-bottom:180px}
+.cont_left ul li{border-bottom:1px solid #4a4a4a; list-style:none}
+.cont_left ul li.last{ border:0}
+
+#nr_b li{ border:0}
+.nr{border-bottom:1px solid #4a4a4a}
+.nr li{ margin:6px 0; height:26px;}
+.nr li a{ display:block;  height:26px; color:#ddd; text-align:center}
+.nr li a.cur{background:#575757;}
+.nav a{display:block;width:150px;height:50px;line-height:50px; text-align:center; color:#bbbbbb; background:url(../images/narrow_r.png) no-repeat 125px 18px;}
+.nav a:hover{background-color:#f25609; color:#fff;}
+.n1 .curennt,.n2 .curennt,.n3 .curennt,.n4 .curennt,.n5 .curennt,.n6 .curennt,.n7 .curennt,.n8 .curennt{ color:#fff;background:url(../images/narrow_d.png) #f25609 no-repeat 125px 21px}
+.n1 a.curennt:hover,.n2 a:hover.curennt,.n3 a.curennt:hover,.n4 a.curennt:hover,.n5 a.curennt:hover,.n6 a.curennt:hover,.n7 a.curennt:hover,.n8 a.curennt:hover{ background-color:#f25609}
+.nav .hover{background-color:#e8e8e8;}
+
+
+
+/********right**********/
+.cont_right{position:relative; top:0;  margin-left:162px; overflow:hidden; width:auto; height:100%;}
+.cont_right iframe{ width:100%; height:100%;}
+.cont_right_box{ background:#fff; padding:10px; border:1px solid #e8e8e8; overflow:auto; width:auto; height:100%;}
+
+/**foot**/
+.foot{ line-height:22px; text-align:center; padding-top:8px; font-size:12px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

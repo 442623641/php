@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link  href="css/plug.css"  rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/alert.js"></script>
+<title>登录</title>
+<style type="text/css">
+html{ height:100%; margin:0;}
+body {height:100%; margin:0;}
+</style>
+</head>
+<body>
+<div class="login">
+	<div class="pad200">
+		<div class="login_box">
+        	<h2>店铺管理系统</h2>
+        	      <?php echo form_open('Privilege/signin/login');?>
+            <table>
+            	<tr><td>用户名：</td><td><input id="user" name="user" type="text" placeholder="输入登录名"></td></tr>
+                <tr><td>密码：</td><td><input id="pass" name="passwd" type="password" placeholder="密码"></tr>
+                <tr><td></td><td><input name="" type="submit" class="btn" value="登录"></td></tr>
+            </table>
+            </form>
+        </div>
+        <p>安徽象网汇信息科技股份有限公司版权所有     皖ICP备140039234号</p>
+    </div>    
+</div>
+</body>
+</html>

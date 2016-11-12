@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta name="Copyright" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url();?>styles/cxjg.css" />
+	<title>小康便民O2O服务站</title>
+</head>
+<body>
+	<div class="topmenu">
+		 <span class="openFavBox left_narrow"><i class="leftn"></i></span>
+		 <h1 class="title">查询结果</h1>
+	</div>
+	
+	<div class="logo">
+		<span class="logo_z"><?php echo $logo;?></span>
+		<span><?php echo $number;?></span>
+	</div>
+	
+	<?php foreach ($response as $v):?>
+	<?php 
+		$date = explode(' ', $v['time']);
+		$time = explode(':', $date[1]);
+		$time = $time[0].':'.$time[1];
+	?>
+	<div class="content2">
+		<div class="left">
+			<p><?php echo $date[0]?></p>
+			<h2><?php echo $time?></h2>
+		</div>
+		<div class="right">
+			<p><?php echo $v['context']?></p>
+		</div>
+	</div>
+	<?php endforeach?>
+	<script type="text/javascript">
+		$(function($){
+			var str = $('.logo_z').text().substr(0, 2);
+			var str1 = $('.logo_z').text().substring(2, ($('.logo_z').text().length));
+			str = str + "<br/>" + str1;
+			$('.logo_z').html(str);
+
+			$(".left_narrow").on('click', function() {
+				window.history.back();
+			});
+
+			var contentFir = $('.content2').first();
+			contentFir.removeClass('content2').addClass('content1');
+		});
+	</script>
+</body>
+</html>

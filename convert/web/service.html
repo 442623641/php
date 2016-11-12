@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-便民服务</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+     <?php $this->load->view('header.html');?> 
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+  <!-----nav 结束-----> 
+ <!-----banner开始----->
+  <div class="box">
+   
+    <?php $this->load->view('login_form.html');?>
+    <!-- 焦点图代码begin -->
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(images/img4.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+    <!-- 焦点图代码end --> 
+    
+  </div>
+  <!-----banner结束-----> 
+  
+  <!-----实名认证 开始----->
+  <div class="box layout_5_bg">
+    <div class="width_a Grey"> <img src="images/bmfw_01.jpg"/> </div>
+  </div>
+  <!----实名认证 结束-----> 
+  
+  <!-----便民服务 开始----->
+  <div class="box layout_1_bg">
+    <div class="width_a Grey">
+      <p class="title_font center_font">便民平台优势</p>
+      <ul class="bmfw_con">
+      <li><a href="<?php echo site_url('xkApp/umspay/phoneRecharge');?>" target="_blank"> <img src="images/icon_01.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/phoneRecharge');?>" target="_blank">话费充值</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/water');?>" target="_blank"><img src="images/icon_02.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/water');?>" target="_blank">水费</a></p>
+          <span>便捷支付，轻松缴费！</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/power');?>" target="_blank"><img src="images/icon_03.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/power');?>" target="_blank">电费</a></p>
+          <span>便民充值您家门口的营业厅！</span></li>
+        <li><a href="http://cx.xiangw.net/UserWeb/login.html" target="_blank"><img src="images/icon_11.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="http://cx.xiangw.net/UserWeb/login.html" target="_blank">彩票分析</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/creditCard');?>"  target="_blank"><img src="images/icon_10.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/creditCard');?>"  target="_blank">信用卡缴费</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/gas');?>" target="_blank"><img src="images/icon_04.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/gas');?>" target="_blank">燃气费</a></p>
+          <span>充值便利，生活轻松！</span></li>
+      
+        <li><img src="images/icon_14.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">鲜花预订</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_13.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">酒店预订</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_12.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">彩票分析</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_17.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">购物商城</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_16.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">旅游服务</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_15.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">金融理财</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_20.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">应用设置</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_19.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">交通罚款</a></p>
+          <span>5-10分钟到帐</span></li>
+        <li><img src="images/icon_18.jpg" width="115" height="115"/>
+          <p class="title_font_b"><a href="javascript:void(0)">团购网</a></p>
+          <span>5-10分钟到帐</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-----便民服务 结束-----> 
+ <!-----layout_4开始--合作伙伴--->
+     <?php $this->load->view('partner.html');?>
+  <!-----layout_4结束-----> 
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</div>
+</body>
+</html>

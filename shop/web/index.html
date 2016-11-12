@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>管理后台</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link  href="css/plug.css"  rel="stylesheet" type="text/css">
+<script src="js/alert.js"></script>
+<script type="text/javascript">
+$(function(){
+$('.nav a').click(function() {
+	$('.nav a').removeClass("curennt");
+	var index=$('.nav a').index(this);
+	var element=$(".nav a").eq(index);
+	element.addClass("curennt");
+	})
+	
+$('.nr a').click(function() {
+	$('.nr a').removeClass("cur");
+	var index=$('.nr a').index(this);
+	var element=$(".nr a").eq(index);
+	element.addClass("cur");
+	})
+	});
+
+  function wh(){
+    var h = $(window).height();
+    $(".maincontent").height(h-105);
+    }
+
+    wh();
+
+    $(window).resize(function(){
+      wh();
+  });
+   
+
+</script>
+<style>
+*{margin:0;padding:0;}
+html{padding:0;width:100%;height:100%;}
+body{width: 100%;height:100%;}
+</style>
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!------头部-开始----->
+  <div class="header">
+    <div class="top_bar white">
+    	<div class="top_bar_box">
+        	<div class="fn-left"><a href="#"><img src="images/logo.png"></a></div>
+            <div class="fn-right">上次登录时间   <?php echo $this->session->userdata('dealer_loginTime');?>&nbsp;&nbsp;|&nbsp;<a href="<?php echo site_url("User/logout")?>"><font color="#f25609">退出</font></a></div>
+        </div>
+    </div>
+  </div>
+  <!------头部-结束----> 
+  <div class="head_box">
+  	  <div class="head_box_headimg"><a href="#"><img src="images/head_img.png"></a></div>
+      <div class="head_box_info"><h2><?php $this->session->userdata('dealer');?></h2><?php echo $name?>，您好，欢迎来到<a style="color:rgb(249, 119, 11)" href="<?php echo site_url('user/index');?>">小康店铺管理</a></div>
+      <div class="tianqi"><iframe width="300" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=38&icon=1&num=3"></iframe></div>
+  </div>
+  <!------主体-开始----->
+  <div class="maincontent"> 
+    <!------左边-开始----->
+    <div class="cont_left">
+      <ul>
+        <li class="nav n1"><a class="curennt" href="<?php echo site_url('Traded/index');?>" target="cont_right">订单管理</a>
+        </li>
+        <ul class="nr" id="nr_b">
+                <li><a class="cur" href="<?php echo site_url('Traded/index');?>" target="cont_right">完成订单</a></li>
+             	<li><a href="<?php echo site_url('Trading/index');?>" target="cont_right">正在交易</a></li>
+        </ul>
+        <li class="nav n2"><a onclick="test('splb.html')" href="splb.html" target="cont_right">商品管理</a></li>
+        <ul class="nr" id="nr_b">
+                <li><a class="cur" onclick="test('splb.html')" href="splb.html" target="cont_right">商品列表</a></li>
+             	<li><a onclick="test('xzsp.html')" href="xzsp.html" target="cont_right">新增商品</a></li>
+                <li><a onclick="test('spfl.html')" href="spfl.html" target="cont_right">商品分类</a></li>
+        </ul>
+        <li class="nav n3"><a href="<?php echo site_url('Money/index');?>" target="cont_right">资金管理</a></li>
+        <ul class="nr" id="nr_b">
+                <li><a class="cur" href="<?php echo site_url('Money/index');?>" target="cont_right">资金明细</a></li>
+             	<li><a onclick="test('1.html')" href="1.html" target="cont_right">资金结算</a></li>
+                <li><a onclick="test('bdyh.html')" href="bdyh.html" target="cont_right">绑定银行卡</a></li>
+                <li><a onclick="test('zjtx.html')" href="zjtx.html" target="cont_right">资金提现</a></li>
+        </ul>
+        <li class="nav n4"><a href="<?php echo site_url('Shop/index');?>" target="cont_right">店铺管理</a></li>
+         <ul class="nr" id="nr_b">
+        	 <li ><a class="cur"href="<?php echo site_url('Shop/index');?>"target="cont_right">店铺列表</a></li>
+             	<li><a href="<?php echo site_url('Shop/index');?>" target="cont_right">店铺业绩</a></li>
+        </ul>
+        <li class="nav n5"><a href="<?php echo site_url('Employee/index');?>" target="cont_right">店员管理 </a></li>
+         <ul class="nr" id="nr_b">
+        	 <li ><a class="cur" href="<?php echo site_url('Employee/lists');?>"target="cont_right">店员列表</a></li>
+             	<li><a href="<?php echo site_url('Employee/performance');?>" target="cont_right">店员业绩</a></li>
+        </ul>
+        <li class="nav n6"><a onclick="test('jxsfd.html')" href="jxsfd.html" target="cont_right">返现设置</a></li>
+         <ul class="nr" id="nr_b">
+           <li><a class="cur" onclick="test('jxsfd.html')" href="jxsfd.html" target="cont_right">经销商返点</a></li>
+              <li><a onclick="test('spfd.html')" href="spfd.html" target="cont_right">商品返点</a></li>
+        </ul>
+        <li class="nav n7"><a onclick="test('xxzx.html')" href="xxzx.html" target="cont_right">信息中心</a></li>
+        <li class="nav n8 last"><a onclick="test('dlmm.html')" href="dlmm.html" target="cont_right">系统设置</a></li>
+        <ul class="nr" id="nr_b">
+                <li><a class="cur" onclick="test('dlmm.html')" href="dlmm.html" target="cont_right">登录密码</a></li>
+             	<li><a onclick="test('zfmm.html')" href="zfmm.html" target="cont_right">支付密码</a></li></ul>
+      </ul>
+    </div>
+    <!------左边-结束----> 
+    
+    <!------右边-开始----->
+    <div class="cont_right">
+     <div class="cont_right_box">
+<iframe src="index_gl.html" width="100%" height="100%" frameborder="0" id="cont_right" name="cont_right" ></iframe> 
+      </div>
+    </div>
+    <!------右边-结束-----> 
+  </div>
+  <!------主体 结束-----> 
+          <div class="foot">安徽象网汇信息科技股份有限公司<br>联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层</div>
+</div>
+<script>
+	$(function(){
+		$(".nr:not(:first)").hide();
+		$(".nav").click(function(){
+			$(this).next("ul").slideToggle().siblings("ul").slideUp();
+			$(this).next(".nr").find("a:first").addClass("cur");
+		});
+	});
+	
+	
+</script>	
+</body>
+</html>

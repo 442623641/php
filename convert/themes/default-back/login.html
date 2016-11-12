@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/index.js"></script>
+s
+<title>登录</title>
+</head>
+<body>
+
+<!-----topbar 开始----->
+<div class="box topbar_bg">
+<div class="topbar">
+<p class="fn-left"><i></i>欢迎来到小康便民网，请 <a href="#">登录</a> 或 <a
+	href="#">注册</a></p>
+<p class="fn-right"><em></em>全国加盟热线：4008-591-020</p>
+<div class="clearfix"></div>
+</div>
+</div>
+<!-----topbar 结束----->
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+<div class="box container_bg"></div>
+<div class="container loginptb">
+<div class="logleft f_l">
+
+<div class="login">
+<h1 style="padding-bottom: 10;">用户登录</h1>
+	<div class="msg-wrap">
+	<div class="msg-warn"><b></b>请谨慎小心，以防账号丢失</div>
+	<div class="msg-error" style="display: none;"><b></b></div>
+	</div>
+<ul>	
+	<form id="formlogin" method="post" onsubmit="return false;">
+	<li><u>登录帐号:</u> <em> <input id='user' name="user"
+		type="text" style="color: #959595"
+		onblur="if(!value) {value=defaultValue; this.type='text';this.style.color='#959595';}"
+		onfocus="if(this.value==defaultValue) {this.value='';this.type='text';this.style.color='#333';}"
+		placeholder="用户名 / 邮箱 / 手机" caseon="submit"> </em></li>
+	<li><u>登录密码:</u> <em> <input id='password' name='password'
+		type="text" style="color: #959595"
+		onblur="if(!value) {value=defaultValue; this.type='text';this.style.color='#959595';}"
+		onfocus="if(this.value==defaultValue) {this.value='';this.type='password';this.style.color='#333';}"
+		placeholder="密码长度应为6-20位" caseon="submit"> </em></li>
+	<li class="memory">
+	<div><label class="jizhumima"><input name="autologin" id="autologin"
+		type="checkbox" value="1"> 自动登录</label> <a href="#"><font
+		class="c06c">忘记密码了？</font></a></div>
+	</li>
+	<li class="logintip"><span id="span_msg_tip"></span></li>
+	<ol class="a2">
+		<div>
+		<button name="loginsubmit" class="button red" id="loginsubmit"
+			onclick="login()"><span class="primary submit">登录</span></button>
+		</div>
+	</ol>
+	<form>
+</ul>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</form>
+</div>
+
+<div class="logright f_r">
+<div class="alruser">
+<h3>还不是小康便民会员？</h3>
+<span><a href="#">免费注册</a></span>
+<h3 class="pt_20">合作网站账号登录</h3>
+<samp> <a href="#" class="icoqq"></a> <a href="#" class="icosina"></a>
+<a href="#" class="icorr"></a> </samp>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+
+<!-----layout_5开始--底部--->
+<div class="box layout_5_bg">
+<div class="layout_5 Grey">
+<ul>
+	<li class="foot_lef fn-left"><img src="images/wx.jpg" width="146"
+		height="143" />
+	<p>全国加盟热线：400-859-1020<br>
+	加盟官网：http://www.xkbm365.com</p>
+	</li>
+	<li class="foot_rig fn-left">
+	<h2>关于我们</h2>
+	<br>
+	<p><a href="#">成长历程</a><br>
+	<a href="#">联系我们</a><br>
+	<a href="#">加入我们</a></p>
+	</li>
+	<li class="foot_rig fn-left">
+	<h2>招商加盟</h2>
+	<br>
+	<p><a href="#">加盟流程 </a><br>
+	<a href="#">加盟要求</a></p>
+	</li>
+	<li class="foot_rig fn-left">
+	<h2>在线帮助</h2>
+	<br>
+	<p><a href="#">在线帮助 </a><br>
+	<a href="#">电话帮助 </a><br>
+	<a href="#">客户经理</a></p>
+	</li>
+</ul>
+<div class="clearfix"></div>
+<div class="copyright">安徽象网汇信息科技股份有限公司<br>
+联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号
+客服热线：4008-591-020</div>
+</div>
+</div>
+
+<!-----layout_5结束----->
+</body>
+</html>

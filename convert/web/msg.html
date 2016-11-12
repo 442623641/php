@@ -1,0 +1,61 @@
+
+<style type="text/css"> 
+.msg-wrap {
+  min-height: 31px;
+  height: auto!important;
+  height: 31px;
+  margin: 2px 0 5px;
+}
+.msg-warn {
+  position: relative;
+  background: #fff6d2;
+  color: #666;
+  border: 1px solid #ffe57d;
+  padding: 3px 10px 3px 40px;
+  line-height: 18px;
+  height: 18px;
+}
+.msg-error {
+  position: relative;
+  background: #ffebeb;
+  color: #e4393c;
+  border: 1px solid #e4393c;
+  padding: 3px 10px 3px 40px;
+  line-height: 18px;
+  min-height: 18px;
+  _height: 18px;
+}
+.msg-error b {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: block;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  background: url(../images/pwd-icons-new.png) -104px -49px no-repeat;
+}
+.msg-warn b {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: block;
+  margin-top: -8px;
+  width: 16px;
+  height: 17px;
+  overflow: hidden;
+  background: url(../images/pwd-icons-new.png) -104px -22px no-repeat;
+}
+</style>
+<script type="text/javascript">
+if ($(".msg-error").html()!='<b></b>')
+{	
+	$(".msg-error").css('display','');
+	$(".msg-warn").css('display','none');
+}
+</script>
+<div class="msg-wrap">
+	<div class="msg-warn"><b></b>请谨慎小心，以防账号丢失</div>
+	<div class="msg-error" style="display: none;"><b></b><?php echo validation_errors(); ?></div>
+</div>

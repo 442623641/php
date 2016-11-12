@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>合作伙伴-修改</title>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+
+$(function () {
+	$("#back1,#back2,#back3").click( function(e){
+		history.go(-1);
+		})
+	});
+	
+	
+</script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="box_a white_bg">
+    	<p class="title_a"><a class="fn-right orange fot_s" id="back2" href="<?php echo base_url().'xk.php/admin/partner';?>">返回合作伙伴列表</a><em class="title_line"></em>修改合作伙伴信息</p>
+        <div class="box_b"><input class="btn_c white mar_rgt" type="submit" value="保 &nbsp;存"> <a class="btn_d white" id="back1" >取 &nbsp;消</a></div>
+    </div>
+    <div class="box_a">
+    <div class="box_c">
+		<form enctype="multipart/form-data"  action="<?php echo base_url().'xk.php/admin/partner/update';?>" method="post">
+		<input type="hidden" name="partner_id" value="<?php echo $partner_id ;?>">
+		<input type="hidden" name="pic" value="<?php echo $pic ;?>">
+    	<table class="ftable">
+        	<tr>
+            	<td class="wid_e">名 称：</td>
+                <td><input class="input_b" name="partner_name" type="text" value="<?php echo $partner_name ;?>"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+            	<td class="wid_e">链 接：</td>
+                <td><input class="input_b" name="url" type="text" value="<?php echo $url ;?>"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+            	<td class="wid_e">序 号：</td>
+                <td><input class="input_b" name="order_num" type="text" value="<?php echo $order_num ;?>"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
+            	<td>图 片：</td>
+              <td><a href="<?php echo base_url().'uploadfile/admin/'.$pic;?>" target="_blank"><?php echo $pic ;?></a><br>
+              <input type="file" name="userfile" value="浏 &nbsp;览"/> </td>
+            </tr>
+
+            <tr>
+            <tr>
+            	<td></td>
+                <td><input class="btn_c white mar_rgt" type="submit" value="保 &nbsp;存"><a class="btn_d white" id="back3" >取 &nbsp;消</a></td>
+            </tr>
+        </table>
+        </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

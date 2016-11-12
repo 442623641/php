@@ -1,0 +1,24 @@
+/*yulei 2015-7-8*/
+.bind_b{
+	visibility:hidden;
+}
+
+.person input{
+	border:none;
+	disabled:true;
+	background:#fff;
+}
+
+.person tr td{
+	padding:0;
+}
+
+.confirm, .cancel{
+	visibility:hidden;
+}
+
+#OK .success{
+	width:140px;
+	height:60px;
+	background-color: red;
+}

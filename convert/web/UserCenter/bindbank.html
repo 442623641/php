@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-银行卡绑定</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/web/css/attach.css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 银行卡绑定---->
+<div class="grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">银行卡-绑定</div>
+  <div class="grzx_cot_rgt_yhkbd mar_t">
+  	<?php if (is_array($banks)) {
+          foreach ($banks as $val){?>
+      <div style="float:left;margin-top: 10px;" class="grzx_cot_rgt_yhk1 fn-left marg_rgt30 grzx_cot_rgt_yhk_bg1 "><p><?php echo $val['number'];?></p> <a href="<?php echo site_url('UserCenter/delBank');?>?bankid=<?php echo $val['number'];?>" class="blue">解绑</a>
+      </div>
+    <?php }?>
+  <a href="javascript:void(0);" style="float:left;margin-top: 10px;" class="bind_q grzx_cot_rgt_yhk2 bind-right">新增绑定</a>
+  <?php } else {?>
+    <div class="grzx_cot_rgt_grzl mar_t"> 你还没有绑定银行卡，绑定银行瞳享受更便捷的快捷支付方式。&nbsp;&nbsp; <a href="javascript:void(0);" class="bind_q blue">立即绑定</a></div>    <?php }?>
+    <div class="clearfix"></div>
+  </div>
+  
+               		    <table  width="90%" height="300" class="bind_b mar_t50 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+ 						 <tr>
+                            <td class="grzx_gtable_wid3"></td>
+                            <td class="grzx_gtable_wid4"></td>
+                          </tr>
+                          <tr>
+                            <td height="50px">卡号：</td>
+                            <td class="position_re"><input name="bankid" type="text" class="grzx_gtable_inptc"/><p style="color:#F25609;font-size:12px;line-height: 12px;"></p></td>
+                          </tr>
+                          <tr>
+                            <td>开户行:</td>
+                            <td><input name="branch" type="text" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>开户地：</td>
+                            <td><select class="grzx_gtable_select1 marg_rgt10" name="province"><option>安徽省</option><option>安徽省</option></select>   <select name="city" class="grzx_gtable_select1 marg_rgt10"><option>合肥市</option><option>合肥市</option></select>  <select class="grzx_gtable_select2" name="country"><option>经济技术开发区</option><option>经济技术开发区</option></select></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="grzx_gtable_btnOk bind">绑定</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".cancel").click(function(){
+      $("input").each(function(){
+        $(this).val("");
+      })
+    })
+
+    $("input[name='bankid']").focusout(function(event) {
+      if ($(this).val().length > 10) {
+        var bankid = $.trim($("input[name='bankid']").val());
+        $.ajax({
+          url: '<?php echo site_url("UserCenter/bankType");?>',
+          type: 'GET',
+          dataType: 'text',
+          data: {
+            bankid: bankid,
+          },
+          success:function(text){
+            $("input[name='bankid']").siblings('p').text(text);
+          },
+          error:function(text){
+            $("input[name='bankid']").siblings('p').text('暂无法获取发卡银行');
+          }
+        })
+      } else {
+        $("input[name='bankid']").siblings('p').text("");
+      }
+    });
+
+    $(".bind_q").click(function(){
+      $(".bind_b").css("visibility", "visible");
+    });
+
+    $(".bind").click(function(){
+      var bankid =  $.trim($("input[name='bankid']").val());
+      var branch = $.trim($("input[name='branch']").val());
+      var province = $("select[name='province']").text();
+      var city = $("select[name='city']").text();
+      var country = $("select[name='country']").text();
+      alert(province + '|' + city + '|' + country);
+
+      $.ajax({
+        url: '<?php echo site_url("UserCenter/addBank");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          bankid: bankid,
+          branch: branch + '-' + province + '|' + city + '|' + country,
+        },
+        success: function(json){
+          if (json.fail == 0) {
+            alert('添加成功');
+            window.location.reload();
+          } else {
+            alert('添加失败');
+          }
+        }
+      })
+    });
+  })
+</script>
+
+</body>
+</html>

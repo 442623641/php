@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<script type="text/javascript"  src="js/jquery-1.8.0.min.js" ></script>
+<script type="text/javascript"  src="js/jquery.min.js" ></script>
+<script type="text/javascript">
+	function deleteBank(bankid){
+		var url = $('#url').val();
+	    $.ajax({
+        	dataType:"json",
+            type:"POST",
+            data:{
+            	bankid:bankid
+            },
+            //url:base+"index.php/UserCenter/deleteBank",
+            url:url,
+            success:function(result){
+				alert(result['mess']);
+				if(result['fail']==0){
+					location.reload();
+				}
+            },
+            error:function(data){
+                alert("请求异常！");
+            }
+    	});
+	}
+</script>
+<title>银行卡</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow" onclick="history.back();"><i class="leftn"></i></a>
+ <h1 class="title">银行卡</h1>
+</div>
+<div class="layout_box">
+	<input type="hidden" id="url" name="url" value="<?php echo site_url('UserCenter/deleteBank')?>">
+	<div class="login_box_content" style="padding:0">
+	<ul>
+		<li>
+			<?php if($flag==0){
+					foreach($result as $res) {
+					$weihao = substr($res['number'],-4);?>
+<div class="input_div input_div_bo"><div class="left_login_z margin_t" id="bank_box"><img src="images/img/bank.png"></div>
+				<p class="fl"><span><?php echo $res["bank_name"];?></span><br>尾号<?php echo $weihao;?></p>
+                <div class="clearfix"></div>
+				<a href="javascript:void(0)" onclick="deleteBank('<?php echo $res["number"]?>')" class="jieb">解绑</a></div>
+					<?php }}?>
+
+        </li>
+		
+		<li>
+        	<div class="input_div input_div_bo" id="blan_img">
+                 <a href="<?php echo site_url('UserCenter/addBank')?>"><img src="images/img/add.png">添加银行卡</a>
+            </div>
+        </li>
+		
+    </ul>
+</div>
+</div>
+</body>
+</html>

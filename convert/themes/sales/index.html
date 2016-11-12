@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>管理后台</title>
+<base href="<?php echo substr(base_url(), 0,-10);?>Public/" />
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/require.js" data-main="js/main"></script>
+<!--[if lte IE 8]>
+<script src="js/IE9.js"></script>
+<![endif]-->
+<style>
+*{margin:0;padding:0;}
+html{padding:0;width:100%;height:100%;}
+body{width: 100%;height:100%;}
+</style>
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-- 头部开始 -->
+  <div class="header_bg">
+    <div class="header">
+      <div class="fn_left"><a href=""><img src="images/logo.png" alt=""></a></div>
+      <div class="fn_right">
+        <span>上次登录时间&nbsp  2015-7-2&nbsp   9:30   </span>
+        <a href="<?php echo site_url('UserApi/logout');?>"> 退出</a>
+      </div>
+    </div> 
+  </div>
+  <!-- 头部结束 -->
+
+  <!-- 主体开始 -->
+  <div class="maincontent"> 
+    <!-- 左边开始 -->
+    <div class="cont_left">
+      <div class="tx">
+        <p><?php echo $name;?></p>
+        <span>安徽合肥</span>
+      </div>
+      <div class="dd_x">
+      <ul>
+        <li class="nav n4"><a href="<?php echo site_url('Home/salesAgent');?>" target="cont_right">下级管理</a></li>
+        <li class="nr" id="nr_b">
+            <div><a class="cur" href="<?php echo site_url('Home/salesAgent');?>" target="cont_right">经销商</a></div>
+            <div><a href="<?php echo site_url('Home/shop');?>" target="cont_right">店铺</a></div>
+            <div><a href="<?php echo site_url('Home/grade');?>" target="cont_right">业绩查询</a></div>
+        </li>
+        <li class="nav n5"><a href="<?php echo site_url('Home/loginPass');?>" target="cont_right">系统设置 </a></li>
+        <li class="nr">
+            <div><a class="cur" href="<?php echo site_url('Home/loginPass');?>" target="cont_right">登录密码</a></div>
+        </li>
+        <li class="nav n6"><a href="<?php echo site_url('Home/infoCenter');?>" target="cont_right">信息中心 </a></li>
+        </div>
+    </div>
+    <!-- 左边结束 -->
+    
+    <!-- 右边开始 -->
+    <div class="cont_right">
+     <div class="cont_right_box">
+        <iframe src="<?php echo site_url('Home/show');?>" width="100%" height="100%" frameborder="0" id="cont_right" name="cont_right" ></iframe> 
+     </div>
+    </div>
+    <!-- 右边结束 -->
+  </div>
+  <!---主体 结束--> 
+          <div class="foot">安徽象网汇信息科技股份有限公司<br>联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层</div>
+</div>
+</body>
+</html>

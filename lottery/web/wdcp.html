@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta name="Copyright" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<base href = "<?php echo base_url();?>"/> 
+	<title>便民彩票—我的彩票</title>
+	<link rel="stylesheet" href="web/css/wdcp.css">
+	<link rel="stylesheet" href="web/css/sty.css">
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a>便民彩票</div>
+
+<!-- 头像 -->
+<div class="tx">中了五百万的我</div>
+
+<!-- 列表 -->
+<div class="lb">
+	<ul>
+		<li><a href="<?php echo site_url('UserCenter/tzjl');?>"><span class="tz">投注记录</span></a></li>
+		<li><a href="<?php echo site_url('UserCenter/hmjl');?>"><span class="hm">合买记录</span></a></li>
+		<li><a href="<?php echo site_url('UserCenter/zhjl');?>"><span class="zh">追号记录</span></a></li>
+		<li><a href="<?php echo site_url('UserCenter/fqdhm');?>"><span class="fq">发起的合买</span></a></li>
+	</ul>
+</div>
+
+<!--底部-->
+<?php $this->load->view('footer.html');?>
+
+</body>
+</body>
+</html>

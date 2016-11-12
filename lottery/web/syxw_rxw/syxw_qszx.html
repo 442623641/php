@@ -1,0 +1,625 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<title>11选5-前三直选</title>
+<base href = "<?php echo base_url();?>"/> 
+<link href="web/css/sty.css" rel="stylesheet" type="text/css">
+<link href="web/css/plug.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="web/js/jquery.min.js" ></script>
+<script type="text/javascript"  src="web/js/11xuan5.js" ></script>
+<script src="web/js/alert.js"  type="text/javascript"></script>
+<script type="text/javascript">
+	function selectType(){
+		$('#types').attr('style','display:""');
+		$('#kjhm').attr('style','display:none');
+		$('#content').attr('style','display:none');
+		$('#footer').attr('style','display:none');
+		var selType = $('#selType').val();
+		$('a[name="lotterytype"').each(function(){
+			if($(this).text()==selType){
+				$(this).attr('class','btn_cc');
+			}else{
+				$(this).attr('class','btn_c');
+			}
+		}
+		)
+	}
+
+	function checkBall(src){
+		if($(src).attr('class')=='btn_e'){
+			$(src).attr('class','btn_ee');
+			if($(src).attr('name')=='selBall_w'){
+				a = 'q';
+				b = 'b';
+			}
+			if($(src).attr('name')=='selBall_q'){
+				a = 'w';
+				b = 'b';
+			}
+			if($(src).attr('name')=='selBall_b'){
+				a = 'w';
+				b = 'q';
+			}
+			$('a[name="selBall_'+a+'"][class="btn_ee"]').each(function(){
+				if($(this).text()==$(src).text()){
+					$(this).attr('class','btn_e');
+				}
+			}
+			)
+			$('a[name="selBall_'+b+'"][class="btn_ee"]').each(function(){
+				if($(this).text()==$(src).text()){
+					$(this).attr('class','btn_e');
+				}
+			}
+			)
+		}else{
+			$(src).attr('class','btn_e');
+		}
+
+		updateMess();
+		
+	}
+
+	function updateMess(){
+		var type = $('#selTypeId').val();
+		var m = 0;
+		var n = 0;
+		var count = 0;
+		n = getNum(type);
+		var flag1 = 0;
+		$('a[name="selBall_w"][class="btn_ee"]').each(function(){
+			flag1++;
+		}
+		)
+		if(type=='dantuo'){
+			var flag2 = 0;
+			var qian = '';
+			$('a[name="selBall_q"][class="btn_ee"]').each(function(){
+				flag2++;
+			}
+			)
+			n = 5-flag1;
+			m = flag2;
+			count = combine(m,n);
+		}else if(type=='zhi2'||type=='zhi3'){
+			var flag2 = 0;
+			$('a[name="selBall_q"][class="btn_ee"]').each(function(){
+				flag2++;
+			}
+			)
+			count = flag1*flag2;
+			if(type=='zhi3'){
+				var flag3 = 0;
+				$('a[name="selBall_b"][class="btn_ee"]').each(function(){
+					flag3++;
+				}
+				)
+				count = flag1*flag2*flag3;
+			}
+		}else{
+			m = flag1;
+			count = combine(m,n);
+		}		
+		
+		$('#mess').text("共 "+count+" 注 "+count*2+" 元 ");
+	}
+	
+	function clearBall(){
+		$('a[class="btn_ee"]').each(function(){
+				$(this).attr('class','btn_e');
+			}
+		)
+		$('#mess').text("共 0 注 0 元 ");
+	}
+
+	function touzhu(){
+		var type = $('#selTypeId').val();
+		var m = 0;
+		var n = 0;
+		var count = 0;
+		var selHm = '';
+		n = getNum(type);
+		var flag1 = 0;
+		var wan = '';
+		$('a[name="selBall_w"][class="btn_ee"]').each(function(){
+			flag1++;
+			wan = wan + "," +$(this).text();
+		}
+		)
+		wan = wan.substring(1);
+		if(type=='dantuo'){
+			var flag2 = 0;
+			var qian = '';
+			$('a[name="selBall_q"][class="btn_ee"]').each(function(){
+				flag2++;
+				qian = qian + "," +$(this).text();
+			}
+			)
+			qian = qian.substring(1);
+			n = 5-flag1;
+			m = flag2;
+			count = combine(m,n);
+			selHm = wan +"#" + qian ;
+		}else if(type=='zhi2'||type=='zhi3'){
+			var flag2 = 0;
+			var qian = '';
+			$('a[name="selBall_q"][class="btn_ee"]').each(function(){
+				flag2++;
+				qian = qian + "," +$(this).text();
+			}
+			)
+			qian = qian.substring(1);
+			count = flag1*flag2;
+			selHm = wan +"|" + qian ;
+			if(type=='zhi3'){
+				var flag3 = 0;
+				var bai = '';
+				$('a[name="selBall_b"][class="btn_ee"]').each(function(){
+					flag3++;
+					bai = bai + "," +$(this).text();
+				}
+				)
+				bai = bai.substring(1);
+				count = flag1*flag2*flag3;
+				selHm = wan +"|" + qian + "|" + bai ;
+			}
+		}else{
+			m = flag1;
+			selHm = wan;
+			count = combine(m,n);
+		}
+	
+		if(count==0&&localStorage.getItem("xw_11xuan5_hm")==null){
+			alert('未选择一注号码！');
+			return false;
+		}	
+		if(count!=0){
+			$('#selHm').val(selHm);
+			$('#count').val(count);
+			var selType = $('#selType').val();
+			var html = '<div class="syxw_list" name="selInfo"><a onclick="delHm(this)" class="syxw_list_close"></a><font class="red fot_14" name="cur_num">'+selHm+' </font><p class="mb_05 fot_12"><font name="type" value="'+type+'">'+selType+'</font> <font name="cur_count">'+count+'</font>注</p><a onclick="goTouzhu(this);" class="syxw_list_go"></a></div>';
+			//localStorage.removeItem("xw_11xuan5_hm");
+			//localStorage.removeItem("xw_11xuan5_count");
+			localStorage.setItem("xw_11xuan5_hm",localStorage.getItem("xw_11xuan5_hm")==null?html:localStorage.getItem("xw_11xuan5_hm")+html);
+			localStorage.setItem("xw_11xuan5_count",localStorage.getItem("xw_11xuan5_count")==null?count:parseInt(localStorage.getItem("xw_11xuan5_count"))+count);
+		}
+		location.href="<?php echo site_url('Xw11xuan5/tz_11x5');?>";
+		//$('#myform').attr('action',url);
+		//$('#myform').submit();
+
+	}
+
+	function changeType(type){
+		if(type=='rx2'){
+			$('#mess1').text('至少选择2个号码');
+			$('#mess2').text('猜中开奖号码任意2个数字即中奖6元');
+			$('#childtype').text('任选二');
+		}
+		if(type=='rx3'){
+			$('#mess1').text('至少选择3个号码');
+			$('#mess2').text('猜中开奖号码任意3个数字即中奖19元');
+			$('#childtype').text('任选三');
+		}
+		if(type=='rx4'){
+			$('#mess1').text('至少选择4个号码');
+			$('#mess2').text('猜中开奖号码任意4个数字即中奖78元');
+			$('#childtype').text('任选四');
+		}
+		if(type=='rx5'){
+			$('#mess1').text('至少选择5个号码');
+			$('#mess2').text('猜中开奖号码任意5个数字即中奖540元');
+			$('#childtype').text('任选五');
+		}
+		if(type=='rx6'){
+			$('#mess1').text('至少选择6个号码');
+			$('#mess2').text('猜中开奖号码任意5个数字即中奖90元');
+			$('#childtype').text('任选六');
+		}
+		if(type=='rx7'){
+			$('#mess1').text('至少选择7个号码');
+			$('#mess2').text('猜中开奖号码任意5个数字即中奖26元');
+			$('#childtype').text('任选七');
+		}
+		if(type=='rx8'){
+			$('#mess1').text('至少选择8个号码');
+			$('#mess2').text('猜中开奖号码任意5个数字即中奖9元');
+			$('#childtype').text('任选八');
+		}
+		if(type=='zhi1'){
+			$('#mess1').text('至少选择1个号码');
+			$('#mess2').text('猜中开奖号码任意1个数字即中奖13元');
+			$('#childtype').text('前一直选');
+		}
+		if(type=='zhi2'){
+			$('#mess1').text('至少选择2个号码');
+			$('#mess2').text('猜中开奖号码前2位即中奖130元');
+			$('#childtype').text('前二直选');
+		}
+		if(type=='zhi3'){
+			$('#mess1').text('至少选择3个号码');
+			$('#mess2').text('猜中开奖号码前3位即中奖1170元');
+			$('#childtype').text('前三直选');
+		}
+		if(type=='zu2'){
+			$('#mess1').text('至少选择2个号码');
+			$('#mess2').text('猜中开奖号码前两个号码即中奖65元');
+			$('#childtype').text('前二组选');
+		}
+		if(type=='zu3'){
+			$('#mess1').text('至少选择3个号码');
+			$('#mess2').text('猜中开奖号码前3位号码即中奖195元');
+			$('#childtype').text('前三组选');
+		}
+		if(type=='dantuo'){
+			$('#mess1').text('至少选择5个号码');
+			$('#mess2').text('选号与开奖号码全部一致即中奖540元');
+			$('#childtype').text('任选五胆拖');
+		}
+		if(type=='dantuo'){
+			$('#dan_tr').attr('style','display:""');
+			$('#tuo_tr').attr('style','display:""');
+			$('#special').attr('style','display:none');
+			$('#special2').attr('style','display:none');
+			$('#qian').attr('style','display:inline');
+			$('#bai').attr('style','display:none');
+			$('#yaoyiyao').attr('style','display:none');
+		}else if(type=='zhi2'||type=='zhi3'){
+			if(type=='zhi2'){
+				$('#bai').attr('style','display:none;');
+			}
+			if(type=='zhi3'){
+				$('#bai').attr('style','display:inline');
+			}
+			$('#special').attr('style','display:""');
+			$('#special2').attr('style','display:""');
+			$('#qian').attr('style','display:inline');
+			$('#dan_tr').attr('style','display:none');
+			$('#tuo_tr').attr('style','display:none');
+			$('#yaoyiyao').attr('style','display:""');
+		}else{
+			$('#special').attr('style','display:none');
+			$('#qian').attr('style','display:none');
+			$('#bai').attr('style','display:none');
+			$('#dan_tr').attr('style','display:none');
+			$('#tuo_tr').attr('style','display:none');
+			$('#yaoyiyao').attr('style','display:""');
+		}
+		$('#types').attr('style','display:none');
+		$('#kjhm').attr('style','display:""');
+		$('#content').attr('style','display:""');
+		$('#footer').attr('style','display:""');
+		$('#selType').val($('#childtype').text());
+		$('#selTypeId').val(type);
+		clearBall();
+		$('#mess').text("共 0 注 0 元 ");
+	}
+
+	// 排列组合
+	function combine(m, n) {
+	    if (m < n || n < 0) {
+	        return 0;
+	    }
+	    return factorial(m, m - n + 1) / factorial(n, 1);
+	}
+	// 阶乘
+	function factorial(max, min) {
+	    if (max >= min && max > 1) {
+	        return max * factorial(max - 1, min);
+	    } else {
+	        return 1;
+	    }
+	}
+
+	var SHAKE_THRESHOLD = 3000;  
+    var last_update = 0;  
+    var x = y = z = last_x = last_y = last_z = 0;  
+    function init() {  
+        if (window.DeviceMotionEvent) {  
+            window.addEventListener('devicemotion', deviceMotionHandler, false);  
+        } else {  
+            alert('您的手机不支持摇一摇功能！');  
+        }  
+    }  
+    function deviceMotionHandler(eventData) {  
+        var acceleration = eventData.accelerationIncludingGravity;  
+        var curTime = new Date().getTime();  
+        if ((curTime - last_update) > 100) {  
+            var diffTime = curTime - last_update;  
+            last_update = curTime;  
+            x = acceleration.x;  
+            y = acceleration.y;  
+            z = acceleration.z;  
+            var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;  
+
+            if (speed > SHAKE_THRESHOLD) {  
+            	clearBall();
+                var type = $('#selTypeId').val();
+				var num =  getNum(type); 
+				var res = getArrayItems(num);
+				if(type=='zhi2'||type=='zhi3'){
+					$('a[name="selBall_w"]').each(function(){
+						if($(this).text()==res[0]){
+							$(this).attr('class','btn_ee');
+						}
+					}
+					)
+					$('a[name="selBall_q"]').each(function(){
+						if($(this).text()==res[1]){
+							$(this).attr('class','btn_ee');
+						}
+					}
+					)
+					if(type=='zhi3'){
+						$('a[name="selBall_b"]').each(function(){
+							if($(this).text()==res[2]){
+								$(this).attr('class','btn_ee');
+							}
+						}
+						)
+					}
+				}else{
+					for (var i=0;i<res.length;i++)
+					{
+						$('a[name="selBall_w"]').each(function(){
+							if($(this).text()==res[i]){
+								$(this).attr('class','btn_ee');
+							}
+						}
+						)
+					}
+
+				}
+            }  
+            last_x = x;  
+            last_y = y;  
+            last_z = z;  
+        }  
+    }  
+    function getNum(text){
+    	return text.replace(/[^0-9]/ig,"")
+    }
+
+	function getArrayItems(num) {
+		var arr = new Array('01','02','03','04','05','06','07','08','09','10','11');
+	    //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
+	    var temp_array = new Array();
+	    for (var index in arr) {
+	        temp_array.push(arr[index]);
+	    }
+	    //取出的数值项,保存在此数组
+	    var return_array = new Array();
+	    for (var i = 0; i<num; i++) {
+	        //判断如果数组还有可以取出的元素,以防下标越界
+	        if (temp_array.length>0) {
+	            //在数组中产生一个随机索引
+	            var arrIndex = Math.floor(Math.random()*temp_array.length);
+	            //将此随机索引的对应的数组元素值复制出来
+	            return_array[i] = temp_array[arrIndex];
+	            //然后删掉此索引的数组元素,这时候temp_array变为新的数组
+	            temp_array.splice(arrIndex, 1);
+	        } else {
+	            //数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+	            break;
+	        }
+	    }
+	    return return_array;
+	}
+
+	$(function () {
+		var baseUrl="<?php echo site_url();?>";
+		setIssue_11xuan5(baseUrl);
+		var type = "<?php echo $type;?>";
+		var nums = "<?php echo $nums;?>";
+		if(type==null||type==''){
+			changeType('zhi3');
+		}else{
+			changeType(type);
+			if(type=='dantuo'||type=='zhi2'||type=='zhi3'){
+				var temp = nums.split(type=='dantuo'?'#':'|');
+				var wan_arry = temp[0].split(",");
+				var qian_arry = temp[1].split(",");
+				$('a[name="selBall_w"]').each(function(){
+					for(var i=0;i<wan_arry.length;i++){
+						if($(this).text()==wan_arry[i].trim()){
+							$(this).attr('class','btn_ee');
+						}
+					}
+				});
+				$('a[name="selBall_q"]').each(function(){
+					for(var i=0;i<qian_arry.length;i++){
+						if($(this).text()==qian_arry[i].trim()){
+							$(this).attr('class','btn_ee');
+						}
+					}
+				});
+				if(type=='zhi3'){
+					var bai_arry = temp[2].split(",");
+					$('a[name="selBall_b"]').each(function(){
+						for(var i=0;i<bai_arry.length;i++){
+							if($(this).text()==bai_arry[i].trim()){
+								$(this).attr('class','btn_ee');
+							}
+						}
+					});
+				}
+			}else{
+				var data = nums.split(",");
+				$('a[name="selBall_w"]').each(function(){
+					for(var i=0;i<data.length;i++){
+						if($(this).text()==data[i].trim()){
+							$(this).attr('class','btn_ee');
+						}
+					}
+				});
+			}
+		}
+	});
+
+	function getUrlParam(name) { 
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+		var r = window.location.search.substr(1).match(reg); 
+		if (r != null) 
+		return unescape(r[2]); 
+		return null; 
+	} 
+</script>
+</head>
+
+<body class="pt_6" onload="init()">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a><p class="p_rela" >11选5-<font id="childtype">前三直选</font><span class="triangle_down" onclick="selectType();"></span></p></div>
+  <div class="box_b text_center white" style="display:none;" id="types">
+  		<span class="triangle_up"></span>
+        <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td><a name="lotterytype" onclick="changeType('rx2');" class="btn_c">任选二</a></td>
+            <td><a name="lotterytype" onclick="changeType('rx3');" class="btn_c">任选三</a></td>
+            <td><a name="lotterytype" onclick="changeType('rx4');" class="btn_c">任选四</a></td>
+          </tr>
+          <tr>
+            <td><a name="lotterytype" onclick="changeType('rx5');" class="btn_c">任选五</a></td>
+            <td><a name="lotterytype" onclick="changeType('rx6');" class="btn_c">任选六</a></td>
+            <td><a name="lotterytype" onclick="changeType('rx7');" class="btn_c">任选七</a></td>
+          </tr>
+          <tr>
+            <td><a name="lotterytype" onclick="changeType('rx8');" class="btn_c">任选八</a></td>
+            <td><a name="lotterytype" onclick="changeType('zhi1');" class="btn_c">前一直选</a></td>
+            <td><a name="lotterytype" onclick="changeType('zhi2');" class="btn_c">前二直选</a></td>
+          </tr>
+          <tr>
+            <td><a name="lotterytype" onclick="changeType('zhi3');" class="btn_c">前三直选</a></td>
+            <td><a name="lotterytype" onclick="changeType('zu2');" class="btn_c">前二组选</a></td>
+            <td><a name="lotterytype" onclick="changeType('zu3');" class="btn_c">前三组选</a></td>
+          </tr>
+          <tr>
+            <td><a name="lotterytype" onclick="changeType('dantuo');" class="btn_c">任选五胆拖</a></td>
+          </tr>
+        </table>
+  </div>
+
+
+
+<!--内容-->
+<article>
+<div class="content" id="content">
+
+  <div class="box_b fot_10 white" style="padding:0.5rem 0.6rem;" id="kjhm">
+ <span class="fl">距<em id="currentIssue">15080752</em>期截止：<span id="timer"><em class="red">00</em>分<em class="red">00</em>秒</span></span>
+  </div>
+
+	<div class="box_c" style="border:none" >
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="4" id="mess1">至少选择3个号码</td>
+            <td colspan="3" align="right" id="yaoyiyao"><a  class="btn_a4">摇一摇</a></td>
+            </tr>
+          <tr>
+            <td colspan="7" id="mess2">猜中开奖号码任意3个数字即中19元</td>
+         </tr>
+         <tr id="dan_tr" style="display:none;">
+            <td colspan="7">胆码区至少选择1个，最多4个</td>
+         </tr>  
+          <tr>
+            <td width="24%" id="special"><span class="btn_d" >万位</span></td>
+            <td width="10.5%"><a name="selBall_w" class="btn_e" onclick="checkBall(this)">01</a></td>
+            <td width="10.5%"><a name="selBall_w"  class="btn_e" onclick="checkBall(this)">02</a></td>
+            <td width="10.5%"><a name="selBall_w"  class="btn_e" onclick="checkBall(this)">03</a></td>
+            <td width="10.5%"><a name="selBall_w"  class="btn_e" onclick="checkBall(this)">04</a></td>
+            <td width="10.5%"><a name="selBall_w"  class="btn_e" onclick="checkBall(this)">05</a></td>
+            <td width="10.5%"><a name="selBall_w"  class="btn_e" onclick="checkBall(this)">06</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a  name="selBall_w" class="btn_e" onclick="checkBall(this)">07</a></td>
+            <td><a  name="selBall_w" class="btn_e" onclick="checkBall(this)">08</a></td>
+            <td><a  name="selBall_w" class="btn_e" onclick="checkBall(this)">09</a></td>
+            <td><a  name="selBall_w" class="btn_e" onclick="checkBall(this)">10</a></td>
+            <td><a  name="selBall_w" class="btn_e" onclick="checkBall(this)">11</a></td>
+            <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <div class="box_c" style="border:none" id="qian">
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+         <tr id="tuo_tr" style="display:none;">
+            <td colspan="7">拖码区至少选择1个，最多10个</td>
+         </tr>
+          <tr>
+            <td width="24%" id="special2"><span class="btn_d" >千位</span></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">01</a></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">02</a></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">03</a></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">04</a></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">05</a></td>
+            <td width="10.5%"><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">06</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">07</a></td>
+            <td><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">08</a></td>
+            <td><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">09</a></td>
+            <td><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">10</a></td>
+            <td><a  name="selBall_q" class="btn_e" onclick="checkBall(this)">11</a></td>
+            <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <div class="box_c" style="border:none" id="bai">
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="24%" ><span class="btn_d">百位</span></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">01</a></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">02</a></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">03</a></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">04</a></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">05</a></td>
+            <td width="10.5%"><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">06</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">07</a></td>
+            <td><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">08</a></td>
+            <td><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">09</a></td>
+            <td><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">10</a></td>
+            <td><a  name="selBall_b" class="btn_e" onclick="checkBall(this)">11</a></td>
+            <td>&nbsp;</td>
+            </tr>
+        </table>
+	</div>
+  
+</div>
+</article>
+<!--底部-->
+<div class="fot_a" id="footer">
+	<form id="myform" action="" method="post">
+		<input type="hidden" id="selHm" name="selHm">
+		<input type="hidden" id="selType" name="selType" value='前三直选'>
+		<input type="hidden" id="selTypeId" name="selTypeId" value='zhi3'>
+		<input type="hidden" id="count" name="count">
+	</form>
+    <table width="100%" class="fot_a_bot " border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="25%"><a href="javascript:clearBall();" class="btn_a2 ml_06 fl"> </a></td>
+        <td width="25%" id="mess">共0注0元</td>
+        <td width="50%"><a id="tzButton"  class="btn_a1 mr_06 fr " onclick="touzhu();" > </a></td>
+      </tr>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-实名认证</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/web/css/widgt.css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 提现---->
+<div class="renzheng grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">实名认证</div>
+  <div class="grzx_cot_rgt_grzl mar_t"> <p>实名认证是管理网络秩序采取的必要手段，也是网络实名制的必然产物。</p>
+实名认证有利于确定身份，让商家和客户之间彼此了解和交流,有利于网络商城的开展，避免了一些不法分子在网络上欺骗消费者。</div>
+    <?php if ($userInfo['name'] && $userInfo['ID_number']){?>
+      <div id="OK">
+        <span class='success'>认证成功</span>
+        <span class='again'>重新认证</span>
+      </div>
+    <?php } ?>
+   		    <table width="90%" height="250" class="mar_t30 grzx_gtable form_rz" border="0" cellspacing="0" cellpadding="0">
+ 						 <tr>
+              <td class="grzx_gtable_wid1">帐&nbsp;&nbsp;号:</td>
+              <td class="grzx_gtable_wid2"><font class="org"><?php echo $userInfo['phoneNumber'];?></font></td>
+            </tr>
+            <tr>
+              <td>姓&nbsp;&nbsp;名：</td>
+              <td><input name="realname" type="text" placeholder="真实姓名" class="grzx_gtable_inpta"/>&nbsp;&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td>身份证号：</td>
+              <td><input name="ID_number" placeholder="身份证" type="text" class="grzx_gtable_inptc"/></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><a href="javascript:void(0);" class="confirm grzx_gtable_btnOk">验证</a> <a href="javascript:void(0);" class="cancel grzx_gtable_btnNo">取消</a></td>
+            </tr>
+        </table>
+</div>
+
+<script type="text/javascript">
+$(function(){
+  var OK = $('<div id="OK"><span class="success">认证成功</span><span class="again">重新认证</span></div>');
+  var formRz = $(".form_rz");
+    $(".confirm").live("click", function(){
+        var name = $("input[name='realname']").val();
+        var ID_number = $("input[name='ID_number']").val();
+
+        $.ajax({
+            url: "<?php echo site_url('UserApi/confirm');?>",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: name,
+                ID_number: ID_number,
+            },
+            success: function(json){
+                if (json.fail === 0) {
+                    $(".form_rz").remove();
+                    OK.appendTo('.renzheng');
+                } else {
+                    alert(json.mess);
+                }
+            },
+            error: function(){
+                alert('请求错误，稍后重试');
+            }
+        }) 
+    });
+
+    if ($("#OK").length>0) {
+      formRz.css("visibility", "hidden");
+    }
+
+    $(".again").live("click",function(){
+      $('#OK').remove();
+      formRz.appendTo('.renzheng');
+      formRz.css("visibility", "visible");
+    });
+
+    $(".cancel").live("click", function(){
+        $("input").val("");
+    });
+    
+});
+
+</script>
+</body>
+</html>

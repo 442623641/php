@@ -1,0 +1,93 @@
+/**
+ * yulei<464001224@qq.com>
+ * 2015-7-2
+ */
+.phone_btn{background-color: #fff; border:0;cursor: pointer;}
+#modal{
+	background: #000;
+	opacity: 0.6;
+	filter:alpha(opacity=60);
+	top:0;
+	left:0;
+	z-index:999;
+	position: absolute;
+}
+
+#success, #error{
+	position:fixed;
+	z-index: 1000;
+	visibility: hidden;
+	background: #fff;
+	width:300px;
+	height:200px;
+	opacity: 1;
+	font-family: "微软雅黑";
+	padding:8px;
+}
+
+.suc_header h3, .error_header h3{
+	border-bottom: 1px solid #f25609;
+}
+
+.suc_cont{
+	width:80%;
+	height:60%;
+}
+
+.suc_confirm, .error_confirm{
+	background:#f25609;
+	width:80px;
+	height:36px;
+	float:right;
+	border:0;
+	margin-right: 10px;
+	z-index: 1100;
+	color:#fff;
+	cursor:pointer;
+	font-size:14px;
+	font-family: "微软雅黑";
+}
+
+
+#pop_form{
+	position:fixed;
+	z-index: 1000;
+	visibility: hidden;
+	background: #fff;
+	width:300px;
+	height:200px;
+	opacity: 1;
+	font-family: "微软雅黑";
+	padding:8px;
+}
+
+#phone{
+	background: #fff;
+	height:98%;
+	width:60%;
+	border: 1px solid #7E7E7E;
+	margin-right: 14px;
+}
+
+#OK{
+	width:100%;
+	height:100%;
+	text-align: center;
+	margin-top: 20px;
+	padding-left:26%;
+	padding-top: 20px;
+}
+
+#OK .success, #OK .again{
+	float:left;
+	display:block;
+	width:160px;
+	height:60px;
+	background-color: rgb(250, 199, 134);
+	margin-left: 18px;
+	font-size: 20px;
+	padding-top:20px;
+	border: 1px solid #c8c8c8;
+	color:rgb(242, 86, 9);
+	cursor: pointer;
+}

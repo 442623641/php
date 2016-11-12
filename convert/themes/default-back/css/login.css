@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+.msg-wrap {
+  min-height: 31px;
+  height: auto!important;
+  height: 31px;
+  margin: 2px 0 5px;
+}
+.msg-warn {
+  position: relative;
+  background: #fff6d2;
+  color: #666;
+  border: 1px solid #ffe57d;
+  padding: 3px 10px 3px 40px;
+  line-height: 18px;
+  height: 18px;
+}
+.msg-error {
+  position: relative;
+  background: #ffebeb;
+  color: #e4393c;
+  border: 1px solid #e4393c;
+  padding: 3px 10px 3px 40px;
+  line-height: 18px;
+  min-height: 18px;
+  _height: 18px;
+}
+.msg-error b {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: block;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  background: url(../images/pwd-icons-new.png) -104px -49px no-repeat;
+}
+.msg-warn b {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: block;
+  margin-top: -8px;
+  width: 16px;
+  height: 17px;
+  overflow: hidden;
+  background: url(../images/pwd-icons-new.png) -104px -22px no-repeat;
+}
+.get_yzm {
+  color: #06c;
+  cursor: pointer;
+}
+.send_yzm {
+  color: #949494;
+  cursor: default;
+}
+ul li em input input{width:302px; height:32px;padding:2px; padding-right:10px; border:1px solid #e1dede; line-height:32px; color:#736f6f;}

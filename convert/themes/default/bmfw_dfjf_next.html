@@ -1,0 +1,633 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-便民服务-电费-next</title>
+<link href="../../styles/css/base.css" rel="stylesheet" type="text/css">
+<link href="../../styles/css/layout.css" rel="stylesheet" type="text/css">
+<link href="../../styles/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../../styles/js/jquery.min.js"></script>
+<script src="../../styles/js/jquery.flexslider-min.js"></script>
+<script src="../../styles/js/js.js"></script>
+<script src="../../styles/js/config.js"></script>
+<script src="../../styles/js/water.power.gas.js"></script>
+<!--<script type="text/javascript">
+
+    var WaterPowerGas = WaterPowerGas || {};
+
+    //存放省份信息
+    //WaterPowerGas.provinces = new Array();
+    var provinces = new Array();
+    var citys = new Array();
+    var len = 0;
+    //var flag = false;
+
+    var title = ['&nbsp;&nbsp;&nbsp;省份&nbsp;&nbsp;' , '&nbsp;&nbsp;地级市&nbsp;'];//, '市、县、区'
+    /*
+     * 预加载省份等数据
+     */
+    $(document).ready(function () {
+        WaterPowerGas.jiaoFeiType = $('#type').val();//缴费类型：水电燃气
+        $.each(title, function (k, v) {
+            title[k] = '<option value="">' + v + '</option>';
+        })
+        $('#loc_province').append(title[0]);
+        $('#loc_city').append(title[1]);
+       // $('#loc_town').append(title[2]);
+        WaterPowerGas.init(); // showLocation();
+    });
+
+    /*
+     * 1.点击省份下拉选项菜单项,来初始化城市下拉选项
+     */
+    WaterPowerGas.provinceChange = function setCity() {
+        $('#loc_city').empty();
+        $('#loc_payUnit').empty();
+        $('#loc_city').append(title[1]);
+//            console.log($('#loc_province').val());
+//            alert($('#loc_province').val());
+        WaterPowerGas.citys($('#loc_province').val());//城市初始化
+//            $('#loc_town').empty();
+//            $('#loc_town').append(title[2]);
+    }
+
+    /*
+     * 2.点击城市下拉选项菜单项，根据省份id和城市id查询支持的缴费类型
+     */
+    WaterPowerGas.cityChange = function setRechargeType() {
+        // WaterPowerGas.citys($('#loc_province').val(),$);//城市初始化
+      // var val = $('input[@name=reCharge_type]').val();
+      //  alert($('#type').val());
+       //alert(val);//$('reCharge_type').val()
+        $('#loc_payUnit').empty();
+        WaterPowerGas.reRechargeType($('#loc_province').val(), $('#loc_city').val());
+        WaterPowerGas.fillOption('loc_city', data['result']);
+//            $('#loc_town').empty();
+//            $('#loc_town').append(title[2]);
+    }
+
+    /*
+     * .点击缴费单位下拉选项菜单项，根据省份ID、城市ID、充值类型、缴费单位 获取水电煤商品信息
+     */
+    WaterPowerGas.payUnitChange = function setQuery(){
+        WaterPowerGas.payUnitId = $('#loc_payUnit').val();
+        //alert( WaterPowerGas.payUnitId);
+        console.log(' WaterPowerGas.payUnitId='+WaterPowerGas.payUnitId);
+        WaterPowerGas.query(WaterPowerGas.provinceId,WaterPowerGas.cityId,WaterPowerGas.payProjectId,WaterPowerGas.payUnitId);//为后面查询做准备
+    }
+
+    //gps定位与缴费省份初始化
+    WaterPowerGas.init = function initProvinceAndPosition() {
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+            },
+            url: '<?php echo site_url("allPay/getPublicProvinceInfo");?>',
+            //{"reason":"验证通过,可以送单","result":{"price":"197.900","time":"2015-07-29 09:21:47"},"error_code":0}
+            success: function (data) {
+                //    alert('success');
+//                if (data['error_code'] != 0) {
+//                } else {
+//                    var realPrice = data['result']['price'];
+//                    var couponPrice = HuaFeiChongZhi.formatFloat(money, '-', realPrice);
+//                    $('#payPrice').html(realPrice + '元,立省' + couponPrice + '元');
+//                    $('#goToPay').val('共' + realPrice + '元，去充值'); //html不能用a,用input否则required无效
+//                }
+                len = data['result'].length;//省份 24
+                // alert(len);
+                for (var i = 0; i < len; i++) {
+                    provinces[i] = new Array();
+                    provinces[i][0] = data['result']['provinceId'];
+                    provinces[i][1] = data['result']['provinceName'];
+                    // len2 = data['result'][].size;
+                    /*  if (i === 0) {
+                     alert('gp g[');
+                     alert(data['result']['provinceId'].size);
+                     }*/
+                    /*  for (var j = 0; j < len2; j++) {
+                     provinces[i][j] = jsonData['result'][i][j];
+                     console.log(' province[' + i + '][' + j + ']=' + provinces[i][j]);
+                     }*/
+                }
+                if (data['error_code'] == 0) {
+                    WaterPowerGas.fillOption('province', data['result']);
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                data = {"reason": "查询成功", "result": [
+                    {"provinceId": "v1904", "provinceName": "黑龙江"},
+                    {"provinceId": "v1918", "provinceName": "湖南"},
+                    {"provinceId": "v2091", "provinceName": "贵州"},
+                    {"provinceId": "v2159", "provinceName": "山西"},
+                    {"provinceId": "v2043", "provinceName": "内蒙古"},
+                    {"provinceId": "v2056", "provinceName": "江苏"},
+                    {"provinceId": "v2070", "provinceName": "重庆"},
+                    {"provinceId": "v2210", "provinceName": "山东"},
+                    {"provinceId": "v2129", "provinceName": "甘肃"},
+                    {"provinceId": "v2307", "provinceName": "全国"},
+                    {"provinceId": "v2228", "provinceName": "广东"},
+                    {"provinceId": "v2186", "provinceName": "江西"},
+                    {"provinceId": "v2118", "provinceName": "广西"},
+                    {"provinceId": "v2280", "provinceName": "上海"},
+                    {"provinceId": "v2171", "provinceName": "辽宁"},
+                    {"provinceId": "v2297", "provinceName": "福建"},
+                    {"provinceId": "v2269", "provinceName": "陕西"},
+                    {"provinceId": "v2198", "provinceName": "河北"},
+                    {"provinceId": "v1953", "provinceName": "北京"},
+                    {"provinceId": "v1933", "provinceName": "四川"},
+                    {"provinceId": "v1955", "provinceName": "浙江"},
+                    {"provinceId": "v1967", "provinceName": "河南"},
+                    {"provinceId": "v2101", "provinceName": "安徽"},
+                    {"provinceId": "v2250", "provinceName": "青海"}
+                ], "error_code": 0};
+                //  alert(data['reason']);
+                //  console.log(data['result']);
+                //  alert(data['result']);
+                //  alert(data['result']['provinceId']);
+                len = data['result'].length;//省份
+                // alert(len);
+                //len2 = data['result'][0].length
+
+                for (var i = 0; i < len; i++) {
+                    provinces[i] = new Array();
+                    provinces[i][0] = data['result']['provinceId'];
+                    provinces[i][1] = data['result']['provinceName'];
+                }
+                WaterPowerGas.fillOption('province', data['result']);
+            }
+        });
+    }
+
+    //缴费城市初始化
+    WaterPowerGas.citys = function getCitysByProvincedId(id) {
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId: id
+            },
+            url: '<?php echo site_url("allPay/getPublicCityInfo");?>',
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                    WaterPowerGas.fillOption('city', data['result']);
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //缴费类型初始化
+    WaterPowerGas.reRechargeType = function getRechargeTypeByProvIdCityId(provinceId,cityId) {
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId: provinceId,
+                cityId:cityId
+            },
+            url: '<?php echo site_url("allPay/getPublicRechargeType");?>',
+            //{"reason":"查询成功","result":[{"provinceId":"v2101","cityId":"v2107","payProjectId":"c2680","payProjectName":"电费"},{"provinceId":"v2101","cityId":"v2107","payProjectId":"c2670","payProjectName":"水费"}],"error_code":0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                   // console.log('success');
+                   // console.log(WaterPowerGas.jiaoFeiType);
+                   // WaterPowerGas.fillOption('city', data['result']);
+                   // WaterPowerGas.jiaoFeiType; 缴费类型
+                    len = data['result'].length;//缴费
+                   // console.log('len = '+len);
+                    var payProjectId = '';
+                    $.each(data['result'],function(k,v){
+                        if(WaterPowerGas.jiaoFeiType=== v['payProjectName']){
+                            payProjectId = v['payProjectId'];
+                            flag = true;
+                            // console.log('-------------'+type);
+                            return false;
+                        }
+                    })
+                    if(payProjectId===''){//$('input[name="RadioGroup1"]:checked').val()
+                        // console.log($('#loc_province').val());
+                        // var p = $('input[id="loc_province"]:checked').val();
+                        // var p = $('#loc_province').va()+$('#loc_city').val();
+                        // console.log(p);
+                        alert('本地区暂不支持缴纳'+WaterPowerGas.jiaoFeiType);//北京北京市，
+                    }else{//缴费单位初始化
+                        WaterPowerGas.unit(provinceId,cityId,payProjectId);
+                    }
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //缴费单位初始化
+    WaterPowerGas.unit = function unit(provinceId,cityId,payProjectId){
+        WaterPowerGas.provinceId = provinceId;
+        WaterPowerGas.cityId = cityId;
+        WaterPowerGas.payProjectId = payProjectId;
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId: provinceId,
+                cityId:cityId,
+                payProjectId:payProjectId
+            },
+            url: '<?php echo site_url("allPay/getPublicUnit");?>',
+            //{"reason":"查询成功","result":[{"provinceId":"v2101","cityId":"v2107","payProjectId":"c2670","payUnitId":"v83497","payUnitName":"合肥市水费"}],"error_code":0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                  //  console.log('success');
+                    WaterPowerGas.fillOption('payUnit',data['result']);
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //缴费单位商品信息查询
+    WaterPowerGas.query = function query(provinceId,cityId,payProjectId,payUnitId){
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId: provinceId,
+                cityId:cityId,
+                payProjectId:payProjectId,
+                payUnitId:payUnitId
+            },
+            url: '<?php echo site_url("allPay/getPublicProductInfo");?>',
+            //{"reason":"查询成功","result":{"productId":"64318001","productName":"安徽 合肥市水费 水费 户号 直充任意充","inprice":[]},"error_code":0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                    WaterPowerGas.productId = data['result']['productId'];
+                  //  console.log(' WaterPowerGas.productId='+WaterPowerGas.productId);
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //账户余额查询
+    WaterPowerGas.mbalance = function getMbalance(){
+        var provinceName = $("#loc_province  option:selected").text();
+        var cityName = $("#loc_city option:selected").text();
+        var payUnitName = $("#loc_payUnit option:selected").text();
+        var account = $("#account").val();
+        var type = (WaterPowerGas.jiaoFeiType==='水费') ?'001':((WaterPowerGas.jiaoFeiType==='电费')?'002':'003');
+        if(account===''){
+            alert('查询用户账户不能为空！');
+          //  $("#account").focus;
+            return ;
+        }
+        //  console.log(provinceName + '\t'+cityName+'\t'+payUnitName+"\t "+account);
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                type:type,
+                account:account,
+                cityName:cityName,
+                provinceName: provinceName,
+                payUnitName:payUnitName,
+                payUnitId:WaterPowerGas.payUnitId,
+                productId:WaterPowerGas.productId,
+                paymodeId:''
+            },
+            url: '<?php echo site_url("allPay/getPublicMbalance");?>',
+            //{"reason":"查询成功","result":{"account":"5132827118","balances":{"balance":{"accountName":"合*司","balance":"0.00","contractNo":"34401"}}},"error_code":0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                  var balance = data['result']['balances']['balance']['balance'];
+                  var name = data['result']['balances']['balance']['accountName'];
+                  WaterPowerGas.balance = balance;
+                  //console.log(' balance='+balance+' name='+name);
+                  $('#userName').html('充值账户用户名:'+name);
+                  $('#ownMoney').html(balance+'元');
+                //  $('#payMoney').focus;//焦点定位
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //公共事业缴费方式查询 - 暂时没有使用
+    WaterPowerGas.payMode = function payMode(provinceId,cityId,payProjectId,payUnitId){
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId:provinceId,
+                cityId:cityId,
+                payProjectId:payProjectId,
+                payUnitId: payUnitId
+            },
+            url: '<?php echo site_url("allPay/getPublicPayMode");?>',
+            //{"reason":"查询成功","result":{"payMode":{"provinceId":"v2101","cityId":"v2107","payProjectId":"c2670","payUnitId":"v83497","payModeId":"v2620","payModeName":"户号"}},"error_code":0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                    var payModeId = data['result']['payMode']['payModeId'];
+                    var payModeName = data['result']['payMode']['payModeName']
+                    //console.log(' payModeId='+payModeId+' payModeName='+payModeName);
+                    //$('#payMoney').focus;//焦点定位
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //公共事业充值 - 公司账户该个人账户余额有多少？再进行计算？
+    WaterPowerGas.order = function reCharge(){
+        var account = $("#account").val();
+        var payMoney = $("#payMoney").val();
+        var ownMoney = WaterPowerGas.balance;
+        //console.log(' account='+account+'\t payMoney='+payMoney);
+        if(account==''){
+            alert('查询用户账户不能为空！');
+         //   $("#account").focus;
+            return ;
+        }
+        if(payMoney==''){
+            alert('充值金额不能为空');
+          //  $("#payMoney").focus;
+            return ;
+        }
+        if(typeof(ownMoney)=='undefined'){
+            //alert('ownMoney is undefined');
+            alert("请先选择省市与相关缴费单位，并进行记号查询，确认该用户存在");
+            //没有查寻账户余额而直接支付
+            return ;
+        }
+        if(payMoney<=ownMoney){//充值金额小于应付金额(1.查询公司该用户账户余额。2.第三方支付。)
+            alert('充值金额必须大于所欠金额');
+         //   $("#payMoney").focus;
+            return ;
+        }
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                provinceId:WaterPowerGas.productId,
+                cityId:WaterPowerGas.cityId,
+                payProjectId:WaterPowerGas.payProjectId,
+                payUnitId:WaterPowerGas.payUnitId,
+                cardId:WaterPowerGas.productId,//(水电煤商品信息查询)返回：productId
+                account:account,//水电煤户号／条形码号
+                contract:'',//合同号, （通过欠费接口查询，查到必传，查不到就不传） 非必填
+                payMentDay:'',//账期，（通过欠费接口查询，查到必传，查不到就不传） 非必填
+                //orderId:orderId, //自定义订单号（8-32位数字字母）,由后台生成
+                cardNum:payMoney//充值金额（单位：元，保留小数点后2位），例如198.35元
+            },
+            url: '<?php echo site_url("allPay/getPublicOrder");?>',
+            //{"reason": "提交充值成功","result":{"cardid": "64323301","cardnum": "1","ordercash": "1","cardname": "江苏 苏州市电费  户号 直充任意充","sporderId": "P20141211203444313","account": "6200185388","uorderid":"13345680","status": "0"},"error_code": 0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                    //var payModeId = data['result']['payMode']['payModeId'];
+                    //var payModeName = data['result']['payMode']['payModeName']
+                    //console.log(' payModeId='+payModeId+' payModeName='+payModeName);
+                    //$('#payMoney').focus;//焦点定位
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+
+    //水电燃气费订单状态 - 未作处理
+    WaterPowerGas.orderStatus = function orderStatus(){
+        var orderId = '';
+        if(typeof(ownMoney)=='undefined'){
+            //alert('ownMoney is undefined');
+            alert("请先选择省市与相关缴费单位，并进行记号查询，确认该用户存在");
+            //没有查寻账户余额而直接支付
+            return ;
+        }
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: {
+                orderId:orderId//订单号
+            },
+
+            url: '<?php echo site_url("allPay/getPublicOrderStatus");?>',
+            //{"reason": "提交充值成功","result":{"uordercash": "5.000","sporder_id": "20150511163237508", "game_state": "1"},"error_code": 0}
+            success: function (data) {
+                if (data['error_code'] == 0) {
+                    var uordercash = data['result']['uordercash'];//订单扣除金额
+                    var sporder_id = data['result']['sporder_id'];//聚合订单号
+                    var game_state = data['result']['game_state'];//状态 1:成功 9:失败 0：充值中
+                    //console.log(' uordercash='+uordercash+' sporder_id='+sporder_id+‘ game_state=’+game_state);
+                    //$('#payMoney').focus;//焦点定位
+                }else{
+                    alert(data['reason']);
+                }
+            },
+            error: function (data) {//alert("请求异常！");
+                alert("请求异常！");
+            }
+        });
+    }
+   /*
+    * 下拉列表框，内容填充（省、市、缴费单位）
+    */
+    WaterPowerGas.fillOption = function (el_id, data) {
+        var el = $('#loc_' + el_id);
+        // var json = data;
+        if (data) {
+            var selected_index = 0;
+            var value = '';
+            $.each(data, function (k, v) {
+                //  console.log(k);//0,1,2,3,4……
+                //  console.log(v);//Object {provinceId: "v1918", provinceName: "湖南"}
+                //  console.log(selected_index);
+                /* var option = '<option value="' + selected_index + '">' + value + '</option>';*/
+                var option = '<option value="' + v[el_id + 'Id'] + '">' + v[el_id + 'Name'] + '</option>';
+                el.append(option);
+            })
+        }
+        if(el_id === 'payUnit'){
+            WaterPowerGas.payUnitId = $('#loc_'+el_id).val();
+            //alert( WaterPowerGas.payUnitId);
+            //console.log(WaterPowerGas.payUnitId);
+            WaterPowerGas.query(WaterPowerGas.provinceId,WaterPowerGas.cityId,WaterPowerGas.payProjectId,WaterPowerGas.payUnitId);//为后面查询做准备
+        }
+    }
+
+    //检查输入数据类型,保留小数点后2位
+   WaterPowerGas.checkNumber = function checkNumber(){
+      // console.log('-- 检查输入数据类型,保留小数点后2位 --');
+       var number = $("#payMoney").val();
+       console.log("number="+number);
+       if(isNaN(number)){//检查是否是数字值
+           alert("仅能输入数据！");
+           console.log(" name.length="+name.length+" 非数字值");
+           return ;
+       }
+       number = number.toString();
+       if (number.split(".").length > 1 && number.split(".")[1].length > 2) {
+           alert("小数点后多于两位！");
+           return;
+       }
+   }
+</script>-->
+</head>
+
+<body>
+<div class="wrapper">
+
+    <!-----topbar 开始----->
+    <div class="box topbar_bg">
+        <div class="topbar">
+            <p class="fn-left txtindent50"><i></i>欢迎来到小康便民网，请 <a href="login.html">登录</a> 或 <a
+                    href="register.html">注册</a></p>
+            <p class="fn-right"><em></em>全国加盟热线：4008-591-020</p>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-----topbar 结束----->
+
+    <!-----nav 开始----->
+    <div class="box nopadding menu_bg">
+        <div class="menu">
+            <ul class="nav">
+                <li><a href="About_us.html" class="current">关于我们</a></li>
+                <li><a href="Join.html">招商加盟</a></li>
+                <li><a href="Service.html" class="tri">便民服务<span class="triangle"></span></a>
+                    <div class="subnav">
+                        <div class="width_b"><a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a
+                                href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a
+                                href="javascript:">保险直销</a></div>
+                    </div>
+                </li>
+                <li><a href="Index.html">网站首页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-----信用卡还款----->
+    <div class="box">
+
+        <div class="bmfw_xykhk_box1 mar_t ">
+            <font class="fot_18" >电费</font>
+            <input type="hidden" id="type" value="电费"/>
+            <span class="fn-right">
+                 <select id="loc_province" onchange="WaterPowerGas.provinceChange();"></select>
+                 <select id="loc_city" onchange="WaterPowerGas.cityChange();"></select>
+            </span>
+        </div>
+
+        <table width="60%" height="300" class="fuktable mar_t20 mar_b50" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="20%" align="right">收费单位：</td>
+                <td width="80%">
+                    <select class="bmfw_xykhke_select" id="loc_payUnit" onchange="WaterPowerGas.payUnitChange();"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><p class="fot12 Grey1">为您提供方便快捷的在线还款服务，不用排队哦</p></td>
+            </tr>
+            <tr>
+                <td align="right">户号：</td>
+                <td><input type="text" class="bmfw_xykhke_inpta mar_t" id="account"  onkeyup="value=value.replace(/[^\d]/g,'')" />
+                    &nbsp;&nbsp;<input type="button" onclick="WaterPowerGas.mbalance();" class="blue" value="查询" />
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><p class="fot12 Grey1" id="userName">户号可在电费单据上查看</p></td>
+            </tr>
+            <tr>
+                <td align="right">当前欠费：</td>
+                <td><p class="fot_18 org" id="ownMoney">88.5元</p></td>
+            </tr>
+            <tr>
+               <td align="right">我要缴纳：</td>
+                <!--<td><input type="text" class="bmfw_xykhke_inpta mar_t" id="payMoney"
+                           onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="单位:元,保留小数点后2位,如68.35元"/></td>-->
+              <td>
+                  <input type="text" class="bmfw_xykhke_inpta mar_t" id="payMoney" onkeyup=" WaterPowerGas.checkNumber();" placeholder="单位:元,保留小数点后2位,如68.35元"/>
+              </td>
+                <!--<td><input type="number" /></td>-->
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><a class="bmfw_xykhke_btna fot_18 mar_t20 mar_b50" onclick="WaterPowerGas.order();">确认缴费</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<!-----信用卡还款 结束----->
+<!-----layout_5开始--底部--->
+<div class="box layout_5_bg">
+    <div class="layout_5 Grey">
+        <ul>
+            <li class="foot_lef fn-left"><img src="images/wx.jpg" width="146" height="143"/>
+                <p>全国加盟热线：400-859-1020<br>
+                    加盟官网：http://www.xkbm365.com
+                </p>
+            </li>
+            <li class="foot_rig fn-left">
+                <h2>关于我们</h2>
+                <br>
+                <p><a href="#">成长历程</a><br>
+                    <a href="#">联系我们</a><br>
+                    <a href="#">加入我们</a>
+                </p>
+            </li>
+            <li class="foot_rig fn-left">
+                <h2>招商加盟</h2>
+                <br>
+                <p><a href="#">加盟流程 </a><br>
+                    <a href="#">加盟要求</a></p>
+            </li>
+            <li class="foot_rig fn-left">
+                <h2>在线帮助</h2>
+                <br>
+                <p><a href="#">在线帮助 </a><br>
+                    <a href="#">电话帮助 </a><br>
+                    <a href="#">客户经理</a></p>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="copyright"> 安徽象网汇信息科技股份有限公司<br>
+            联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+            CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号 客服热线：4008-591-020
+        </div>
+    </div>
+</div>
+
+<!-----layout_5结束----->
+
+</div>
+</body>
+</html>

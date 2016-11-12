@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<title>11选5-任选5</title>
+<base href = "<?php echo base_url();?>"/> 
+<link href="web/css/sty.css" rel="stylesheet" type="text/css">
+<link href="web/css/plug.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="web/js/jquery.min.js" ></script>
+<script type="text/javascript"  src="web/js/jquery-1.8.0.min.js" ></script>
+<script type="text/javascript"  src="web/js/11xuan5.js" ></script>
+<script src="web/js/alert.js"  type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var html =  localStorage.getItem("xw_11xuan5_hm");
+		$("#main_content").after(html);
+		var count = 0;
+		$('font[name="cur_count"]').each(function(){
+			count += parseInt($(this).text());
+		}
+		)
+		localStorage.setItem('xw_11xuan5_count',count);
+		updateMessage(count);
+	});
+
+	function updateMessage(count){
+		var issue = $('#totalPhases').val();
+		$('#count').val(count);
+		$('#mess').text("共 "+count+" 注 "+count*2+" 元 "+issue+" 期");
+		$('#totalmoney').val(count*2*issue);
+		text = [];
+		var text2 = '';
+		var types = {zhi1:0,rx2:1,rx3:2,rx4:3,rx5:4,rx6:5,rx7:6,rx8:7,zhi2:8,zu2:9,zhi3:10,zu3:11};
+		var childlotteryid;
+		$('div[name="selInfo"]').each(function(){
+			
+			var cur_num = $(this).find('font[name="cur_num"]').text().trim();
+			var cur_count = parseInt($(this).find('font[name="cur_count"]').text());
+			var type = $(this).find('font[name="type"]').attr('value');
+			var dan_fu = type=="dantuo"?2:1;
+
+
+			var item=[];
+			item.push(parseInt(types[type]));
+			item.push(dan_fu);
+			item.push(cur_num);
+			item.push(cur_count);
+			item.push(cur_count*2);
+			text.push(item);
+			text2+= "|"+types[type]+","+dan_fu+",'"+cur_num+"',"+cur_count+","+cur_count*2;
+		}
+		)
+		text2 = text2.substring(1);
+		//text2 = '['+text2+']';
+		$('#text').val(text2);
+		//alert($('#text').val());
+	}
+	
+	function delHm(src){
+		var delHtml = '<div class="syxw_list" name="selInfo">'+$(src).parent().html()+'</div>';
+		var nowHtml = localStorage.getItem("xw_11xuan5_hm");
+		var index = nowHtml.indexOf(delHtml)+delHtml.length;
+		
+		a = nowHtml.substring(0,nowHtml.indexOf(delHtml));
+		b = nowHtml.substring(index);
+		nowHtml = a + b;
+
+		localStorage.setItem("xw_11xuan5_hm",nowHtml);
+		var count = parseInt(localStorage.getItem("xw_11xuan5_count"))-1;
+		localStorage.setItem("xw_11xuan5_count",count);
+		updateMessage(count);
+		location.reload();
+	}
+
+	function loadhm(){
+		$('#payform').submit();
+	}
+
+	function sjyz(){
+		var data = new Array('01','02','03','04','05','06','07','08','09','10','11');
+		var res = getArrayItems(data,5);
+		var selHm = res.join(",");
+		var html = '<div class="syxw_list" name="selInfo"><a onclick="delHm(this)" class="syxw_list_close"></a><font class="red fot_14" name="cur_num">'+selHm+' </font><p class="mb_05 fot_12"><font name="type" value="rx5">任选五</font>  <font name="cur_count">1</font>注</p><a onclick="goTouzhu(this);" class="syxw_list_go"></a></div>';
+		localStorage.setItem("xw_11xuan5_hm",localStorage.getItem("xw_11xuan5_hm")==null?html:html+localStorage.getItem("xw_11xuan5_hm"));
+		var count = parseInt(localStorage.getItem("xw_11xuan5_count"))+1;
+		localStorage.setItem("xw_11xuan5_count",count);
+		updateMessage(count);
+		location.reload();
+	}
+
+	function sjwz(){
+		var data = new Array('01','02','03','04','05','06','07','08','09','10','11');
+		var res = new Array();
+		for(var i=0;i<5;i++){
+			res.push(getArrayItems(data,5).join(","));
+		}
+		var html = '';
+		for(var j=0;j<5;j++){
+			html += '<div class="syxw_list" name="selInfo"><a onclick="delHm(this)" class="syxw_list_close"></a><font class="red fot_14" name="cur_num">'+res[j]+' </font><p class="mb_05 fot_12"><font name="type" value="rx5">任选五</font>  <font name="cur_count">1</font>注</p><a onclick="goTouzhu(this);" class="syxw_list_go"></a></div>';
+
+		}
+		localStorage.setItem("xw_11xuan5_hm",localStorage.getItem("xw_11xuan5_hm")==null?html:html+localStorage.getItem("xw_11xuan5_hm"));
+		var count = parseInt(localStorage.getItem("xw_11xuan5_count"))+5;
+		localStorage.setItem("xw_11xuan5_count",count);
+		updateMessage(count);
+		location.reload();
+	}
+	
+	function getArrayItems(arr, num) {
+	    //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
+	    var temp_array = new Array();
+	    for (var index in arr) {
+	        temp_array.push(arr[index]);
+	    }
+	    //取出的数值项,保存在此数组
+	    var return_array = new Array();
+	    for (var i = 0; i<num; i++) {
+	        //判断如果数组还有可以取出的元素,以防下标越界
+	        if (temp_array.length>0) {
+	            //在数组中产生一个随机索引
+	            var arrIndex = Math.floor(Math.random()*temp_array.length);
+	            //将此随机索引的对应的数组元素值复制出来
+	            return_array[i] = temp_array[arrIndex];
+	            //然后删掉此索引的数组元素,这时候temp_array变为新的数组
+	            temp_array.splice(arrIndex, 1);
+	        } else {
+	            //数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
+	            break;
+	        }
+	    }
+	    return return_array;
+	}
+
+	function back(){
+		if(localStorage.getItem("xw_11xuan5_hm")!=null){
+			if(!window.confirm('是否保存已选择的号码？')){
+				localStorage.removeItem('xw_11xuan5_hm');
+				localStorage.removeItem('xw_11xuan5_count');
+			}
+		}
+		history.back();
+	}
+
+	function clearHm(){
+		localStorage.removeItem('xw_11xuan5_hm');
+		localStorage.removeItem('xw_11xuan5_count');
+		location.reload();
+	}
+
+	function goTouzhu(src){
+		var nums = $(src).parent().find('font[name="cur_num"]').text();
+		$('#cur_num').val(nums);
+		var type = $(src).parent().find('font[name="type"]').attr('value');
+		$('#cur_type').val(type);
+		$('#payform').attr('action',"<?php echo site_url('home/ljtz_11x5');?>");
+		$('#payform').submit();
+	}
+
+	$(function () {
+		var baseUrl="<?php echo site_url();?>"
+		setIssue_11xuan5(baseUrl);
+		$('#cur_issue').val($("#currentIssue").html());
+	});
+
+	function jia(src){
+		var obje=$(src).prev().children("input");
+	 	var val=parseInt(obje.val())+1;
+	 	obje.val(val);//val++;
+		var totalmoney = $('#totalmoney').val();
+		var multiple = $('#multiple').val();
+		var issue = $('#totalPhases').val();
+		count = $('#count').val();
+		count = count*multiple;
+		//$('#count').val(count);
+		$('#totalmoney').val(count*2*issue);
+		$('#mess').text("共 "+count+" 注 "+count*2*issue+" 元 "+issue+" 期");
+	}
+	function jian(src){
+		var obje=$(src).next().children("input");
+	 	var val=parseInt(obje.val())-1;
+	 	if(val!=0){
+			obje.val(val);
+			var totalmoney = $('#totalmoney').val();
+			var multiple = $('#multiple').val();
+			var issue = $('#totalPhases').val();
+			count = $('#count').val();
+			count = count*multiple;
+			//$('#count').val(count);
+			$('#totalmoney').val(count*2*issue);
+			$('#mess').text("共 "+count+" 注 "+count*2*issue+" 元 "+issue+" 期");
+		}
+		 
+	}
+
+</script>	
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="<?php echo site_url('Xw11xuan5/ljtz_11x5');?>" class="back"></a>11选5<a onclick="loadhm();" class="fqhm"> 发起和买</a></div>
+<input type="hidden" id="paynum" value="">
+
+
+<!--内容-->
+<div class="content white">
+  <div class="box_b fot_10 white" style="padding:0.5rem 0.6rem;" >
+ <span class="fl">距<em id="currentIssue">15080752</em>期截止：<span id="timer"><em class="red">00</em>分<em class="red">00</em>秒</span></span>
+  </div>
+  <div class="syxw text_center" id="main_content"><a onclick="sjyz();" class="btn_b">随机一注</a><a href="<?php echo site_url('home/ljtz_11x5');?>" class="btn_b">手动选号</a><a onclick="clearHm();" class="btn_b">清空列表</a></div>
+  
+
+
+  
+  <div class="syxw fot_12" ><input type="checkbox">&nbsp;我已阅读并同意<font class="bule ">《象网彩票平台服务协议》</font></div>
+
+  
+</div>
+
+<div class="fot_a">
+    <ul  class="fot_a_top" style="height:auto">
+    <form id="payform" action="<?php echo site_url('Xw11xuan5/fqhm');?>" method="post">
+    	<input type="hidden" id="cur_num" name="cur_num">
+    	<input type="hidden" id="cur_type" name="cur_type">
+        <input type="hidden" id="lotteryID" name="lotteryID" value="0">
+    	<input type="hidden" id="issue" name="issue" value="15073001">
+    	<input type="hidden" id="count" name="count">
+    	<input type="hidden" id="text" name="text">
+    	<input type="hidden" id="cur_issue" name="cur_issue">
+    	<input type="hidden" id="totalmoney" name="totalmoney">
+    	<input type="hidden" id="shop" name="shop" value="shop-001">
+    	<li> 连续买<a class="jian" onclick="jian(this);">-</a><span class="ipt_layout"><input id="totalPhases" name="totalPhases" type="text" class="text_6rem" value=1></span><a class="jia" onclick="jia(this);">+</a>期 </li>
+    	<li> 投<a class="jian" onclick="jian(this);">-</a><span class="ipt_layout"><input id="multiple" name="multiple" type="text" class="text_6rem" value=1></span><a class="jia" onclick="jia(this);">+</a>倍</li>
+    	<li style="width:100%;text-align:center">&nbsp;&nbsp;<input type="checkbox" align="right" id="isWinner" name="isWinner">中奖后停止</li>
+    	<div class="clear"></div>
+    </form>
+    </ul>
+	<div class="fot_a_bot"><font id="mess"> 共 3 注 6 元 1期 </font><a href="javascript:performance();" class="btn_a fr mt_05"> 付款</a></div>
+</div>
+
+<!--底部
+<div class="fot_a">
+    <ul  class="fot_a_top">
+    <form id="payform" action="<?php echo site_url('Xw11xuan5/add');?>" method="post">
+    	<input type="hidden" id="lotteryID" name="lotteryID" value="0">
+    	<input type="hidden" id="issue" name="issue" value="15073001">
+    	<input type="hidden" id="count" name="count">
+    	<input type="hidden" id="text" name="text">
+    	<input type="hidden" id="totalmoney" name="money">
+    	<input type="hidden" id="shop" name="shop" value="shop-001">
+    	<li> 连续买<a class="jian" onclick="jian();"></a>-<input type="text" class="text_6rem" value="1" id="totalPhases" name="totalPhases"><a class="jia" onclick="jia();"></a>+期 </li>
+    	<li> 投<a class="jian" onclick="jian();"></a>-<input type="text" class="text_6rem" value="1" id="multiple" name="multiple" onchange="changeMultiple(this);"><a class="jia" onclick="jia();"></a>+倍&nbsp;</li>
+    	<li><input type="checkbox" align="right" checked id="isWinners" name="isWinners">&nbsp;中奖后停止</li>
+    </form>	
+    </ul>
+	<div class="fot_a_bot"><font id="mess"> 共 3 注 6 元 1期 </font><a onclick="submit();" class="btn_a fr mt_05"> 付款</a></div>
+</div>
+-->
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

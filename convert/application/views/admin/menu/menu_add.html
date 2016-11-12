@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>菜单-添加</title>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+
+$(function () {
+	$("#back1,#back2,#back3").click( function(e){
+		history.go(-1);
+		})
+	});
+function submit(){
+	$("#myform").submit();
+}
+
+</script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="box_a white_bg">
+    	<p class="title_a"><a class="fn-right orange fot_s" id="back2" href="<?php echo base_url().'xk.php/admin/menu';?>">返回菜单列表</a><em class="title_line"></em>增加菜单</p>
+        <div class="box_b"><input class="btn_c white mar_rgt" type="button" onclick="submit();" value="保 &nbsp;存"> <a class="btn_d white" id="back1" >取 &nbsp;消</a></div>
+    </div>
+    <div class="box_a">
+    <div class="box_c">
+		<form id="myform" enctype="multipart/form-data" action="<?php echo base_url().'xk.php/admin/menu/insert';?>" method="post" >
+    	<table class="ftable">
+    		<tr>
+            	<td style="width:8%;">父级菜单：</td>
+                <td><select class="input_b"  name="parent_node_id">
+                	<option class="input_f" value="0">请选择...</option>
+<?php foreach($result as $res) {
+     		echo '<option class="input_f" value="'.$res['node_id'].'">'.$res['node_name'].'</option>';};?>
+                     </select>
+                     <font color="red"><?php echo form_error('node_level'); ?></font>
+				</td>
+            </tr>
+        	<tr>
+            	<td class="wid_e" style="width:8%;">菜单名称：</td>
+                <td><input class="input_b" name="node_name" type="text"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                	<font color="red"><?php echo form_error('node_name'); ?></font>
+                </td>
+            </tr>
+            <tr>
+            	<td class="wid_e">链 接：</td>
+                <td><input class="input_b" name="node_url" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                	<font color="red"><?php echo form_error('node_url'); ?></font>
+                </td>
+            </tr>
+            <tr>
+            	<td class="wid_e">序 号：</td>
+                <td><input class="input_b" name="order_num" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+                	<font color="red"><?php echo form_error('order_num'); ?></font>
+                </td>
+            </tr>
+            <tr>
+            	<td></td>
+                <td><input class="btn_c white mar_rgt" type="submit" value="保 &nbsp;存"><a class="btn_d white" id="back3">取 &nbsp;消</a></td>
+            </tr>
+        </table>
+        </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

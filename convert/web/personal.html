@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<title>个人中心</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+</head>
+
+<body>
+
+<!-----topbar 开始----->
+    <?php $this->load->view('header.html');?> 
+<!-----topbar 结束-----> 
+<!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+<!-----nav 结束----->
+<div class="box container_bg">
+<div class="container loginptb">
+  <div class="logleft f_l">
+     <?php 
+    echo form_open('user/person');
+	?>
+    <div class="login">
+      <h1>个人中心</h1>
+      <ul>
+      <li class="msg-wrap">
+		<div class="msg-error" style="display: none;"><b></b></li>
+		  <li> <u>电话/账号:</u> <em>
+          <input name="pwd_password" type="text"  disabled="disabled"  value="<?php echo $phone;?>" caseon="submit">
+          </em> </li>
+        <li> <u>姓名:</u> <em>
+          <input  name="name" type="text" id="name"  placeholder="姓名"  value="<?php echo $name;?>" caseon="submit">
+          </em></li>
+          <li> <u>地址:</u> <em>
+          <input name="address" type="text" id="address"  placeholder="地址" value="<?php echo $address;?>" caseon="submit">
+          </em> </li>
+          <li> <u>身份证:</u> <em>
+          <input name="idNumber" type="text" id="idNumber" placeholder="身份证" value="<?php echo $idNumber;?>" caseon="submit">
+          </em> </li>
+          <li class="logintip"><span id="span_msg_tip"></span></li>
+        	<ol class="a2">
+          <div>
+            <button name="btn_sub" class="button red" id="btn_sub" ><span class="primary submit">立即修改</span></button>
+          </div>
+        </ol>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </form>
+  </div>
+<?php $this->load->view('personMain.html');?>
+  <div class="clear"></div>
+</div>
+</div>
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</body>
+</html>

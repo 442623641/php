@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+<title>登录</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+$(function(){
+	if ($(".msg-error").html()!='<b></b>')
+	{	
+		$(".msg-error").css('display','');
+		$(".msg-warn").css('display','none');
+	}
+});
+</script>
+</head>
+
+<body>
+
+<!-----topbar 开始----->
+    <?php $this->load->view('header.html');?> 
+<!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+<div class="box container_bg">
+<div class="container loginptb">
+  <div class="logleft f_l">
+      <?php 
+    echo form_open('user/signin/login');
+	?>
+    <div class="login">
+      <h1>用户登录</h1>
+           <div class="msg-wrap" style='width: 390px;'>
+           <div class="msg-warn"><b></b>请谨慎小心，以防账号丢失</div>
+		<div class="msg-error" style="display: none;"><b></b><?php echo validation_errors(); ?></div>
+	</div>
+      <ul>
+  
+        <li> <u>登录帐号:</u> <em>
+          <input id="user" name="user" type="text" placeholder="输入手机号">
+        <li> <u>登录密码:</u> <em>
+          <input id="pass" name="passwd" type="password" placeholder="密码">
+          </em> </li>
+        <li class="memory">
+          <div> <a href="<?php echo site_url('user/forgotPassword');?>"><font class="c06c">忘记密码了？</font></a> </div>
+        </li>
+        <li class="logintip"><span id="span_msg_tip"></span></li>
+        <ol class="a2">
+          <div>
+              <button name="loginsubmit" class="button red" id="loginsubmit"><span class="primary submit">登录</span></button>
+          </div>
+        </ol>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    </form>
+    <div class="clear"></div>
+    </form>
+  </div>
+  <div class="logright f_r">
+    <div class="alruser">
+      <h3>还不是小康便民会员？</h3>
+      <span><a href="<?php echo site_url('user/register');?>">免费注册</a></span>
+      <h3 class="pt_20">合作网站账号登录</h3>
+      <samp> <a href="#" class="icoqq"></a> <a href="#" class="icosina"></a> <a href="#" class="icorr"></a> </samp>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+</div>
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</body>
+</html>

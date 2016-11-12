@@ -1,0 +1,31 @@
+.windowBox{
+	position:fixed;
+	border: 1px solid #000;
+	box-shadow: 0 0 12px #454140;
+	text-align: center;
+	background:#fff;
+}
+
+.windowBox input{
+	width:80px;
+	height:32px;
+	position:absolute;
+	bottom:10px;
+	border:none;
+	left:50%;
+	margin-left:-40px;
+	background:#62A4EE;
+	color:#fff;
+	font-family:"微软雅黑";
+}
+
+.windowBox .windowBox_header{
+	background: #333;
+	color: #fff;
+	font-size:20px;
+}
+
+.windowBox_body{
+	padding:10px;
+	font-size:14px;
+}

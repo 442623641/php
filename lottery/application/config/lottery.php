@@ -1,0 +1,91 @@
+<?php
+$config['lottery'][0]=array( 
+			"0"=>"选一",
+			"1"=>"选二",
+			"2"=>"选三",
+			"3"=>"选四",
+			"4"=>"选五",
+			"5"=>"选六",
+			"6"=>"选七",
+			"7"=>"选八",
+			"8"=>"前二直选",
+			"9"=>"前二组选",
+			"10"=>"前三直选",
+			"11"=>"前三组选",
+			"name"=>"陕西11选5",
+			"isProvince"=>true,
+			"lotteryrun_table"=>"sxsyxw",
+			"payInterval"=>30,
+		);
+$config['lottery'][1]=array( 
+			"0"=>"直选",
+			"1"=>"组三",
+			"2"=>"组六",
+			"name"=>"排列3",
+			"isProvince"=>false,
+			"lotteryrun_table"=>"plsan",
+			"payInterval"=>30,
+		);
+$config['lottery'][2]=array( 
+			"0"=>"标准选号",
+			"name"=>"排列5",
+			"isProvince"=>false,
+			"lotteryrun_table"=>"plwu",
+			"payInterval"=>30,
+		);
+$config['lottery'][3]=array( 
+			"0"=>"标准选号",
+			"name"=>"七星彩",
+			"isProvince"=>false,
+			"lotteryrun_table"=>"qx",
+			"payInterval"=>30,
+		);
+$config['lottery'][4]=array( 
+			"0"=>"标准选号",
+			"name"=>"大乐透",
+			"isProvince"=>false,
+			"lotteryrun_table"=>"dlt",
+			"payInterval"=>30,
+		);
+$config['lottery'][5]=array( 
+			"0"=>"选一",
+			"1"=>"选二",
+			"2"=>"选三",
+			"3"=>"选四",
+			"4"=>"选五",
+			"5"=>"选六",
+			"6"=>"选七",
+			"7"=>"选八",
+			"8"=>"前二直选",
+			"9"=>"前二组选",
+			"10"=>"前三直选",
+			"11"=>"前三组选",
+			"name"=>"安徽11选5",
+			"isProvince"=>true,
+			"lotteryrun_table"=>"ahsyxw",
+			"payInterval"=>30,
+		);
+$config['lottery'][6]=array( 
+			"0"=>"选一",
+			"1"=>"选二",
+			"2"=>"选三",
+			"3"=>"选四",
+			"4"=>"选五",
+			"5"=>"选六",
+			"6"=>"选七",
+			"7"=>"选八",
+			"8"=>"前二直选",
+			"9"=>"前二组选",
+			"10"=>"前三直选",
+			"11"=>"前三组选",
+			"name"=>"浙江11选5",
+			"isProvince"=>true,
+			"lotteryrun_table"=>"zjsyxw",
+			"payInterval"=>30,
+		);
+$config['buyTypeFortable']=array( 
+			"0"=>"购买方式对应的数据库表名",
+			"1"=>"lotteryuser",
+			"2"=>"lotteryjoint",
+			"3"=>"lotterychase"
+		);

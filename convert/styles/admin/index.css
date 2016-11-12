@@ -1,0 +1,76 @@
+
+
+
+/************公用样式***********/
+*{ margin:auto; padding:0;}
+body{ font: 14px/1.8  "microsoft yahei","宋体",simsun,sans-serif; color:#323232;}
+.wrapper{ width:100%; height:100%;}
+.white{ color:#fff;}
+.gray{ color:#959595;}
+a{ color:#323232;}
+a:hover{ color:#f25609; text-decoration:none;}
+
+
+
+/*********head**********/
+.header{ width:100%; min-width:1000px; height:104px; border-bottom:1px solid #c6c6c6; position:relative; top:0;}
+.top_bar{ height:32px; padding-left:10px; background:#191919;}
+.top{ height:72px; background:#e8e8e8 url(../../images/admin/logo.jpg) no-repeat 12px center; position:relative;}
+.admin{ height:72px; position:absolute; right:480px; background:url(../../images/admin/admin.png) no-repeat left 10px; padding-left:56px;  }
+.admin p{ font-size:18px;line-height:18px; margin-top:20px; color:#f25609;}
+.admin_set{ width:60px; padding-top:40px; position:absolute; right:150px; background:url(../../images/admin/admin.png) no-repeat 8px -140px; text-align:center;}
+.admin_quit{ width:60px; padding-top:40px; position:absolute; right:80px; background:url(../../images/admin/admin.png) no-repeat 8px -68px; text-align:center;}
+
+
+
+/*********left**********/
+.maincontent{ width:100%; height:100%;  background:#e8e8e8}
+.cont_left{ width:132px; border-right:1px solid #c6c6c6; height:100%; float:left; overflow:hidden; background:#fff;}
+.cont_left ul li{ height:92px;border-bottom:1px solid #c8c8c8;}
+.nav p{height:20px;line-height:20px;padding-top:68px;text-align:center;}
+
+.nav a{display:block;width:132px;height:92px; background-image:url(../../images/admin/nav_bg.png); background-repeat:no-repeat;}
+
+.n1 a{background-position:left 18px ;}
+.n2 a{background-position:left -74px;}
+.n3 a{background-position:left -166px;}
+.n4 a{background-position:left -258px;}
+.n5 a{background-position:left -350px;}
+.n6 a{background-position:left -442px;}
+.nav a:hover{background-color:#e8e8e8; color:#f25609;}
+.n1 a:hover,.n1 .curennt{background-position:right 18px; color:#f25609;}
+.n2 a:hover,.n2 .curennt{background-position:right -74px; color:#f25609;}
+.n3 a:hover,.n3 .curennt{background-position:right -166px; color:#f25609;}
+.n4 a:hover,.n4 .curennt{background-position:right -258px; color:#f25609;}
+.n5 a:hover,.n5 .curennt{background-position:right -350px; color:#f25609;}
+.n6 a:hover,.n6 .curennt{background-position:right -442px; color:#f25609;}
+.nav .hover{background-color:#e8e8e8;}
+
+
+
+/********right**********/
+.cont_right{position:relative; top:0;  margin-left:134px; overflow:auto; width:auto; height:100%;}
+cont_right iframe{ width:100%; height:100%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

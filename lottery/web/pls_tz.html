@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<title>排列三投注</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/sty.css" rel="stylesheet" type="text/css">
+<link href="css/plug.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"  type="text/javascript"></script>
+<script src="js/jquery.cookie.js"  type="text/javascript"></script>
+<script src="js/alert.js"  type="text/javascript"></script>
+<script src="js/lottery.js" ></script>
+<script src="js/pl3.js" ></script>
+<script type="text/javascript"  >
+$(function () {
+	lottery=new lottery_model("排列3",1);
+	baseUrl="<?php echo site_url();?>"
+	setIssue(baseUrl);
+	var item=getItem("lottery");
+	if(item==null){
+		return;
+	}
+	lottery.instance(getItem("lottery"));
+	loophtml();
+	$('.fot_a_top .text_6rem').keyup(function () {
+	        var tmptxt = $(this).val();
+	        $(this).val(tmptxt.replace(/\D|^0/g, ''));
+	        lottery.setMultiple($('.fot_a_top li .text_6rem:eq(0)').val());
+	        lottery.setIssue($('.fot_a_top li .text_6rem:eq(1)').val());
+	        setFoot();
+	    }).bind("paste", function () {
+	        var tmptxt = $(this).val();
+	        $(this).val(tmptxt.replace(/\D|^0/g, ''));
+	    }).css("ime-mode", "disabled");
+	 $(".jia").bind("click", function () {
+		 var obje=$(this).prev().children("input");
+		 var val=parseInt(obje.val())+1;
+		 	obje.val(val);//val++;
+		 	 lottery.setMultiple($('.fot_a_top li .text_6rem:eq(1)').val());
+		     lottery.setIssue($('.fot_a_top li .text_6rem:eq(0)').val());
+			setFoot();
+	    });
+	 $(".jian").bind("click", function () {
+		 var obje=$(this).next().children("input");
+		 var val=parseInt(obje.val())-1;
+		 if(val!=0){
+			 obje.val(val);
+			 lottery.setMultiple($('.fot_a_top li .text_6rem:eq(0)').val());
+		      lottery.setIssue($('.fot_a_top li .text_6rem:eq(1)').val());
+			 setFoot();
+			 }
+	    });
+    setFoot();
+});
+</script>
+</head>
+
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a>排列三<a href="#" class="fqhm"> 发起和买</a></div>
+
+<!--内容-->
+<div class="content white">
+ <div class="box_b fot_10 white" style="padding:0.5rem 0.6rem;" >
+ <span class="fl">距<em id="currentIssue">15080752</em>期截止：<span id="timer"><em class="red">24</em>时<em class="red">00</em>分<em class="red">00</em>秒</span></span>
+  </div>
+  <div class="syxw text_center"><a href="<?php echo site_url('pl3/index');?>" class="btn_b">自选号码</a><a href="javascript:random();" class="btn_b">随机一注</a><a href="javascript:clearball();" class="btn_cl">清空列表</a></div>
+  
+<div id="div_bets">
+<!--  
+  <div class="syxw_list"><a href="#" class="syxw_list_close"></a><font class="red fot_14">11&nbsp;11&nbsp;11&nbsp;11&nbsp;11&nbsp;</font><font class="bule fot_14">11&nbsp;11&nbsp;</font> <p class="mb_05 fot_12">单式&nbsp; 1注 2元</p><a href="#" class="syxw_list_go"></a>
+  </div>
+  <div class="syxw_list"><a href="#" class="syxw_list_close"></a><font class="red fot_14">11&nbsp;11&nbsp;11&nbsp;11&nbsp;11&nbsp;</font><font class="bule fot_14">11&nbsp;11&nbsp;</font><p class="mb_05 fot_12">单&nbsp;式 1注 2元</p><a href="#" class="syxw_list_go"></a>
+  </div>
+  <div class="syxw_list"><a href="#" class="syxw_list_close"></a><font class="red fot_14">11&nbsp;11&nbsp;11&nbsp;11&nbsp;11&nbsp;</font><font class="bule fot_14">11&nbsp;11&nbsp;</font><p class="mb_05 fot_12">单式&nbsp; 1注 2元</p><a href="#" class="syxw_list_go"></a>
+  </div>
+  -->
+  </div>
+  <div class="syxw fot_12"><input type="checkbox">&nbsp;我已阅读并同意<font class="bule ">《象网彩票平台服务协议》</font></div>
+
+  
+</div>
+
+
+<!--底部-->
+<div class="fot_a">
+    <ul  class="fot_a_top">
+    	<li> 连续买<a class="jian" herf="javascrpt:void(0);">-</a><span class="ipt_layout"><input id="issuecount" type="text" class="text_6rem" value=1></span><a class="jia" herf="javascrpt:void(0);">+</a>期 </li>
+    	<li> 投<a class="jian" herf="javascrpt:void(0);">-</a><span class="ipt_layout"><input id="multiple" type="text" class="text_6rem" value=1></span><a class="jia" herf="javascrpt:void(0);">+</a>倍</li>
+    	<li>&nbsp;&nbsp;<input type="checkbox" align="right" id="isWinner">中奖后停止</li>
+    </ul>
+	<div class="fot_a_bot">共<em>0</em>元&nbsp;&nbsp;<em>0</em>注<em>1</em>期 <em>1</em>倍<a href="javascript:performance()" class="btn_a fr mt_05"> 付款</a></div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

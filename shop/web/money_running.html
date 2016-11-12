@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="
+<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/datepicker_cn.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.myPagination6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="../web/js/msgbox/msgbox.css" />
+<script src="js/msgbox/msgbox.js"></script>
+<script type="text/javascript" src="js/trade.js"></script>
+<link  href="css/plug.css"  rel="stylesheet" type="text/css">
+<script src="js/alert.js"></script>
+<title>资金明细</title>
+</head>
+<body onload='pageInitial(<?php echo $pageIndex?>,<?php echo $totalPage!=null?$totalPage:1?>,"<?php echo site_url("Money/running")?>")'>
+<div class="title_bg"><a href="<?php echo site_url('user/index')?>" target="_parent">首页</a>>
+<a href="<?php echo site_url('Money/index')?>" target="cont_right">资金管理</a>>资金明细
+</div>
+<div class="zijin_t">可用余额：<span>￥0.00元</span>&nbsp;&nbsp;&nbsp;&nbsp;账户状态：<span>有效</span>&nbsp;&nbsp;&nbsp;&nbsp;<!-- <a href="#">提现</a> --><a href="#">查看提现明细</a></div>
+<div class="search">
+<form id="queryForm" name ="queryForm"  action="<?php echo site_url("Money/running")?>">
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="80">开始时间：</td>
+		<td width="210"><input name="start" type="text" 
+			class="input_txt datepicker" value="<?php echo $params["start"]; ?>"></td>
+		<td width="80">结束时间：</td>
+		<td width="210"><input name="end" type="text"
+			class="input_txt datepicker" value="<?php echo $params["end"] ?>"></td>
+			<td width="80">交易类型：</td>
+		<td width="160"><select name="runningType" class="input_sel" change="submit()">
+		<?php $runningTypes=config_item("runningTypes");
+for ($k= 0;$k< count($runningTypes); $k++){
+$str= $runningTypes[$k];
+if($params["operateType"]==$k){
+echo '<option selected="true" value="'.$k.'">'.$str.'</option>';
+}else{
+	echo '<option value="'.$k.'">'.$str.'</option>';
+	}
+}
+	?>
+		<td><a href="javascript:submit_money();" class="input_btn">查询</a></td>
+	</tr>
+</table>
+</form>
+</div>
+
+<div class="content_b">
+<div class="content_b_t">订单列表>完成订单</div>
+<div class="content_b_table zijin_tb">
+<table id="tab_list" cellspacing="0" cellpadding="0" width="100%">
+	<tr class="font14">
+		<td>序列号</td>
+		<td>交易号</td>
+		<td>创建时间</td>
+		<td>交易类型</td>
+		<td>交易金额</td>
+		<td>交易备注</td>
+		<td>完成时间</td>
+		<td>操作</td>
+	</tr>
+	<tbody> 
+		<?php $tradeTypes=config_item("runningTypes");
+				$i=($pageIndex-1)*$params["pageSize"];
+foreach($data as $item) {
+			
+			$typeName=isset($tradeTypes[$item["operateType"]])?$tradeTypes[$item["operateType"]]:"其它";
+			$createTime=$item["create_date"]." ".$item["create_time"];
+			$finishTime=$item["finish_date"]."  ".$item["finish_time"];
+			$i+=1;
+		echo '<tr>
+				<td>'.$i.'</td>
+				<td hidden>'.$item["id"].'</td>
+				<td>'.$item["orderID"].'</td>
+				<td>'.$createTime.'</td>
+				<td>'.$typeName.'</td>
+				<td><span>'.$item["cost"].'</span></td>
+				<td>'.$item["comment"].'</td>
+				<td>'.$finishTime.'</td>
+				<td style="padding:0 8px 0 8px"><a style="color:blue;" href="'.site_url("Money/detail\/").$item["id"].'">查看详情</a></td>
+				</tr>';	
+		 }?>
+	</tbody>
+</table>
+</div>
+<div class="msdn" id="page"></div>  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>新闻动态</title>
+<link href="<?php echo base_url().'styles/admin/base.css';?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url().'styles/admin/sty.css';?>" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="<?php echo base_url().'js/jquery-1.8.0.min.js';?>" ></script>
+<script type="text/javascript">
+$(function () {
+$(".gtable tr:even").addClass("tr_bg"); 	
+})
+
+function query(){
+	$('#myform').submit();
+}
+
+$(document).ready(function(){
+	$('#myform').submit();
+});
+</script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="box_a white_bg">
+    	<p class="title_a"><em class="title_line"></em>新闻动态</p>
+    	
+        <div class="box_b">
+                <form id="myform" target="listframe" action="<?php echo base_url().'xk.php/admin/news/select';?>" method="post">
+       <!--  	 类型：<select class="input_d" name="news_type">
+       	 			<option class="input_f" value="">请选择...</option>
+                        <option class="input_f" value="1">小康动态</option>
+                        <option class="input_f" value="2">行业动态</option>
+                     </select>&nbsp;&nbsp;
+                      标题：<input type="text" name="title" class="input_b" style="width:100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+        <a class="btn_b white"  onclick="query();">查&nbsp;询</a>&nbsp;&nbsp;&nbsp;        
+        <a class="btn_a white mar_rgt" href="<?php echo base_url().'xk.php/admin/news/addPage';?>">新 &nbsp;增</a> 
+        </form>
+        </div>
+    </div>
+    <iframe id="listframe" name="listframe" width="100%;" height="500px;" frameborder="0" scroll="auto;">
+
+   </iframe>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

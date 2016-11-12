@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href="<?php echo base_url();?>"></base>
+<link rel="stylesheet" href="styles/style2.css" />
+<script type="text/javascript"  src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="js/jsAddress.js"></script>
+<script type="text/javascript">
+function deleteDizhi(id){
+	if(!window.confirm('确定删除吗！')){
+		return false;
+	}
+	var url = $('#url').val();
+    $.ajax({
+    	dataType:"json",
+        type:"POST",
+        data:{addressNo:id},
+        url:url,
+        success:function(result){
+            if(result['fail']==0){
+				alert('删除成功！');
+				location.reload();
+            }else{
+            	alert(result['mess']);
+            }
+        },
+        error:function(data){
+            alert("请求异常！");
+        }
+	});
+}
+
+function setType(id,src){
+	var type;
+	if(src.checked){
+		type = 1;
+	}else{
+		type = 2;
+	}
+    
+    $.ajax({
+    	dataType:"json",
+        type:"POST",
+        data:{type:type,addressNo:id},
+        url:'<?php echo site_url('UserCenter/updateDefault')?>',
+        success:function(result){
+        	$('#add_btn').attr('href',"<?php echo site_url('UserCenter/addDizhi/"+id+"')?>");
+        	$('#cur_num').val(id);
+              if(src.checked){
+            	  $("input[type='checkbox']:checked").each(function(){
+          		    if($(this).attr('addressNo')!=id){
+          		        $.ajax({
+          		        	dataType:"json",
+          		            type:"POST",
+          		            data:{type:2,addressNo:$(this).attr('addressNo')},
+          		            url:'<?php echo site_url('UserCenter/updateDefault')?>',
+          		            success:function(result){
+              		            alert('设置成功');
+              		            location.reload();
+          		            },
+          		            error:function(data){
+          		                alert("请求异常！");
+          		            }
+          		    	});
+                  	}
+          	  	});
+              }
+
+        },
+        error:function(data){
+            alert("请求异常！");
+        }
+	});
+}
+
+$(document).ready(function(){
+	var addressNo = $("input[type='checkbox']:checked").attr('addressNo');
+	$('#add_btn').attr('href',"<?php echo site_url('UserCenter/addDizhi/"+addressNo+"')?>");
+	$('#cur_num').val(addressNo);
+	//$("a[name='update_btn']").each(function(){
+		//var temp = $(this).attr('href');
+		//$(this).attr('href',temp+"/"+addressNo);
+	//});
+});
+
+function updateDizhi(addressNo,name,phone,province,city,district,address,youbian,type){
+	var cur_num = $('#cur_num').val();
+   // var data = {
+ 	  // addressNo:addressNo,name:name,phone:phone,province:province,city:city,district:district,
+ 	   //address:address,youbian:youbian,type:type,cur_num:cur_num
+    //}
+	location.href='<?php echo site_url('UserCenter/updateDizhi')?>?addressNo='+addressNo+"&name="+name+"&cur_num="+cur_num+
+	"&phone="+phone+"&province="+province+"&city="+city+"&district="+district+"&address="+address+"&youbian="+youbian+"&type="+type;
+	
+}
+</script>
+<title>地址管理</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <a class="openFavBox left_narrow" onclick="history.back();"><i class="leftn"></i></a>
+ <h1 class="title">地址管理</h1>
+</div>
+<div class="layout_box">
+	<div class="login_box_content" style="padding:0">
+	<ul id="dizhi_ul">
+	<input type="hidden" id="url2" name="url2" value="<?php echo site_url('UserCenter/updateDizhi')?>">
+	<input type="hidden" id="url" name="url" value="<?php echo site_url('UserCenter/deleteDizhi')?>">
+	<input type="hidden" id="cur_num" name="cur_num" value="">
+					<?php 
+						if($fail==0){
+foreach($result as $res) {
+	if($res['add_type']==1){
+	echo '<li>
+			<div class="dizhi_a"><h2>'.$res['add_name'].'</h2><span>'.$res['add_phone'].'</span><div class="clearfix"></div></div>
+			<div class="dizhi_b">'.$res['add_province'].$res['add_city'].$res['add_district'].$res['address'].'</div>
+			<div class="dizhi_c"><div class="checkboxFour">
+                        <input type="checkbox" value="1" addressNo="'.$res['addressNo'].'" id="checkboxFourInput_'.$res['addressNo'].'"  name="type" onchange="setType('.$res['addressNo'].',this);" checked/>
+                        <label for="checkboxFourInput_'.$res['addressNo'].'"></label>
+                    </div><span>设为默认</span><a  onclick="deleteDizhi('.$res['addressNo'].')" class="del">删除</a><a name="update_btn" onclick=updateDizhi('.$res['addressNo'].',"'.$res['add_name'].'",'.$res['add_phone'].',"'.$res['add_province'].'","'.$res['add_city'].'","'.$res['add_district'].'","'.$res['address'].'",'.$res['youbian'].','.$res['add_type'].'); class="modify">修改</a><div class="clearfix"></div></div></li>';	
+	}else{
+	echo '<li>
+			<div class="dizhi_a"><h2>'.$res['add_name'].'</h2><span>'.$res['add_phone'].'</span><div class="clearfix"></div></div>
+			<div class="dizhi_b">'.$res['add_province'].$res['add_city'].$res['add_district'].$res['address'].'</div>
+			<div class="dizhi_c"><div class="checkboxFour">
+                        <input type="checkbox" value="1" addressNo="'.$res['addressNo'].'" id="checkboxFourInput_'.$res['addressNo'].'"  name="type" onchange="setType('.$res['addressNo'].',this);"/>
+                        <label for="checkboxFourInput_'.$res['addressNo'].'"></label>
+                    </div><span>设为默认</span><a  onclick="deleteDizhi('.$res['addressNo'].')" class="del">删除</a><a name="update_btn" onclick=updateDizhi('.$res['addressNo'].',"'.$res['add_name'].'",'.$res['add_phone'].',"'.$res['add_province'].'","'.$res['add_city'].'","'.$res['add_district'].'","'.$res['address'].'",'.$res['youbian'].','.$res['add_type'].'); class="modify">修改</a><div class="clearfix"></div></div></li>';	
+	}
+			
+					}
+						}
+;?> 
+
+    </ul>
+</div>
+<div class="login_box_content" style="padding-top:0;padding-bottom:2rem"><a id="add_btn" href="<?php echo site_url('UserCenter/addDizhi')?>" class="login_btn">添加地址</a></div>
+</div>
+</body>
+</html>

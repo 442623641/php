@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-网站首页</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/app.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/js.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+   <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+  <!-- banner开始 -->
+  <div class="banner">
+  </div>
+  <!-- banner结束 -->
+
+  <!-- content开始 -->
+  <div class="content">
+    <div class="content_box">
+      <div class="content_box_left">
+        <p>下载APP</p>
+        <ul>
+          <li>
+            <img src="images/ios.png" height="77" width="44" style="margin-left:20px" >
+            <a href="" class="ios"></a>
+            <span>支持IOS系统版本4.0或更高版本</span>
+          </li>
+          <li>
+             <img src="images/android.png" height="78" width="75" >
+             <a href="" class="android"></a>
+            <span>支持Android系统版本2.3及更高版本</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content_box_right">
+        <p>扫描二维码</p>
+        <ul>
+          <li>
+            <img src="images/ios_xkbm.png">
+            <span>IOS扫描</span>
+          </li>
+          <li>
+            <img src="images/android_xkbm.png" height="163" width="163" >
+            <span>Android扫描</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- content结束 -->
+  
+   <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+  
+</div>
+</body>
+</html>

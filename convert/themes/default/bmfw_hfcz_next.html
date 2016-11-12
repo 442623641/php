@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>小康便民O2O服务站-便民服务-话费充值-next</title>
+    <link href="../../styles/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../../styles/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="../../styles/css/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../styles/js/jquery.min.js"></script>
+    <script src="../../styles/js/jquery.flexslider-min.js"></script>
+    <script src="../../styles/js/js.js"></script>
+    <script src="../../styles/js/config.js"></script>
+    <script src="../../styles/js/phone.recharge.js"></script>
+    <!-- <script type="text/javascript">
+
+         var HuaFeiChongZhi = HuaFeiChongZhi || {};
+
+         //充值金额
+         var money = 0;
+
+         HuaFeiChongZhi.realPay = function realPay() {  //实付金额  HuaFeiChongZhi.realPay =
+             // var money = $("#money").val();
+             money = HuaFeiChongZhi.price;
+             // alert(money);
+             $('#huaFeiPrice').val(money);   //隱藏以便传输
+             $.ajax({
+                 dataType: "json",
+                 type: "POST",
+                 data: {
+                     payPrice: money
+                 },
+                 url: '<?php echo site_url("allPay/getHuaFeiRealPayPrice");?>',
+                 //{"reason":"验证通过,可以送单","result":{"price":"197.900","time":"2015-07-29 09:21:47"},"error_code":0}
+                 success: function (data) {
+                     if (data['error_code'] != 0) {
+                     } else {
+                         var realPrice = data['result']['price'];
+                         //alert(realPrice);
+                         //  alert(money);
+                         var couponPrice = HuaFeiChongZhi.formatFloat(money, '-', realPrice);
+                         // alert(money);
+                         // realPrice = realPrice + '元,立省' + money + '元';
+                         $('#payPrice').html(realPrice + '元,立省' + couponPrice + '元');
+                         // $('#goToPay').html('共' + realPrice + '元，去充值');
+                         $('#goToPay').val('共' + realPrice + '元，去充值'); //html不能用a,用input否则required无效
+                     }
+                 },
+                 error: function (data) {
+                     alert("请求异常！");
+                 }
+             });
+         }
+
+         $(function () {//全局按钮监听
+             $("input[name='RadioGroup1']").click(function () {  //当单选按钮发生变化时重新调用realPay();
+                 var value = $(this).attr("value");//价格
+                 // alert(value);
+                 // realPay();
+                 HuaFeiChongZhi.realPay();
+             });
+         });
+
+         //获取当前话费充值总额
+         HuaFeiChongZhi.price = function getPrice() {
+             money = $('input[name="RadioGroup1"]:checked').val(); //获取被选中Radio的Value值
+             if (money == 'else') {
+                 // money = 200;//其他，默认值为200（2000
+                 money = $("#money").val();   //1:200 2:300
+             }
+             // alert(money);
+             // money = $('input:radio:checked').val();
+             // alert(money);
+             return money;
+         }
+
+         //当前话费充值总额计算，误差避免
+         HuaFeiChongZhi.formatFloat = function FloatFigure(a, symbol, b) {
+             if (a.toString().indexOf(".") < 0 && b.toString().indexOf(".") < 0) {//判断是否有小数
+                 return eval_r(a + symbol + b);
+             }
+             //至少一个有小数
+             var alen = a.toString().split(".");
+             if (alen.length == 1) {//没有小数
+                 alen = 0;
+             } else {
+                 alen = alen[1].length;
+             }
+             var blen = b.toString().split(".");
+             if (blen.length == 1) {
+                 blen = 0;
+             } else {
+                 blen = blen[1].length;
+             }
+             if (blen > alen) alen = blen;
+             blen = "1";
+             for (; alen > 0; alen--) {//创建一个相应的倍数
+                 blen = blen + "0";
+             }
+             switch (symbol) {
+                 case "+":
+                     return (a * blen + b * blen) / blen;
+                     break;
+                 case "-":
+                     return (a * blen - b * blen) / blen;
+                     break;
+                 case "*":
+                     return ((a * blen) * (b * blen)) / (blen * blen);
+                     break;
+                 default:
+                     alert("你要求的\t" + symbol + "\t运算未完成!");
+                     return eval_r(a + symbol + b);
+             }
+         }
+
+         //表单提交
+         HuaFeiChongZhi.submit = function submit() {
+             var phoneNumber = $('#phone');
+             //  alert(phoneNumber);
+             if ("" == phoneNumber.val()) {
+                 alert("手机号码不能为空");
+                 phoneNumber.focus;
+                 return;
+             }
+
+             var reg_tel = /^1[3|4|5|8][0-9]\d{4,8}$/;
+             if (!reg_tel.test(phoneNumber.val())) {
+                 alert("手机号码号码不合法");
+                 phoneNumber.val('');
+                // phoneNumber.focus;
+                 return;
+             }
+
+             // alert(money);
+             phoneNumber = phoneNumber.val();
+             $.ajax({
+                 dataType: "json",
+                 type: "POST",
+                 data: {
+                     payPrice: money, phone: phoneNumber
+                 },
+                 url: '<?php echo site_url("allPay/getHuaFeiRecharge");?>',
+                 //{"reason":"验证通过,可以送单","result":{"price":"197.900","time":"2015-07-29 09:21:47"},"error_code":0}
+                 success: function (data) {
+                     if (data['error_code'] != 0) {
+                         alert(data['reason']);
+                     } else {
+                         var realPrice = data['result']['price'];
+                         //alert(realPrice);
+                         var couponPrice = HuaFeiChongZhi.formatFloat(money, '-', realPrice);
+                         // alert(money);
+                         // realPrice = realPrice + '元,立省' + money + '元';
+                         $('#payPrice').html(realPrice + '元,立省' + couponPrice + '元');
+                         // $('#goToPay').html('共' + realPrice + '元，去充值');
+                         $('#goToPay').val('共' + realPrice + '元，去充值'); //html不能用a,用input否则required无效
+                     }
+                 },
+                 error: function (data) {
+                     alert("请求异常！");
+                 }
+             });
+         }
+     </script>-->
+</head>
+
+<body onload="HuaFeiChongZhi.realPay();">
+<div class="wrapper">
+    <!-----topbar 开始----->
+    <div class="box topbar_bg">
+        <div class="topbar">
+            <p class="fn-left txtindent50"><i></i>欢迎来到小康便民网，请 <a href="login.html">登录</a> 或 <a
+                    href="register.html">注册</a></p>
+
+            <p class="fn-right"><em></em>全国加盟热线：4008-591-020</p>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-----topbar 结束----->
+    <!-----nav 开始----->
+    <div class="box nopadding menu_bg">
+        <div class="menu">
+            <ul class="nav">
+                <li><a href="About_us.html" class="current">关于我们</a></li>
+                <li><a href="Join.html">招商加盟</a></li>
+                <li><a href="Service.html" class="tri">便民服务<span class="triangle"></span></a>
+
+                    <div class="subnav">
+                        <div class="width_b"><a href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a
+                                href="javascript:">保险直销</a> <a href="javascript:">保险直销</a> <a
+                                href="javascript:">保险直销</a></div>
+                    </div>
+                </li>
+                <li><a href="Index.html">网站首页</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-----nav 结束----->
+    <!-----信用卡还款----->
+    <div class="box">
+        <!--<form name="form" method="post" action="<?php echo site_url('allPay/reCharge')?>">-->
+        <!--phoneRechargeStep2-->
+        <div class="bmfw_xykhk_box1 mar_t ">
+            <font class="fot_18">话费充值</font> <font class="fot12 Grey1 fn-right">你还可以缴水电燃费用及信用卡还款</font></div>
+
+        <table width="60%" height="320" class="fuktable mar_t20 mar_b50" border="0" cellpadding="0" cellspacing="0"
+                >
+            <tr>
+                <td width="20%" align="right">充值号码：</td>
+                <td width="80%"><input type="text" id="phone" name="phone" class="bmfw_xykhke_inpta mar_t"
+                                       placeholder="请输入手机号码"
+                                       required="required" onkeyup="value=value.replace(/[^\d]/g,'')"
+                                       onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/>
+                    <!--限制只能输入数据-->
+                    &nbsp;&nbsp;<a href="#" class="blue ">安徽移动</a></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><p class="fot12 Grey1">为您提供方便快捷的在线还款服务，不用排队哦</p></td>
+            </tr>
+            <tr>
+                <td align="right">面值：</td>
+                <td>
+                    <label>
+                        <input type="radio" name="RadioGroup1" value="100" id="RadioGroup1_0" checked="checked">
+                        100元</label>&nbsp;&nbsp;&nbsp;
+                    <label>
+                        <input type="radio" name="RadioGroup1" value="50" id="RadioGroup1_1">
+                        50元</label>&nbsp;&nbsp;&nbsp;
+
+                    <label>
+                        <input type="radio" name="RadioGroup1" value="else" id="RadioGroup1_2">
+                        其他</label>&nbsp;&nbsp;
+                    <select onchange="HuaFeiChongZhi.realPay();" name="money" id="money">
+                        <!-- 注意： value=200 与200元 一一对应-->
+                        <option value="10"> 10元</option>
+                        <option value="20"> 20元</option>
+                        <option value="30"> 30元</option>
+                        <option value="200">200元</option>
+                        <option value="300">300元</option>
+                        <option value="500">500元</option>
+                    </select>
+                    <input id="huaFeiPrice" name="payPrice" type="hidden" value="100"/><!--默认值同单选按钮-->
+                </td>
+            </tr>
+            <tr>
+                <td align="right">售价：</td>
+                <td><a class="fot_18 org" id="payPrice">98.5元，立省1.5元</a></td>
+            </tr>
+            <td>&nbsp;</td>
+            <td>
+                <!-- <a href="javascript:form.submit();" class="bmfw_xykhke_btna fot_18 mar_t20 mar_b50" id="goToPay">共98.5元，去充值</a> -->
+                <!-- <input type="submit" class="bmfw_xykhke_btna fot_18 mar_t20 mar_b50" id="goToPay"
+                        value="共98.5元，去充值"/>-->
+                <input type="button" onclick="HuaFeiChongZhi.submit();"
+                       class="bmfw_xykhke_btna fot_18 mar_t20 mar_b50" id="goToPay" value="共98.5元，去充值">
+            </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <div class="width_a">
+    </div>
+    <!-----信用卡还款 结束----->
+    <!-----layout_5开始--底部--->
+    <div class="box layout_5_bg">
+        <div class="layout_5 Grey">
+            <ul>
+                <li class="foot_lef fn-left"><img src="../../styles/images/wx.jpg" width="146" height="143"/>
+                    <p>全国加盟热线：400-859-1020<br>
+                        加盟官网：http://www.xkbm365.com</p>
+                </li>
+                <li class="foot_rig fn-left">
+                    <h2>关于我们</h2>
+                    <br>
+                    <p><a href="#">成长历程</a><br>
+                        <a href="#">联系我们</a><br>
+                        <a href="#">加入我们</a></p>
+                </li>
+                <li class="foot_rig fn-left">
+                    <h2>招商加盟</h2>
+                    <br>
+                    <p><a href="#">加盟流程 </a><br>
+                        <a href="#">加盟要求</a></p>
+                </li>
+                <li class="foot_rig fn-left">
+                    <h2>在线帮助</h2>
+                    <br>
+                    <p><a href="#">在线帮助 </a><br>
+                        <a href="#">电话帮助 </a><br>
+                        <a href="#">客户经理</a></p>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <div class="copyright"> 安徽象网汇信息科技股份有限公司<br>
+                联系地址：安徽省合肥市高新区玉兰大道与丰乐河路交口机电产业园9栋3层<br>
+                CopyRight © xkbm365.com. All Rights Reserved. 皖ICP备140039234号 客服热线：4008-591-020
+            </div>
+        </div>
+    </div>
+    <!-----layout_5结束----->
+
+</div>
+</body>
+</html>

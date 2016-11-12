@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.box {
+	position: absolute;
+  	z-index: 999;
+  	width: 100%;
+  	border-bottom: 1px solid #cb4d12;
+}
+.current{
+	background:#d03540
+}
+.none{
+	display:none;
+}
+.block{
+	display:block;
+}
+
+.red{
+	color:#d03540
+}

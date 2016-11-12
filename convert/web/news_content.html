@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<title>新闻内容</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+  <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+<!-----banner开始----->
+<div class="box"> <img src="images/img3.jpg" width="1920" height="400" align="middle"/> </div>
+<!-----banner结束----->
+
+<div class="box container_bg">
+  <div class="news">
+    <p class="news_content_title"><?php echo $title ?></p>
+    <p class="news_content_sec"><span>发布人：<?php echo $user_name ?></span><span>发布时间：<?php echo $publish_time ?></span></p>
+    <div class="news_contain">
+    <?php echo $content ?>
+    </div>
+  </div>
+</div>
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</body>
+</html>

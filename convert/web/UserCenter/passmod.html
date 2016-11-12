@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-密码修改</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/web/css/widgt.css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 提现---->
+<div class="modPass grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">个人资料</div>
+  
+               		    <table width="90%" height="200" class="mar_t30 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td class="grzx_gtable_wid3">原 密 码：</td>
+                            <td class="grzx_gtable_wid4"><input name="oldPass" type="password" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>新 密 码：</td>
+                            <td><input name="newPass" type="password" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>确认密码：</td>
+                            <td><input name="rePass" type="password" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="confirm grzx_gtable_btnOk">修改</a> <a href="javascript:void(0);" class="cancel grzx_gtable_btnNo">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+<div id="success">
+  <div class="suc_header"><h3>修改密码</h3></div>
+  <div class="suc_cont">修改成功!请重新登录</div>
+  <button class="suc_confirm" href="<?php echo site_url('UserApi/logout');?>">确定</button>
+</div>
+
+<div id="error">
+  <div class="error_header"><h3>修改密码</h3></div>
+  <div class="error_cont">修改失败!重新修改</div>
+  <button class="error_confirm" href="<?php echo site_url('UserCenter/Account');?>#passMod">确定</button>
+</div>
+
+<script type="text/javascript">
+$(function(){
+    $(".confirm").click(function(){
+        var oldPass = $("input[name='oldPass']").val();
+        var newPass = $("input[name='newPass']").val();
+
+        $.ajax({
+            url: "<?php echo site_url('UserApi/modPass');?>",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                oldPass: oldPass,
+                newPass: newPass,
+            },
+            success: function(json){
+                if (json.fail === 0) {
+                    window.parent.pop($("#success"));
+                } else {
+                    window.parent.pop($("#error"));
+                }
+            },
+            error: function(){
+                alert('请求错误，稍后重试');
+            }
+        }) 
+    });
+
+    $(".cancel").click(function(){
+        $("input").val("");
+    });
+    
+});
+
+</script>
+</body>
+</html>

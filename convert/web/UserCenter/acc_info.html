@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-首页</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/widgt.css" />
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/grzx.js"></script>
+<style type="text/css">
+    .grzx_iframe_cot2 input{
+        border:none;
+        background-color: #fff;
+    }
+</style>
+</head>
+
+<body>
+<!-----个人中心首页---->
+<div class="grzx_iframe_cot2">
+	<dl class="grzx_zhzx_user">
+    	<dt class="fn-left">
+        	<div class="grzx_zhzx_user_icon"></div>
+            <a href="#" class="grzx_zhzx_user_up">上传头像</a>
+        </dt>
+        <dd><h1>小康便名用户</h1>
+        	<p>姓名：
+                <?php if (empty($userInfo['name']) && empty($userInfo['ID_number'])) 
+                        echo '小康便民'; 
+                    else
+                        echo $userInfo['name'];
+                        ?></p>
+			<p>手机号码：<input type="text" id="phoneNumber" name="phone" value="<?php echo $userInfo['phoneNumber'];?>"/>    &nbsp;&nbsp;  &nbsp; <button disabled="true" class="blue phone_btn">更新</button></p>
+
+            <?php if (empty($userInfo['name']) && empty($userInfo['ID_number'])) {?>
+            <p class="grzx_zhzx_user">亲,还未实名认证<a href="<?php echo site_url('UserCenter/renzheng');?>">立即认证</a></p>
+            <?php } else {?>
+            <p class="grzx_zhzx_user_rzcg">已通过实名认证</p>
+            <?php }?>
+     </dd>
+    </dl>
+    <div class="grzx_zhzx_userBox"><span>帐户金额:&nbsp;<?php echo $account['money']?>元 </span><a target="_blank" href="<?php echo site_url('UserCenter/account');?>#chongzhi" class="blue">充值</a></div>
+    <div class="grzx_zhzx_userBox"><span>绑定银行卡:&nbsp;<?php echo $banknum;?>张</span> <a href="<?php echo site_url('UserCenter/account');?>#bankBind" class="blue" target="_blank">管理</a></div>
+    <div class="grzx_zhzx_userBox"><span>积分:&nbsp;<?php echo $account['credit']?></span> <a href="#" class="blue">兑换</a></div>
+</div>
+
+
+<!-- 弹出内容 修改号码 -->
+<div id="pop_form">
+    <input id="phone" name="phone" type="text" value="<?php echo $userInfo['phoneNumber'];?>"/>
+    <button class="confirm">确认</a>
+    <button id="close" class="cancel">取消</a>
+</div>
+<!--弹出内容end-->
+
+<script type="text/javascript">
+    $(function(){
+
+        $("#phoneNumber").click(function(){
+            $(this).css({
+                border: "1px solid #e14e05",
+            });
+        });
+
+        $("#phoneNumber").keyup(function(){
+            $(".phone_btn").attr("disabled", false);
+            $(".phone_btn").css("color", "#e14e05");
+        });
+
+        var phone = $("input[name='phone']").val();
+        $(".phone_btn").click(function(){
+            var newphone = $("input[name='phone']").val();
+            $.ajax({
+                url: '<?php echo site_url("UserApi/modPhone");?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    userid: "<?php echo $userInfo['userID'];?>",
+                    phone: phone,
+                    newphone: newphone,
+                },
+                success: function(json){
+                    if (json.fail == 0) {
+                        $("#phoneNumber").css({
+                            border: "0",
+                        });
+                        $(".phone_btn").css("color", "#2a6fb8");
+                        var tip = $("<span style='margin-left:8px;'>更新成功</span>");
+                        tip.appendTo($(".phone_btn"));
+                        tip.delay(800).fadeOut(400);
+                    } else {
+                         var tip = $("<span>更新失败</span>");
+                        tip.appendTo($(".phone_btn"));
+                        tip.delay(800).fadeOut(400);
+                    }
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

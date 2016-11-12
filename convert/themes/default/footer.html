@@ -1,0 +1,19 @@
+<div class="bottom-meun">
+	<ul>
+    	<li><a href="<?php echo site_url('user/index')?>" class="icon"><span class="index"></span><p>首页</p></a></li>
+        <li><a href="<?php echo site_url('home/server')?>" class="icon"><span class="server"></span><p>服务中心</p></a></li>
+        <li><a href="<?php echo site_url('home/person')?>" class="icon"><span class="person"></span><p>个人中心</p></a></li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var curr = window.location.href;
+		curr = curr.split("/").pop();
+		$(".bottom-meun ."+curr).addClass(curr + "-o");
+	});
+</script>
+
+</body>
+</html>

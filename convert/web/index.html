@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>小康便民O2O服务站-网站首页</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/js.js"></script>
+</head>
+
+<body>
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+ <!-----banner开始----->
+  <div class="box nopadding">
+      <?php $this->load->view('login_form.html');?>
+    <!-- 焦点图代码begin -->
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(images/img1.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(images/img2.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(images/img3.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+    <!-- 焦点图代码end --> 
+    
+  </div>
+  
+  <!-----banner结束-----> 
+ <!-----layout_1开始----->
+  <div class="box layout_1_bg">
+    <div class="layout_1">
+      <ul>
+        <li><a href="<?php echo site_url('xkApp/umspay/phoneRecharge');?>" target="_blank"> <img src="images/icon_01.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/phoneRecharge');?>"  target="_blank">话费充值</a></p>
+          <span>5-10分钟到帐！</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/water');?>" target="_blank"><img src="images/icon_02.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/water');?>"  target="_blank">水费</a></p>
+          <span>便捷支付，轻松缴费！</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/power');?>" target="_blank"><img src="images/icon_03.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/power');?>"  target="_blank">电费</a></p>
+          <span>便民充值您家门口的营业厅！</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/gas');?>" target="_blank"><img src="images/icon_04.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/gas');?>"  target="_blank">燃气费</a></p>
+          <span>充值便利，生活轻松！</span></li>
+        <li><a href="<?php echo site_url('xkApp/umspay/creditCard');?>" target="_blank"><img src="images/icon_10.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="<?php echo site_url('xkApp/umspay/creditCard');?>"  target="_blank">信用卡缴费</a></p>
+          <span>5-10分钟到帐！</span></li>
+        <li><a href="http://cx.xiangw.net/UserWeb/login.html" target="_blank"><img src="images/icon_06.jpg" width="115" height="115"/></a>
+          <p class="title_font_b"><a href="http://cx.xiangw.net/UserWeb/login.html"  target="_blank">彩票分析</a></p>
+          <span>智慧选号，助您中彩！</span></li>
+      </ul>
+      <div class="layout_more"><a href="<?php echo site_url('home/service');?>"">更多便民服务</a></div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----layout_1结束-----> 
+  <!-----layout_2开始----->
+  <div class="box layout_2_bg White">
+    <div class="layout_2"> <span class="title_font center_font">在本地化、互动化方面，O2O是大趋势</span>
+      <ul>
+        <li class=" fn-left li_wid_s">
+          <p>O2O即Online To Offline（在线离线/线上到线下），是指将线下的商务机会与互联网结合，让互联网成为线下交易的前台，这个概念最早来源于美国。O2O的概念非常广泛，既可涉及到线上，又可涉及到线下,可以通称为O2O。</p>
+        </li>
+        <li class=" fn-left li_wid_c"><img src="images/o2o.jpg" width="427" height="246"/></li>
+        <li class=" fn-right li_wid_s">
+          <p>2013年O2O进入高速发展阶段，开始了本地化及移动设备的整合，于是O2O商业模式横空出世，成为O2O模式的本地化分支。</p>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----layout_2结束-----> 
+  <!-----layout_3开始----->
+  <div class="box layout_3_bg">
+    <div class="layout_3"> <img src="images/pt.jpg" width="302" height="123"/>
+      <ul>
+        <li><img src="images/pc.jpg" width="168" height="104"/><a class="center_font title_font_a Grey"  href="javascript:;">pc端在线服务商城</a>
+          <p>通过PC端在线服务商城可以即时实现通讯费充值，水、电、燃气缴费，火车票、汽车票、飞机票代购，游戏充值，信用卡还款等日常生活消费功能。</p>
+        </li>
+        <li><img src="images/zd.jpg" width="168" height="104"/><a class="center_font title_font_a Grey" href="javascript:;">象网自助</a>
+          <p>网上彩票自助投注终端机，自主设计、研发、生产的适合中国国情的，专用于中国电脑彩票在线销售的一体化购彩投注机。</p>
+        </li>
+        <li><img src="images/app.jpg" width="168" height="104"/><a class="center_font title_font_a Grey" href="javascript:;">移动端APP互联</a>
+          <p>象网彩票手机APP依托强大的桌面客户端资源技术积累，实时接驳国家彩票云数据中心。</p>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <!-----layout_3结束-----> 
+  <!-----layout_4开始--合作伙伴--->
+     <?php $this->load->view('partner.html');?>
+  <!-----layout_4结束-----> 
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+  
+</div>
+</body>
+</html>

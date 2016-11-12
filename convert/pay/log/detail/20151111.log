@@ -1,0 +1,16 @@
+[]:
+{****************开始******执行日期:20151111172245}
+[用户充值成功,apiReponse:]:
+{{"fail":0,"amount":"1","balance":"73759"}}
+[彩票支付状态更新成功,apiReponse:]:
+{{"fail":0,"data":{"outcount":"1","desc":"订单更新完成","updateRow":"1"}}}
+[平台冻结支付款成功,apiReponse:]:
+{{"fail":0,"amount":"200","pending_id":"328","order_id":"2015111105223201001001"}}
+[]:
+{****************开始******执行日期:20151111174141}
+[用户充值成功,apiReponse:]:
+{{"fail":0,"amount":"1","balance":"73560"}}
+[彩票支付状态更新成功,apiReponse:]:
+{{"fail":0,"data":{"outcount":"1","desc":"订单更新完成","updateRow":"1"}}}
+[平台冻结支付款成功,apiReponse:]:
+{{"fail":0,"amount":"200","pending_id":"329","order_id":"2015111105413601001001"}}

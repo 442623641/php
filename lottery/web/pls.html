@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<title>排列三</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/ball.css" rel="stylesheet" type="text/css">
+<link href="css/sty.css" rel="stylesheet" type="text/css">
+<link href="css/plug.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"  type="text/javascript"></script>
+<script src="js/alert.js"  type="text/javascript"></script>
+<script src="js/lottery.js"  type="text/javascript"></script>
+<script src="js/pl3.js" type="text/javascript"  ></script>
+<script type="text/javascript"  >
+$(function () {
+	
+	lottery=new lottery_model('排列3',1);
+	 baseUrl="<?php echo site_url();?>"
+	 setIssue(baseUrl);
+	 
+	 $(".p_rela").bind("click", function () {
+	        var obj = $(this).children('span:eq(1)');
+	        if (obj.hasClass("triangle_down")) {
+	        	obj.removeClass("triangle_down").addClass("triangle_top");
+	        	$(".box").css('display','block');
+	        }
+	        else {
+	        	obj.removeClass("triangle_top").addClass("triangle_down");
+	        	$(".box").css('display','none');
+	        }
+	    });
+	 $(".box table .btn_c").bind("click", function () {
+		 $(this).parent().parent().find(".current").removeClass('current');
+		 $(this).addClass("current");
+		 var index=$(this).parent().index();
+		 bet=new bet_model(index);
+		 $("#lotteryName").html('排列3'+bet.name);
+		 //$(".div_ball .xuanhao:eq("+index+")").css('display','block').siblings().css('display','none');
+		 $(".div_ball").children('div .block').removeClass('block');
+		 $(".div_ball").children('div:eq('+index+')').addClass('block')
+		 $(".p_rela span:eq(1)").removeClass("triangle_top").addClass("triangle_down");
+	     $(".box").css('display','none');
+	     bet.getBet();
+	    });
+	 //bet=new bet_model(1);
+		//var indexOfStore=parseInt(queryString('index'));
+		//if(indexOfStore!='null'){
+		//	var store=getItem('lottery');
+		//	if(store!=null){
+		//		bet.instance(store.bets[store.bets.length-indexOfStore-1]);	
+		//	}
+		//}	
+	 $(".box table .btn_c:eq(1)").click();
+	 //bet.setBet();
+	 ball_click();
+});
+</script>
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back(-1);" class="back"></a><p class="p_rela"><span id="lotteryName">排列3组三</span><span class="triangle_down"></span></p></div>
+<div class="box text_center white" style="display:none;" id="box">
+        <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+            <td><a class="btn_c">直选</a></td>
+            <td><a class="btn_c">组三</a></td>
+            <td><a class="btn_c">组六</a></td>
+          </tr>  
+        </tbody></table>
+  </div>
+<!--内容-->
+<article>
+<div class="content">
+  <div class="box_b fot_10 white" style="padding:0.5rem 0.6rem;" >
+ <span class="fl">距<em id="currentIssue">15080752</em>期截止：<span id="timer"><em class="red">24</em>时<em class="red">00</em>分<em class="red">00</em>秒</span></span>
+  </div>
+  <div class="div_ball">
+  <div  class="xuanhao none" name="xuanhao">
+	<div class="box_c">
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="4" id='desc'>每位至少选择1个号码,按位猜对开奖号即中<em class="red">1040</em>元</td>
+            <td colspan="3" align="right"><a href="#" class="btn_a4">摇一摇</a></td>
+            </tr>
+          <tr>
+            <td width="20%" align="left"><span class="btn_d fot_12" id="bai_span">百位</span></td>
+            <td width="16%"><a class="btn_e">0</a></td>
+            <td width="16%"><a class="btn_e">1</a></td>
+            <td width="16%"><a class="btn_e">2</a></td>
+            <td width="16%"><a class="btn_e">3</a></td>
+            <td width="16%"><a class="btn_e">4</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a class="btn_e">5</a></td>
+            <td><a class="btn_e">6</a></td>
+            <td><a class="btn_e">7</a></td>
+            <td><a class="btn_e">8</a></td>
+            <td><a class="btn_e">9</a></td>
+            </tr>
+        </table>
+    </div>
+	<div class="box_c shi" >
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="20%" align="left"><span class="btn_d fot_12">十位</span></td>
+       		<td width="16%"><a class="btn_e">0</a></td>
+            <td width="16%"><a class="btn_e">1</a></td>
+            <td width="16%"><a class="btn_e">2</a></td>
+            <td width="16%"><a class="btn_e">3</a></td>
+            <td width="16%"><a class="btn_e">4</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+               <td><a class="btn_e">5</a></td>
+            <td><a class="btn_e">6</a></td>
+            <td><a class="btn_e">7</a></td>
+            <td><a class="btn_e">8</a></td>
+            <td><a class="btn_e">9</a></td>
+            </tr>
+        </table>
+    </div>
+	<div class="box_c mb_8 shi"  >
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="20%" align="left"><span class="btn_d fot_12">个位</span></td>
+            <td width="16%"><a class="btn_e">0</a></td>
+            <td width="16%"><a class="btn_e">1</a></td>
+            <td width="16%"><a class="btn_e">2</a></td>
+            <td width="16%"><a class="btn_e">3</a></td>
+            <td width="16%"><a class="btn_e">4</a></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+             <td><a class="btn_e">5</a></td>
+            <td><a class="btn_e">6</a></td>
+            <td><a class="btn_e">7</a></td>
+            <td><a class="btn_e">8</a></td>
+            <td><a class="btn_e">9</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+  <div name="xuanhao"  class="xuanhao none block">
+	<div class="box_c">
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="4" id='desc'>至少选择2个号码,猜对开奖号(顺序不限)即中<em class="red">346</em>元</td>
+            <td colspan="3" align="right"><a href="#" class="btn_a4">摇一摇</a></td>
+            </tr>
+          <tr>
+            <td width="20%" align="left"><span class="btn_d fot_12" id="bai_span">选号</span></td>
+            <td width="16%"><a class="btn_e">0</a></td>
+            <td width="16%"><a class="btn_e">1</a></td>
+            <td width="16%"><a class="btn_e">2</a></td>
+            <td width="16%"><a class="btn_e">3</a></td>
+            <td width="16%"><a class="btn_e">4</a></td>
+
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a class="btn_e">5</a></td>
+            <td><a class="btn_e">6</a></td>
+            <td><a class="btn_e">7</a></td>
+            <td><a class="btn_e">8</a></td>
+            <td><a class="btn_e">9</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+  <div name="xuanhao"  class="xuanhao none">
+	<div class="box_c">
+          <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="4" id='desc'>至少选择3个号码,猜对开奖号(顺序不限)即中<em class="red">173</em>元</td>
+            <td colspan="3" align="right"><a href="#" class="btn_a4">摇一摇</a></td>
+            </tr>
+          <tr>
+            <td width="20%" align="left"><span class="btn_d fot_12" id="bai_span">选号</span></td>
+            <td width="16%"><a class="btn_e">0</a></td>
+            <td width="16%"><a class="btn_e">1</a></td>
+            <td width="16%"><a class="btn_e">2</a></td>
+            <td width="16%"><a class="btn_e">3</a></td>
+            <td width="16%"><a class="btn_e">4</a></td>
+
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><a class="btn_e">5</a></td>
+            <td><a class="btn_e">6</a></td>
+            <td><a class="btn_e">7</a></td>
+            <td><a class="btn_e">8</a></td>
+            <td><a class="btn_e">9</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</div>
+
+</div>
+</article>
+<!--底部-->
+<div class="fot_a">
+    <table width="100%" class="fot_a_bot " border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="25%"><a href="<?php echo site_url('pl3/addbet')?>" class="btn_a2 ml_06 fl"> </a></td>
+        <td width="25%">共<em>0</em>注<em>0</em>元</td>
+        <td width="50%"><a href="javascript:addbet('<?php echo site_url('pl3/addbet');?>');"  class="btn_a1 mr_06 fr "> </a></td>
+      </tr>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

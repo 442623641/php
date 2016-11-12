@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-地址管理</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/web/css/widgt.css" />
+<script type="text/javascript" src="/web/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/web/js/avalon.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 地址管理---->
+<div class="grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">地址管理</div>
+  <table width="90%" height="300" class="mar_t grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td class="grzx_gtable_wid1">帐&nbsp;&nbsp;号:</td>
+      <td class="grzx_gtable_wid2"><font class="org"><?php echo $user;?></font></td>
+    </tr>
+    <tr>
+      <td class="lists" colspan="2">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><a href="<?php echo site_url('UserCenter/addAddr')?>" class="grzx_gtable_btnOk">+ 添加新地址</a></td>
+    </tr>
+</table>
+</div>
+
+<div id="upform" class="grzx_iframe_cot" ms-controller="upform">
+<div class="grzx_cot_rgt_tit uptab"><font class="back">地址管理</font>-{{title}}</div>
+    <table width="90%" height="300" class="mar_t30 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grzx_gtable_wid1">帐&nbsp;&nbsp;号:</td>
+          <td class="grzx_gtable_wid2"><font class="org"><?php echo $user;?></font></td>
+        </tr>
+        <tr><td>姓名:</td><td><input name="name" type="text" ms-attr-value="{{data.add_name}}"></td></tr>
+        <tr>
+          <td>电话:</td>
+          <td><input name="phonenumber" ms-attr-value="{{data.add_phone}}"/></td>
+        </tr>
+        <tr>
+          <td>地&nbsp;&nbsp;址：</td>
+          <td><select name="province" class="grzx_gtable_select1 marg_rgt10"><option>安徽省</option><option>安徽省</option></select>   <select name="city" class="grzx_gtable_select1 marg_rgt10"><option>合肥市</option><option>合肥市</option></select>  <select name="country" class="grzx_gtable_select2"><option>经济技术开发区</option><option>经济技术开发区</option></select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input name="address" type="text" class="grzx_gtable_inptb" ms-attr-value="{{data.address}}"/></td>
+        </tr>
+        <tr>
+          <td>邮&nbsp;&nbsp;编:</td>
+          <td><input name="poster" type="text" class="grzx_gtable_inpta" ms-attr-value="{{data.youbian}}"/></td>
+        </tr>
+         <tr>
+                            <td>&nbsp;</td>
+                            <td><input type="checkbox" name="type" id="checkbox" value="1" checked/>
+设为默认地址 </td>
+                          </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><a href="javascript:void(0);" class="grzx_gtable_btnOk confirm">确定</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+        </tr>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+  var updata = '';
+  var defaultno = '';
+  $(function(){
+
+    var lists;
+    var td='';
+    $.ajax({
+      url: '<?php echo site_url("UserApi/address");?>',
+      type: 'POST',
+      dataType: 'json',
+      success: function(json){
+        lists = json.Data;
+        if (lists) {
+          $.each(lists, function(index, el) {
+            td += '<p class="grzx_cot_rgt_dzgl"> <label>' +
+                    '<input type="hidden" name="type" value="'+el.add_type+'">' + el.add_province + " " + el.add_city +  " " + el.address + " (" + el.add_name + ") " + el.add_phone + " 邮编: " + el.youbian + "&nbsp;&nbsp;" + '<a href="javascript:void(0);" rel="'+ el.addressNo + '" class="update blue">修改</a>  <a href="javascript:void(0);" rel="' + el.addressNo + '" class="del blue">删除</a>';
+            var type = el.add_type;
+            if (type == "1") {
+              defaultno = el.addressNo;
+              td += '&nbsp;&nbsp;<a href="javascript:void(0);" rel="' + el.addressNo + '" class="def blue">默认地址</a> </label></p>';
+            } else {
+              td += '&nbsp;&nbsp;<a style="visibility:hidden;" href="javascript:void(0);" rel="' + el.addressNo + '" class="defset blue">设置默认地址</a></label></p>';
+            }
+          });
+        } else {
+          td = '<p class="grzx_cot_rgt_dzgl"></p>'
+        }
+
+        $(".lists").append(td);
+      },
+      error: function(json){
+        alert("获取地址列表出错");
+      }
+    });
+
+  //设置默认地址
+  $('.grzx_cot_rgt_dzgl').live("mouseenter", function(){
+    $(this).find(".defset").css({
+      visibility:'visible',
+    }).addClass('current');
+  });
+
+  $(".current").live("click", function(){
+      var address_no = $(this).attr("rel");
+      $.ajax({
+        url: '<?php echo site_url("UserApi/batUpdate");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          address_no: address_no + ',' + defaultno,
+          add_type: '1' + ',' + '2',
+        },
+        success: function(json){
+          if (json.fail == 0) {
+            $(this).html("默认地址");
+            defaultno = $(this).attr("rel");
+            $(".def").css("visibility", 'hidden').html("设置默认地址").addClass('defset').removeClass('def');
+            $(this).addClass('def').removeClass('defset');
+            window.location.reload();
+          } else {
+            $('<span style="color:red;">设置出错</span>').appendTo($(".current")).delay(1000, function(){
+              $(this).css('display', 'none');
+            });
+          }
+        }
+      })
+    });
+
+  $('.grzx_cot_rgt_dzgl').live("mouseleave", function(){
+    $(this).find(".defset").css({
+      visibility:'hidden',
+    }).removeClass('current');
+  });  
+
+
+    var model ='';
+    $(".update").live("click", function(){
+      var address_no = $(this).attr('rel');
+      $.each(lists, function(index, el) {
+          if (el.addressNo == address_no) {
+           updata = el;
+          }
+      });
+
+
+    model = avalon.define({
+        $id: "upform",
+        $skipArray: ["jquery"],
+        title: '更新地址',
+        data: updata,
+    });
+    avalon.scan();
+
+      $(".grzx_iframe_cot").css('display', 'none');
+      $("#upform").css('display', 'block');
+    });
+
+    $(".back").live("click", function(){
+      $(".grzx_iframe_cot").css('display', 'block');
+      $("#upform").css('display', 'none');
+    })
+
+    $(".confirm").click(function(){
+      var address_no = model.data.addressNo;
+      var name = $.trim($("input[name='name']").val());
+      var phonenumber = $.trim($("input[name='phonenumber]").val());
+      var province = $("select[name='province'] option:selected").text();
+      var city = $("select[name='city'] option:selected").text();
+      var district = $("select[name='country'] option:selected").text();
+      var address = $.trim($("input[name='address']").val());
+      var type = $("input[name='type']:checked").val() || "2";
+      var poster = $.trim($("input[name='poster']").val());
+
+      $.ajax({
+        url: '<?php echo site_url("UserApi/updateAddr");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          name: name,
+          address_no: address_no,
+          phonenumber: phonenumber,
+          province: province,
+          city: city,
+          district: district,
+          address: address,
+          type: type,
+          youbian: poster,
+        },
+
+        success: function(json){
+          if (json.fail == 0) {
+            alert('更新成功');
+            window.location.href="<?php echo site_url('UserCenter/address');?>"
+          } else {
+            alert('更新失败');
+          }
+        }
+      })
+    });
+
+
+    $(".del").live("click", function(){
+      var addressNo = $(this).attr("rel");
+      $.ajax({
+        url: '<?php echo site_url("UserApi/delAddr");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          address_no: addressNo
+        },
+        success: function(json){
+          if (json.fail == 0) {
+            alert('删除成功');
+            window.location.reload();
+          }
+        }
+      })
+    });
+  });
+</script>
+</body>
+</html>

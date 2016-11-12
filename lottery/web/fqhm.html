@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+	<meta name="Author" content="chinaums" />
+	<meta name="Copyright" content="chinaums" />
+	<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+	<meta http-equiv="Pragma" CONTENT="no-cache"/>
+	<meta http-equiv="expires" CONTENT="0"/>
+	<title>便民彩票—发起合买</title>
+	<base href = "<?php echo base_url();?>"/> 
+	<link rel="stylesheet" href="web/css/wdcp.css">
+	<link rel="stylesheet" href="web/css/sty.css">
+	<link href="web/css/plug.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript"  src="web/js/jquery.min.js" ></script>
+	<script type="text/javascript"  src="web/js/jquery-1.8.0.min.js" ></script>
+	<script src="web/js/alert.js"  type="text/javascript"></script>
+	<script type="text/javascript">
+	function changeTake(src) {
+		 $('a[name="takes"]').each(function(){
+			$(this).removeAttr('class');
+		 });
+		 $(src).attr('class','cxz');
+		 var take = $(src).text().replace(/[^0-9]/ig,"");
+		 $('#take').val(take);
+   }
+
+	function hmtz(){
+		var multiple = $('#multiple').val();
+		var lotteryID = $('#lotteryID').val();
+		var money = $('#money').val();
+		var issue = $('#issue').val();
+		var text2 = $('#text').val();
+		var text = [];
+		text = text2.split('|');
+		var shop = $('#shop').val();
+		var publicType = $('input[name="publicType"]:checked').val();
+		var ensure = $('#ensure').val();
+		var launcherBuy = $('#launcherBuy').val();
+		var schemeName = $('#schemeName').val();
+		var take = $('#take').val();
+		var unit = $('#unit').val();
+		var url = "<?php echo site_url();?>"+"/api/LotteryJoint/launch";
+	    $.ajax({
+	        type: "post",
+	        url: url,
+	        data: {userID:'10017',lotteryID:lotteryID,multiple:multiple,money:money,issue:issue,text:JSON.stringify(text),
+	        shop:shop,publicType:publicType,ensure:ensure,launcherBuy:launcherBuy,schemeName:schemeName,take:take,unit:unit},
+	        dataType:"json",
+	        error:function () {msg("网络异常,投注失败","error");},
+	        success: function (json) {
+	            if(json.fail==undefined){msg("网络异常,投注失败","error");return;}
+	            if(json.fail!=0){msg(json.mess,"error");return;}
+	            msg("投注成功","ok",function(){location.href=baseUrl+'/home/index';},3);
+	            //清空
+	            
+	            return;
+	        }
+	    });
+	}
+
+	function changePubType(src){
+		if(src.checked){
+			 $('input[name="publicType"]').each(function(){
+					$(this).attr('checked',false);
+			});
+			$(src).attr('checked',true);
+		}
+	}
+	</script>
+</head>
+<body class="pt_6">
+<!--头部-->
+<div class="header"><a href="javascript:history.back();" class="back"></a>便民彩票</div>
+
+<!-- 金额 -->
+<div class="je">方案金额：<span>￥<?php echo $totalmoney;?></span></div>
+
+<!-- 中奖提成 -->
+<div class="zjtc">
+	<div class="zjtc_top">
+		<p>中奖提成</p>
+		<a href=""></a>
+	</div>
+	<div class="tcbl">
+		<ul>
+			<li><a name="takes" onclick="changeTake(this);" class="cxz">1%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">2%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">3%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">4%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">5%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">6%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">7%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">8%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">9%</a></li>
+			<li><a name="takes" onclick="changeTake(this);">10%</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 中奖设置 -->
+<div class="zjsz">
+	<ul>
+		<input type="hidden" id="lotteryID" name="lotteryID" value="<?php echo $lotteryID;?>">
+		<input type="hidden" id="multiple" name="multiple" value="<?php echo $multiple;?>">
+		<input type="hidden" id="issue" name="issue" value="<?php echo $currentIssue;?>">
+		<input type="hidden" id="text" name="text" value="<?php echo $text;?>">
+		<input type="hidden" id="money" name="money" value="<?php echo $totalmoney;?>">
+		<input type="hidden" id="shop" name="shop" value="<?php echo $shop;?>">
+		<input type="hidden" id="take" name="take" value="1">
+		<li>我要认购&nbsp;<input type="text" id="launcherBuy" name="launcherBuy" value="2.0" class="bmsz"></li>
+		<li>每份金额&nbsp;<input type="text" id="unit" name="unit" value="2.0" class="bmsz"></li>
+		<li>我要保底&nbsp;<input type="text" id="ensure" name="ensure" value="5.0" class="bmsz"></li>
+		<li class="nobo">方案名称&nbsp;<input id="schemeName" name="schemeName" type="text" value="我出方案，你收益~" class="bmsz"></li>
+	<li  class="nobo">保密设置&nbsp;<label><input name="publicType" type="checkbox" value="0" onchange="changePubType(this);" checked>立即公开</label><label><input onchange="changePubType(this);" name="publicType" type="checkbox" value="1" >截止后公开</label><label><input name="publicType" type="checkbox" value="2" onchange="changePubType(this);">对跟单人公开</label></li>
+	</ul>
+</div>
+
+<!-- 底部 -->
+<div class="fot_a">
+	<div class="fot_a_bot"> 共<?php echo $totalmoney;?>元 <a href="javascript:hmtz();" class="btn_a fr mt_05"> 付款</a></div>
+</div>
+
+</body>
+</html>
+

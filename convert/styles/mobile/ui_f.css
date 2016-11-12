@@ -1,0 +1,7 @@
+.ui-body-f .ui-bar-f{ height:2.5rem; line-height: 2.5rem; overflow:hidden; position:relative;background:#cd5615; color:#fff; padding:0.6rem 0}
+.ui-body-f .ui-bar-f  .ui-location{color:#fff; font-size:1.25rem; position:absolute;padding:0.6rem 0.83rem; top:0; left:0}
+.ui-body-f .ui-bar-f .ui-openFavBox {display: block; position: absolute;width: 2.5rem;height: 3rem;top:0.3rem;left:3.2rem;}
+.ui-body-f .ui-bar-f .ui-openFavBox i {position: absolute;right: 1rem;top:1rem; display: inline-block;width: .6rem;height: .6rem; border: .166rem solid #fff;border-width: 0 .166rem .166rem 0;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-ms-transform: rotate(45deg);-o-transform: rotate(45deg);transform: rotate(45deg);}
+.ui-body-f .ui-bar-f .ui-openFavBox i .ui-leftn{border-width: 0 0 .166rem .166rem;}
+.ui-body-f .ui-bar-f img{ float:left; margin:18px 0 0 5px;cursor: pointer;}
+.ui-body-f .ui-bar-f .ui-title-f{ font-size:1.6rem; text-align:center; font-weight:normal}

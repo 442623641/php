@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<title>新闻列表</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+
+<!-----topbar 开始----->
+<div class="wrapper"> 
+  <!-----topbar 开始----->
+    <?php $this->load->view('header.html');?>
+  <!-----topbar 结束-----> 
+  <!-----nav 开始----->
+   <?php $this->load->view('navigation.html');?>
+     <!-----nav end----->
+<!-----banner开始----->
+<div class="box"> <img src="images/img3.jpg" width="1920" height="400" align="middle"/> </div>
+<!-----banner结束----->
+
+<div class="box container_bg">
+  <div class="news">
+    <p class="news_title"><?php echo $p['title'] ?></p>
+    <ul class="news_list">    
+      <?php foreach($news as $res) {
+			echo '<li><span>'.$res['publish_time'].'</span><a href="'.base_url().'xk.php/home/news/'.$res['news_id'].'">'.$res['title'].'</a></li>';
+ }?> 		
+    </ul>
+    <div class="page"><span class="f_r page_num"><a href="<?php echo site_url('home/newsList/'.$p['type'].'/1');?>">首页</a> <a href="<?php if($p['page']>1) {echo site_url('home/newsList/'.$p['type'].'/'.$p['prev']);} else {echo 'javascript:alert(\'已经是第一页\');'; } ?>" >上一页</a> <a href="<?php if($p['page']!=$p['totalpages']) {echo site_url('home/newsList/'.$p['type'].'/'.$p['next']);} else {echo 'javascript:alert(\'已经是最后一页\');'; } ?>">下一页</a> <a href="<?php echo site_url('home/newsList/'.$p['type'].'/'.$p['totalpages']);?>">尾页</a></span><span class="page_info">共<?php echo $p['total'] ?>条新闻 每页面10条 共<?php echo $p['totalpages'] ?>页</span></div>
+  </div>
+</div>
+  
+  <!-----layout_5开始--底部--->
+     <?php $this->load->view('footer.html');?>
+  
+  <!-----layout_5结束-----> 
+</body>
+</html>

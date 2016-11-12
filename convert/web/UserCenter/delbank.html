@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人中心-账户中心-银行卡解绑</title>
+<link href="/web/css/base.css" rel="stylesheet" type="text/css">
+<link href="/web/css/layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/web/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/web/js/grzx.js"></script>
+</head>
+
+<body>
+<!-----个人中心 银行卡解绑---->
+<div class="grzx_iframe_cot">
+  <div class="grzx_cot_rgt_tit">银行卡-解除绑定</div>
+  <div class="grzx_cot_rgt_grzl mar_t">你正在解除绑定的银行卡，解除后不能使用快捷支付。</div>
+  <div class="grzx_cot_rgt_yhkjb_box mar_t50">
+    <div class="grzx_cot_rgt_yhkjb"><p class="yhkjb_height grzx_cot_rgt_yhk_bg1"></p><p class="mar_lef12"><?php echo $bankid;?></p> </div>
+  </div>
+
+  
+               		    <table  width="90%" height="116" class="mar_t50 grzx_gtable" border="0" cellspacing="0" cellpadding="0">
+ 						 <tr>
+                            <td class="grzx_gtable_wid3"></td>
+                            <td class="grzx_gtable_wid4"></td>
+                          </tr>
+                          <tr>
+                            <td>支付密码:</td>
+                            <td><input name="paypass" type="password" class="grzx_gtable_inpta"/></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td><a href="javascript:void(0);" class="grzx_gtable_btnOk delbank">解绑</a> <a href="javascript:void(0);" class="grzx_gtable_btnNo cancel">取消</a></td>
+                          </tr>
+                      </table>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".cancel").click(function(){
+      $("input").val("");
+    });
+    $(".delbank").click(function(){
+      var bankid = "<?php echo $bankid;?>";
+      var paypass = $.trim($("input[name='paypass']").val());
+
+      $.ajax({
+        url: '<?php echo site_url("UserCenter/delBank");?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          bankid: bankid,
+          paypass: paypass,
+        },
+        success: function(json){
+          if (json.fail == 0) {
+            alert('解绑成功');
+            window.location.href = "<?php echo site_url('UserCenter/bankBind');?>#bankBind"
+          } else {
+            alert(json.mess);
+          }
+        }
+      })
+    });
+  })
+</script> 
+</body>
+</html>

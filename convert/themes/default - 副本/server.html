@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<link rel="stylesheet" href="<?php echo base_url();?>styles/style2.css" />
+<title>服务中心</title>
+</head>
+
+<body>
+<div class="topmenu">
+ <h1 class="title">服务中心</h1>
+</div>
+<div style="padding: 0 0 5.5rem;">
+<section class="hall clearfix" id="server_hall">
+    <a class="hallLink" href="<?php echo site_url('AllPay/payFor');?>?bizName=phoneRecharge">
+    	<dl class="hallList">
+        	<dt class="logo icon_mobile"></dt>
+            <dd class="text">
+            	<h3 class="title">手机充值</h3>
+                <p class="intro ellipsis">方便快捷，5分钟到账</p>
+                <span class="right_narrow"><i></i></span>
+            </dd>
+         </dl>
+    </a>
+    <a class="hallLink fr" href="<?php echo site_url('AllPay/payFor');?>?bizName=water">
+    	<dl class="hallList">
+        	<dt class="logo icon_water"></dt>
+            <dd class="text">
+            	<h3 class="title">缴纳水费</h3>
+                <p class="intro ellipsis">不出门就能交水费</p>
+                <span class="right_narrow"><i></i></span>
+             </dd>
+         </dl>
+     </a>
+      <a class="hallLink" href="<?php echo site_url('AllPay/payFor');?>?bizName=power">
+    	<dl class="hallList">
+        	<dt class="logo icon_light"></dt>
+            <dd class="text">
+            	<h3 class="title">缴纳电费</h3>
+                <p class="intro ellipsis">不出门就能交电费</p>
+                <span class="right_narrow"><i></i></span>
+             </dd>
+         </dl>
+     </a>
+      <a class="hallLink fr" href="<?php echo site_url('AllPay/payFor');?>?bizName=gas">
+    	<dl class="hallList">
+        	<dt class="logo icon_gas"></dt>
+            <dd class="text">
+            	<h3 class="title">缴纳燃气费</h3>
+                <p class="intro ellipsis">不出门就能交水费</p>
+                <span class="right_narrow"><i></i></span>
+             </dd>
+         </dl>
+     </a>
+      <a class="hallLink" href="<?php echo site_url('AllPay/payFor');?>?bizName=creditCard">
+    	<dl class="hallList">
+        	<dt class="logo icon_card"></dt>
+            <dd class="text">
+            	<h3 class="title">信用卡还款</h3>
+                <p class="intro ellipsis">方便快捷，迅速还款</p>
+                <span class="right_narrow"><i></i></span>
+             </dd>
+         </dl>
+     </a>
+     <a class="hallLink" href="<?php echo site_url('Express/index');?>">
+        <dl class="hallList">
+            <dt class="logo icon_express"></dt>
+            <dd class="text">
+                <h3 class="title">快递查询</h3>
+                <p class="intro ellipsis">方便快捷，快速查询</p>
+                <span class="right_narrow"><i></i></span>
+             </dd>
+         </dl>
+     </a>
+</section>
+</div>
+<div class="bottom-meun">
+    <ul>
+        <li><a href="<?php echo site_url('user/index')?>" class="icon"><span class="home"></span><p>首页</p></a></li>
+        <li><a href="<?php echo site_url('home/server')?>" class="icon"><span class="server-o"></span><p>服务中心</p></a></li>
+        <li><a href="<?php echo site_url('home/person')?>" class="icon"><span class="user"></span><p>个人中心</p></a></li>
+        <div class="clear"></div>
+    </ul>
+</div>
+</body>
+</html>

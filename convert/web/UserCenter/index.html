@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>个人首页-个人中心</title>
+<base href = "<?php echo base_url();?>web/"/> 
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/add.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/grzx.js"></script>
+</head>
+
+<body>
+<div class="wrapper layout_5_bg">
+        <?php echo $header;?>
+        <!---个人中心 content -->
+		<div class="box ">
+    		<div class="grzx_content">
+       		    <!---个人中心 content left -->
+        		<div class="grsy_content_left fn-left">
+                <div class="grsy_lef_lay1 mar_t30"><p class="grsy_lef_lay1_icon">个人帐户</p> <a href="<?php echo site_url('UserCenter/account');?>" class="mar_lef">余额</a><a href="<?php echo site_url('UserCenter/account');?>#chongzhi">充值</a><a href="<?php echo site_url('UserCenter/account');?>#tixian">提现</a><a href="<?php echo site_url('UserCenter/account');?>#jifen">积分</a></div>
+                 <div class="grsy_lef_lay1 "><p class="grsy_lef_lay2_icon">交易记录</p> <a href="<?php echo site_url('UserCenter/charge');?>" class="mar_lef">交易明细</a><a href="<?php echo site_url('UserCenter/charge');?>#chongzhi">充值历史</a><a href="<?php echo site_url('UserCenter/charge');?>#tixian">提现纪录</a></div>
+                 <div class="grsy_lef_lay3"><p>我最近的服务</p>
+                 <a href="#" class="grsy_lef_icon1">电费</a>
+                 <a href="#" class="grsy_lef_icon2">燃气费</a>
+                 <a href="#" class="grsy_lef_icon3">水费</a>
+                 <a href="#" class="grsy_lef_icon4">话费充值</a>
+                 <a href="#" class="grsy_lef_icon5">彩票分析</a>
+                 </div>
+                 <a  class="blue mar_lef50" href="#">更多便民服务</a>
+
+                </div>
+       		    <!---个人中心 content right -->
+       		  <div class="grsy_content_right fn-right">
+              <iframe frameborder="0" id="Iframe_grsy" name="Iframe_grsy" src="<?php echo site_url('UserCenter/indexSy')?>" scrolling="no"></iframe>
+            </div>
+             	 <!---个人中心 content right over -->
+        	</div>
+            <div class="clearfix"></div>
+  	  </div>
+        <!---个人中心 content over-->
+      <?php echo $footer;?>
+</div>
+</body>
+</html>

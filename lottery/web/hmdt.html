@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1">
+<meta name="Author" content="chinaums" />
+<meta name="Copyright" content="chinaums" />
+<meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+<meta http-equiv="Pragma" CONTENT="no-cache"/>
+<meta http-equiv="expires" CONTENT="0"/>
+<base href = "<?php echo base_url();?>"/> 
+<title>合买大厅</title>
+<link href="web/css/sty.css" rel="stylesheet" type="text/css">
+<link href="web/css/wdcp.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"  src="web/js/jquery.min.js" ></script>
+<script type="text/javascript"  src="web/js/jquery-1.8.0.min.js" ></script>
+<script type="text/javascript">
+	$(function() {
+	    $.ajax({
+	        type: "post",
+	        url: "<?php echo site_url('api/LotteryJoint/buyable');?>",
+	        data: {index:'1',pageSize:'10',userID:'10017'},
+	        dataType:"json",
+	        error:function () {'请求异常！';},
+	        success: function (json) {
+		        if(json.fail!=0){
+					alert('暂无更多数据！');
+			    }else{
+					var res = json.data;
+					var html = '';
+					var lotterys = {0:'11选5',1:'排列三'};
+					for(var i=0;i<res.length;i++){ 
+						var buyrate = (res[i].sell/res[i].money).toFixed(2)*100;
+						alert(buyrate);
+						var baodirate = (res[i].ensure/res[i].money).toFixed(2)*100;;
+						html += '<div class="box_list mt_06"><a onclick="getXq();" class="box_list_go1"></a><dl class="cot_list1"><dt class="text_center"><p class=" mt_12 fot_14">'+lotterys[res[i].lotteryID]+'</p>'+
+						'<p class="red fot_23">'+buyrate+'</p><p class="btn_f">保'+baodirate+'</p></dt>'+
+				        '<dd><p class="p_line fot_14">无脸男</p><table width="90%"  class="ftable mt_05" border="0" cellpadding="0" cellspacing="0">'+
+				        '<tr><td class="grew">彩种</td><td class="grew">方案总额</td><td class="grew">每份</td>'+
+				        '<td class="grew">剩余分数</td></tr><tr><td>'+lotterys[res[i].lotteryID]+'</td><td>'+res[i].money+'</td><td>1元</td><td>'+res[i].money-res[i].sell+'</td>'+
+				        '</tr></table></dd></dl></div>';
+					} 
+					alert(html);
+					$('#data_area').append(html);
+
+				}
+	        }
+	    });
+	});
+</script>
+</head>
+
+<body class="pt_6">
+<!--澶撮儴-->
+<div class="header"><a href="javascript:history.back();" class="back"></a><p class="p_rela">合买大厅<span class="triangle_down"></span></p></div>
+<!--鍒楄〃-->
+<article>
+	  <div class="box_b text_center white" >
+  		<span class="triangle_up"></span>
+        <table width="100%" class="gtable" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td><a href="#" class="btn_c">全部合买</a></td>
+            <td><a href="#" class="btn_c">11选5</a></td>
+            <td><a href="#" class="btn_c">大乐透</a></td>
+          </tr>
+          <tr>
+            <td><a href="#" class="btn_c">七星彩</a></td>
+            <td><a href="#" class="btn_c">排列三</a></td>
+            <td><a href="#" class="btn_c">排列五</a></td>
+          </tr>
+        </table>
+  </div>
+
+<div id="data_area"></div>
+	
+
+  <div class="box_list mt_06">
+  	<a href="#" class="box_list_go1"></a>
+  	<dl class="cot_list1">
+    	<dt class="text_center"><p class=" fot_14 mt_12">11选5</p><p class="red fot_23">38%</p><p class="btn_f">保10%</p></dt>
+        <dd>
+            <p class="p_line fot_14">无脸男</p>
+            <table  class="ftable mt_05" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="grew">彩种</td>
+                <td class="grew">方案总额</td>
+                <td class="grew">每份</td>
+                <td class="grew">剩余分数</td>
+              </tr>
+              <tr>
+                <td>11选5</td>
+                <td>3000</td>
+                <td>1元</td>
+                <td>20</td>
+              </tr>
+            </table>
+        </dd>
+    </dl>
+  </div>
+
+<a  onclick="getTzjl(-2);" class="jiaz">点击加载更多</a>
+
+
+
+
+
+<div class="clearfix"></div>
+
+
+</article>
+
+
+<!--底部-->
+<?php $this->load->view('footer.html');?>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

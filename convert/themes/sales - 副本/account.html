@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="<?php echo substr(base_url(), 0,-10);?>Public/" />
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<title>订单管理</title>
+</head>
+
+<body>
+<div class="title_bg"><a href="<?php echo site_url('Home/show');?>" target="cont_right">首页</a>><a href="<?php echo site_url('Home/account');?>">资金管理</a>><a href="<?php echo site_url('Home/account');?>">资金明细</a></div>
+<div class="pad15">
+<div class="search">
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tr><td width="80">开始时间：</td><td width="210"><input name="" type="text" class="input_txt"></td><td width="80">结束时间：</td><td width="210"><input name="" type="text" class="input_txt"></td><td width="80">结算方：</td><td width="160"><select name="" class="input_sel"></select></td><td><a href="#" class="input_btn">查询</a></td></tr>
+    </table>
+</div>
+
+<div class="content_b">
+    <div class="content_b_t">资金明细</div>
+    <div class="content_b_table">
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr class="font14"><td width="60">序列号</td><td width="120">交易编号</td><td width="130">交易方式</td><td width="110">结算方</td><td width="100">交易金额</td><td width="100">结算金额</td><td>操作</td></tr>
+            <tr class="tbg"><td>1</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr><td>2</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr class="tbg"><td>3</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr><td>4</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr class="tbg"><td>5</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr><td>6</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr class="tbg"><td>7</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr><td>8</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr class="tbg"><td>9</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+            <tr><td>10</td><td>2015-06-29 14:00</td><td>充值</td><td>合肥刘清兰</td><td>58.00</td><td>58.36</td><td><a href="">查看交易详情</a></td></tr>
+        </table>
+        <div class="page">
+              <div class="fl">共50条信息 每页10条  共5页  当前1/5</div>
+              <div class="fr">
+                <a href="#" class="split_page">首页</a>
+                <a href="#" class="split_page"><span class="gray">上一页</span></a>
+                <a class="split_page current" href="#">1</a>
+                <a class="split_page" href="#"> 2</a>
+                <a class="split_page" href="#">3</a>
+                <a href="#" class="split_page">下一页</a>
+                <a href="#" class="split_page">尾页</a>
+                </div>
+                <div class=" clear"></div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

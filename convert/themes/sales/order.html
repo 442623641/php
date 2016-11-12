@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="<?php echo substr(base_url(), 0,-10);?>Public/" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<script type="text/javascript" src="js/require.js" data-main="js/modules/order/main"></script>
+<title>订单管理</title>
+</head>
+
+<body>
+<div class="title_bg"><a href="<?php echo site_url('Home/show');?>" target="cont_right">首页</a>>订单管理</div>
+<div class="pad15">
+<div class="search">
+	<table cellpadding="0" cellspacing="0" width="100%">
+    	<tr>
+            <td width="80">开始时间：</td><td width="210"><input class="datepicker" name="start" type="text" class="input_txt"></td><td width="80">结束时间：</td><td width="210"><input class="datepicker" name="end" type="text" class="input_txt"></td><td width="80">交易状态：</td><td width="160">
+            <select name="" class="input_sel">
+                <option>所有交易</option>
+                <option>正在交易</option>
+                <option>完成交易</option>
+            </select>
+            </td>
+            <td><a href="#" class="input_btn">查询</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="content_b">
+	<div class="content_b_t">订单列表</div>
+    <div class="content_b_table">
+    	<table cellspacing="0" cellpadding="0" width="100%">
+        	<thead class="font14">
+                <tr>
+                <td width="60">全选</td><td width="120">创建时间</td><td width="130">经手店铺</td><td width="110">交易名称</td><td width="100">交易方</td><td width="100">金额</td><td width="100">交易状态</td><td>操作</td>
+                </tr>
+            </thead>
+            <tbody class="order"> 
+            </tbody>   
+        </table>
+        <div class="page">
+              
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

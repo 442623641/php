@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<base href="<?php echo base_url();?>web/"/>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/address.js"></script>
+<title>支付密码</title>
+<script>
+$(document).ready(function(){
+	addressInit('province', 'city', 'area'); 
+	$("#province").val("<?php echo @$add_province?>");
+	addressInit('province', 'city', 'area'); 
+	$("#city").val("<?php echo @$add_city?>");
+	addressInit('province', 'city', 'area'); 
+	$("#area").val("<?php @$add=explode('|',$address); echo @isset($add[0])?$add[0]:null; ?>");
+	
+});
+</script>
+</head>
+
+<body>
+<div class="title_bg"><a href="<?php echo site_url('user/index')?>" target="_parent">首页</a>>
+<a href="<?php echo site_url('shop/index')?>" target="cont_right">店铺管理</a>><?php echo $title?>
+</div>
+<div class="content_b">
+	<div class="content_b_t"><?php echo $title?></div>
+	    <form id="formShop" name=="formShop" action="<?php echo $action ?>">
+    <div class="content_b_table" id="xt_table">
+	<!--
+//	 'shopID' => string '10000' (length=5)
+//      'shop' => string 'shop-003' (length=8)
+//      'dealer' => string '13993001010' (length=11)
+//      'add_province' => string '安徽' (length=6)
+//      'add_city' => string '合肥' (length=6)
+//      'address' => string '金寨路96号' (length=14)
+//      'add_GPS_lng' => string '-45.0938476' (length=11)
+//      'add_GPS_lat' => string '32.09876485' (length=11)-->
+    	<table cellpadding="0" cellspacing="0" width="100%">
+    	<?php if(isset($id)){
+$add=explode('|',$address); 
+$address=isset($add[1])?$add[1]:$address;
+echo '<tr><td width="80">店铺编号：</td><td><span>'.$id.'</span></td></tr>
+	<tr><td width="80">店铺名：</td><td><input name="shop" class="input_txt" id="width210" value="'.$shop.'"><span>*</span></td></tr>	
+	<tr><td width="80">店铺密码：</td><td><input name="pass" type="password" class="input_txt" id="width210" value="'.$pass.'"><span>*</span></td></tr>	
+            <tr><td>所在地：</td><td>	
+            			<select id="province" name="province"></select>  
+                        <select id="city" name="city"></select>  
+                        <select id="area" name="area"></select>  <span>*</span></td></tr>
+    <tr><td>详细地址：</td><td>                    
+					<textarea style="margin: 0px;height: 72px;width: 275px;" aria-combobox="list" role="combobox" name="address" id="address" placeholder="建议您如实填写详细收货地址，例如街道名称，店铺门牌号码，楼层和房间号等信息" data-inner_placeholder="d_p_input_inner_detailAddress" data-pattern="^[\s\S]{5,120}$" data-msg="d_p_detailAddress_msg" data-ph="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息">
+'.$address.'
+</textarea>
+                  <span>*</span></td></tr>                 
+               <tr><td>经度：</td><td><input name="gps_lng" class="input_txt" id="width210" value="'.$add_GPS_lng.'"></td></tr>
+               <tr><td>纬度：</td><td><input name="gps_lat" class="input_txt" id="width210" value="'.$add_GPS_lat.'"></td></tr>';}
+else{ echo
+'<tr><td width="80">店铺名：</td><td><input name="shop" class="input_txt" id="width210" value=""><span>*</span></td></tr>
+<tr><td width="80">店铺密码：</td><td><input name="pass" type="password" class="input_txt" id="width210"><span>*</span></td></tr>	
+            <tr><td>所在地：</td><td>	
+            			<select id="province" name="province"></select>  
+                        <select id="city" name="city"></select>  
+                        <select id="area" name="area"></select>  <span>*</span></td></tr>
+    <tr><td>详细地址：</td><td>                    
+					<textarea style="margin: 0px;height: 72px;width: 275px;" aria-combobox="list" role="combobox" name="address" id="address" placeholder="建议您如实填写详细收货地址，例如街道名称，店铺门牌号码，楼层和房间号等信息" data-inner_placeholder="d_p_input_inner_detailAddress" data-pattern="^[\s\S]{5,120}$" data-msg="d_p_detailAddress_msg" data-ph="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息"></textarea>
+                  <span>*</span></td></tr>                 
+               <tr><td>经度：</td><td><input name="gps_lng" class="input_txt" id="width210" value=""></td></tr>
+               <tr><td>纬度：</td><td><input name="gps_lat" class="input_txt" id="width210" value=""></td></tr>';
+
+}
+?>      	
+        </table>
+        <div class="f_box"><a href="javascript:document.forms['formShop'].submit();" class="input_btn" id="f_box_g">保存</a><div class="clear"></div></div>
+        </form>    
+</div>
+</div>
+</body>
+</html>

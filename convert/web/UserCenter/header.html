@@ -1,0 +1,25 @@
+<!---个人中心  topbar -->
+<div class="topbar_bg"><div class="topbar">
+	<div class="fn-left grzx_top_lef"> 欢迎来到小康便民网， 小康便民用户 你可以进入 个人中心 或 <a style="color:#f25609;" href="<?php echo site_url('UserApi/logout');?>">退出</a></div>
+    <div class="fn-right grzx_top_rgt">全国加盟热线：4008-591-020 </div>
+    <div class="clearfix"></div>
+</div></div>
+<!---个人中心  nav -->
+<div class="box nopadding menu_bg">
+    <div class="menu">
+    	<div class="grzx_nav"><span>个人中心</span> <a class="account" href="<?php echo site_url('UserCenter/account');?>">帐户中心</a> <a class="server" href="<?php echo site_url('UserCenter/server');?>">我的服务</a> <a class="charge" href="<?php echo site_url('UserCenter/charge');?>">交易记录</a> <a class="index current" href="<?php echo site_url('UserCenter/index');?>">个人首页</a></div>
+    </div>
+  </div>
+<!---个人中心 banner-->
+<div class="grzx_banner">
+	<dl>
+    	<dt class="fn-left"></dt>
+        <dd>
+        	<span class="grzx_banner_numb">99</span>
+        	<span class="grzx_banner_msg"></span>
+            <span class="grzx_banner_s">实</span>
+            <span class="grzx_banner_j">捷</span>
+        	<h1 class="grzx_banner_h"><?php echo $user;?></h1> <p class="grzx_banner_p">上次登录时间：2015.6.8 17：30</p>
+        </dd>
+    </dl>
+</div>  
